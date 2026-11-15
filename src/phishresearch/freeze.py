@@ -12,7 +12,7 @@ from pathlib import Path
 
 from .common import GateError, Paths, canonical_json, environment_info, read_json, sha256_file, sha256_text, write_json
 
-PRESENTATION_ONLY = {"reporting.py", "cli.py", "__main__.py"}
+PRESENTATION_ONLY = {"reporting.py", "cli.py", "__main__.py", "nbviz.py"}
 
 
 def _git_commit(root: Path) -> str | None:

@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "data/raw/manifest.json",
+  "type": "object",
+  "required": ["schema_version", "files"],
+  "properties": {"files": {"type": "object", "additionalProperties": {
+    "type": "object",
+    "required": ["source_id", "commit", "url", "retrieved_at", "size", "sha256", "expected_records",
+                 "observed_records", "label_mapping_evidence", "license_status"],
+    "properties": {"commit": {"type": "string", "pattern": "^[0-9a-f]{40}$"},
+                   "sha256": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+                   "size": {"type": "integer", "minimum": 1}}}}}
+}

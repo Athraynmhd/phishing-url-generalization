@@ -55,6 +55,7 @@ benchmark:
   warmup: 10
   repeats: 30
   batch_sizes: [1, 1024]
+  threads: [1, 4]                    # inference threads benchmarked (D-10)
   seed: 17                           # latency is measured on the seed-17 bundle of every config
 explain:
   background: 100

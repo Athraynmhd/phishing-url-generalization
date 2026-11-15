@@ -1,0 +1,24 @@
+[develop A] seed 17 outer fold 0 done
+[develop A] seed 17 outer fold 1 done
+[develop A] seed 17 outer fold 2 done
+[develop A] seed 17 finals: {'RF/MEAN_PI': 16, 'RF/STABLE_PI': 16, 'LGBM/MEAN_PI': 16, 'LGBM/STABLE_PI': 16}
+[develop A] seed 29 outer fold 0 done
+[develop A] seed 29 outer fold 1 done
+[develop A] seed 29 outer fold 2 done
+[develop A] seed 29 finals: {'RF/MEAN_PI': 16, 'RF/STABLE_PI': 16, 'LGBM/MEAN_PI': 16, 'LGBM/STABLE_PI': 16}
+[develop A] seed 43 outer fold 0 done
+[develop A] seed 43 outer fold 1 done
+[develop A] seed 43 outer fold 2 done
+[develop A] seed 43 finals: {'RF/MEAN_PI': 16, 'RF/STABLE_PI': 16, 'LGBM/MEAN_PI': 16, 'LGBM/STABLE_PI': 16}
+[develop B] seed 17 outer fold 0 done
+[develop B] seed 17 outer fold 1 done
+[develop B] seed 17 outer fold 2 done
+[develop B] seed 17 finals: {'RF/MEAN_PI': 8, 'RF/STABLE_PI': 8, 'LGBM/MEAN_PI': 8, 'LGBM/STABLE_PI': 8}
+[develop B] seed 29 outer fold 0 done
+[develop B] seed 29 outer fold 1 done
+[develop B] seed 29 outer fold 2 done
+[develop B] seed 29 finals: {'RF/MEAN_PI': 8, 'RF/STABLE_PI': 8, 'LGBM/MEAN_PI': 8, 'LGBM/STABLE_PI': 8}
+[develop B] seed 43 outer fold 0 done
+[develop B] seed 43 outer fold 1 done
+[develop B] seed 43 outer fold 2 done
+[develop B] seed 43 finals: {'RF/MEAN_PI': 8, 'RF/STABLE_PI': 8, 'LGBM/MEAN_PI': 8, 'LGBM/STABLE_PI': 8}

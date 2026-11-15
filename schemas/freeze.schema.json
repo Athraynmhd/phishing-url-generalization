@@ -1,0 +1,15 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "freeze.json",
+  "type": "object",
+  "required": ["schema_version", "created_at", "approved_by", "freeze_hash", "body", "environment"],
+  "properties": {
+    "approved_by": {"type": "string", "minLength": 1},
+    "freeze_hash": {"type": "string", "pattern": "^[0-9a-f]{64}$"},
+    "body": {"type": "object", "required": ["protocol_version", "file_hashes", "plan", "seeds", "k_candidates"],
+      "properties": {
+        "file_hashes": {"type": "object", "minProperties": 1, "additionalProperties": {"type": "string", "pattern": "^[0-9a-f]{64}$"}},
+        "plan": {"type": "array", "minItems": 1, "items": {"type": "object", "required": ["bundle_id", "source", "targets", "bundle"]}}
+      }}
+  }
+}
