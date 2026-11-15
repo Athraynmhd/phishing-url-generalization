@@ -1,0 +1,37 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "phishresearch"
+version = "1.0.0"
+description = "Source-only feature selection for phishing URL detection with bidirectional cross-dataset evaluation"
+requires-python = ">=3.10"
+# Exact pins = the environment the frozen run used (see requirements.lock).
+dependencies = [
+  "numpy==2.2.6",
+  "pandas==2.3.1",
+  "pyarrow==21.0.0",
+  "scikit-learn==1.7.2",
+  "lightgbm==4.6.0",
+  "shap==0.49.1",
+  "joblib==1.5.3",
+  "PyYAML==6.0.2",
+  "idna==3.20",
+  "requests==2.32.3",
+  "psutil==7.0.0",
+  "matplotlib==3.10.7",
+]
+
+[project.optional-dependencies]
+dev = ["pytest==8.3.5"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+phishresearch = ["resources/*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]

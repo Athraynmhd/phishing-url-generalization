@@ -1,0 +1,21 @@
+__pycache__/
+*.pyc
+.pytest_cache/
+# raw data & heavy results are not redistributed (licence unclear, see docs/sources.md)
+data/raw/**
+!data/raw/manifest.json
+data/processed/
+artifacts/runs/
+artifacts/dev/
+artifacts/eval/
+artifacts/analysis/
+artifacts/smoke/
+# private error analysis (contains raw URLs)
+artifacts/private/
+manuscript/*.aux
+manuscript/*.log
+manuscript/*.out
+manuscript/*.fls
+manuscript/*.fdb_latexmk
+manuscript/*.synctex.gz
+docs/literature/papers/*.pdf

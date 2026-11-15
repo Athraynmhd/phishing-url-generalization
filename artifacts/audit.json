@@ -1,0 +1,282 @@
+{
+  "cross_source": {
+    "cohort_group_intersection": 0,
+    "exact_url_key_overlap_records": 33,
+    "shared_groups": 692,
+    "top_shared_groups": {
+      "academic.ru": 438,
+      "amazon.com": 169,
+      "dictionary.com": 179,
+      "duckdns.org": 215,
+      "facebook.com": 320,
+      "google.com": 210,
+      "imdb.com": 169,
+      "microsoft.com": 202,
+      "stackoverflow.com": 151,
+      "thefreedictionary.com": 311,
+      "twitter.com": 212,
+      "weebly.com": 191,
+      "wordpress.com": 336,
+      "yourdictionary.com": 176,
+      "youtube.com": 443
+    }
+  },
+  "label_mapping_check": {
+    "agreement": 1.0,
+    "conclusion": "repo B uses 1=phishing, 0=benign",
+    "joined_rows": 73575,
+    "verification_rows": 73575
+  },
+  "parser_version": "urls-v1",
+  "psl_sha256": "b69315c085d53972724b8f2df111ffc329b0c84fe0a47d62c8c91655cc774a38",
+  "sources": {
+    "A": {
+      "empty_url": 0,
+      "groups_before_purge": {
+        "groups_benign_only": 12684,
+        "groups_mixed": 20,
+        "groups_phishing_only": 8901,
+        "groups_with_benign": 12704,
+        "groups_with_phishing": 8921,
+        "largest_group_share": 0.0244882306751155,
+        "n_groups": 21605,
+        "size_max": 1341,
+        "size_quantiles": {
+          "0.5": 1.0,
+          "0.9": 4.0,
+          "0.99": 21.0
+        },
+        "top_groups": {
+          "academic.ru": 413,
+          "esy.es": 229,
+          "facebook.com": 295,
+          "techtarget.com": 187,
+          "thefreedictionary.com": 286,
+          "twitter.com": 187,
+          "wikia.com": 183,
+          "wikipedia.org": 1341,
+          "wordpress.com": 186,
+          "youtube.com": 418
+        }
+      },
+      "groups_cohort": {
+        "groups_benign_only": 12022,
+        "groups_mixed": 14,
+        "groups_phishing_only": 8877,
+        "groups_with_benign": 12036,
+        "groups_with_phishing": 8891,
+        "largest_group_share": 0.028672838846244306,
+        "n_groups": 20913,
+        "size_max": 1341,
+        "size_quantiles": {
+          "0.5": 1.0,
+          "0.9": 4.0,
+          "0.99": 17.0
+        },
+        "top_groups": {
+          "esy.es": 229,
+          "hol.es": 120,
+          "jaaeza.com": 161,
+          "kloshpro.com": 107,
+          "sensagent.com": 115,
+          "techtarget.com": 187,
+          "thefullwiki.org": 146,
+          "webopedia.com": 104,
+          "wikia.com": 183,
+          "wikipedia.org": 1341
+        }
+      },
+      "parse_fail_reasons": {
+        "embedded_control": 2,
+        "unsupported_scheme": 1
+      },
+      "purge_loss_benign": 0.258876629889669,
+      "purge_loss_phishing": 0.010019717516397741,
+      "reconciles": true,
+      "removed_primary_reason": {
+        "cross_source_domain_purge": {
+          "benign": 7743,
+          "n": 7992,
+          "phishing": 249
+        },
+        "label_conflict": {
+          "benign": 0,
+          "n": 0,
+          "phishing": 0
+        },
+        "parse_quarantine": {
+          "benign": 0,
+          "n": 3,
+          "phishing": 3
+        },
+        "within_source_duplicate": {
+          "benign": 6490,
+          "n": 18811,
+          "phishing": 12321
+        }
+      },
+      "secondary_flags": {
+        "flag_cross_source_exact": 18,
+        "flag_cross_source_group": 9405,
+        "flag_label_conflict": 0,
+        "flag_within_source_duplicate": 18811
+      },
+      "stages": {
+        "after_cross_source_domain_purge": {
+          "benign": 22167,
+          "n": 46769,
+          "phishing": 24602
+        },
+        "after_label_conflict": {
+          "benign": 29910,
+          "n": 54761,
+          "phishing": 24851
+        },
+        "after_parse_quarantine": {
+          "benign": 36400,
+          "n": 73572,
+          "phishing": 37172
+        },
+        "after_within_source_duplicate": {
+          "benign": 29910,
+          "n": 54761,
+          "phishing": 24851
+        },
+        "loaded": {
+          "benign": 36400,
+          "n": 73575,
+          "phishing": 37175
+        }
+      },
+      "url_length": {
+        "max": 3992,
+        "median": 56.0,
+        "p99": 272.0
+      }
+    },
+    "B": {
+      "empty_url": 0,
+      "groups_before_purge": {
+        "groups_benign_only": 1824,
+        "groups_mixed": 18,
+        "groups_phishing_only": 5585,
+        "groups_with_benign": 1842,
+        "groups_with_phishing": 5603,
+        "largest_group_share": 0.08900110291732445,
+        "n_groups": 7427,
+        "size_max": 8231,
+        "size_quantiles": {
+          "0.5": 3.0,
+          "0.9": 25.0,
+          "0.99": 36.0
+        },
+        "top_groups": {
+          "duckdns.org": 213,
+          "esnafbenim.com": 578,
+          "ewp.live": 583,
+          "firebaseapp.com": 650,
+          "liusanjie.cc": 532,
+          "qwo231sdx.club": 2307,
+          "repl.co": 777,
+          "we9ixzz.co": 770,
+          "web.app": 590,
+          "za.com": 8231
+        }
+      },
+      "groups_cohort": {
+        "groups_benign_only": 1185,
+        "groups_mixed": 6,
+        "groups_phishing_only": 5544,
+        "groups_with_benign": 1191,
+        "groups_with_phishing": 5550,
+        "largest_group_share": 0.10963410898144571,
+        "n_groups": 6735,
+        "size_max": 8231,
+        "size_quantiles": {
+          "0.5": 2.0,
+          "0.9": 25.0,
+          "0.99": 36.0
+        },
+        "top_groups": {
+          "esnafbenim.com": 578,
+          "ewp.live": 583,
+          "firebaseapp.com": 650,
+          "liusanjie.cc": 532,
+          "qwo231sdx.club": 2307,
+          "repl.co": 777,
+          "we9ixzz.co": 770,
+          "web.app": 590,
+          "wsipv6.com": 194,
+          "za.com": 8231
+        }
+      },
+      "parse_fail_reasons": {
+        "unsupported_scheme": 17
+      },
+      "purge_loss_benign": 0.35634719788895375,
+      "purge_loss_phishing": 0.020108542887413816,
+      "reconciles": true,
+      "removed_primary_reason": {
+        "cross_source_domain_purge": {
+          "benign": 16475,
+          "n": 17405,
+          "phishing": 930
+        },
+        "label_conflict": {
+          "benign": 0,
+          "n": 0,
+          "phishing": 0
+        },
+        "parse_quarantine": {
+          "benign": 17,
+          "n": 17,
+          "phishing": 0
+        },
+        "within_source_duplicate": {
+          "benign": 0,
+          "n": 1,
+          "phishing": 1
+        }
+      },
+      "secondary_flags": {
+        "flag_cross_source_exact": 15,
+        "flag_cross_source_group": 17405,
+        "flag_label_conflict": 0,
+        "flag_within_source_duplicate": 1
+      },
+      "stages": {
+        "after_cross_source_domain_purge": {
+          "benign": 29758,
+          "n": 75077,
+          "phishing": 45319
+        },
+        "after_label_conflict": {
+          "benign": 46233,
+          "n": 92482,
+          "phishing": 46249
+        },
+        "after_parse_quarantine": {
+          "benign": 46233,
+          "n": 92483,
+          "phishing": 46250
+        },
+        "after_within_source_duplicate": {
+          "benign": 46233,
+          "n": 92482,
+          "phishing": 46249
+        },
+        "loaded": {
+          "benign": 46250,
+          "n": 92500,
+          "phishing": 46250
+        }
+      },
+      "url_length": {
+        "max": 1301,
+        "median": 55.0,
+        "p99": 146.0
+      }
+    }
+  },
+  "warnings": []
+}

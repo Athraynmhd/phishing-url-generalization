@@ -1,0 +1,44 @@
+{
+  "feature_schema_hash": "02a7bc81c58522bafb481e56995d0353ed160184dbea3d5d0fcccf81607602ae",
+  "n_features": 37,
+  "partitions": {
+    "A/FIT": {
+      "frac": 0.5999914473262203,
+      "groups": 8018,
+      "n": 28061,
+      "prevalence": 0.5260325718969389
+    },
+    "A/TEST": {
+      "frac": 0.1999828946524407,
+      "groups": 6447,
+      "n": 9353,
+      "prevalence": 0.5260344274564311
+    },
+    "A/VAL": {
+      "frac": 0.20002565802133893,
+      "groups": 6448,
+      "n": 9355,
+      "prevalence": 0.5260288615713522
+    },
+    "B/FIT": {
+      "frac": 0.6000506147022391,
+      "groups": 2614,
+      "n": 45050,
+      "prevalence": 0.6035738068812431
+    },
+    "B/TEST": {
+      "frac": 0.1999680328196385,
+      "groups": 2061,
+      "n": 15013,
+      "prevalence": 0.6037434223672817
+    },
+    "B/VAL": {
+      "frac": 0.19998135247812246,
+      "groups": 2060,
+      "n": 15014,
+      "prevalence": 0.6037032103370188
+    }
+  },
+  "split_algorithm": "greedy-stratified-group-v1",
+  "split_seed": 20261115
+}

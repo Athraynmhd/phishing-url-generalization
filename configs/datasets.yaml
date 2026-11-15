@@ -1,0 +1,50 @@
+# Dataset registry. Commits pinned 2026-11-15 via GitHub API.
+sources:
+  A:
+    name: EBBU-2017
+    repo: ebubekirbbr/pdd
+    commit: 90b394d8f9fb5d5dc48400e8bf46b001ce42999f
+    reference: R1 (Sahingoz et al., 2019, doi:10.1016/j.eswa.2018.09.029)
+    license_status: "UNCLEAR - repository has no LICENSE file; data not redistributed"
+    adapter: ebbu_json
+    expected_records: 73575
+    files:
+      - path: input/data_legitimate_36400.json
+        size: 2306392
+        label: 0
+        expected_records: 36400
+      - path: input/data_phishing_37175.json
+        size: 3067244
+        label: 1
+        expected_records: 37175
+    label_mapping_evidence: >-
+      Label taken from file name (data_legitimate -> 0, data_phishing -> 1), consistent with
+      R1 dataset description (legitimate vs phishing collections). Cross-checked against the
+      ebbu_*.csv copies in repo B (see verification files below).
+  B:
+    name: HISPAR-Phishstats (HP)
+    repo: fariza25/PhishingURLDetection
+    commit: ff9f1f5b517a80e9c967f0137c07eddd636c043d
+    reference: R2 (Rashid et al., 2024, doi:10.1016/j.comnet.2024.110398)
+    license_status: "Repository code MIT; data redistribution licence not stated - UNCLEAR; data not redistributed"
+    adapter: hp_csv
+    expected_records: 92500
+    files:
+      - {path: Datasets/hp_train.csv, size: 4382799, split: train}
+      - {path: Datasets/hp_valid.csv, size: 1465339, split: valid}
+      - {path: Datasets/hp_test.csv, size: 1456585, split: test}
+    label_mapping_evidence: >-
+      Repo B ships no codebook. Mapping label 1=phishing, 0=benign is established by
+      cross-verification: the same repository's ebbu_*.csv files (produced by the same
+      authors/pipeline) are joined on URL with source A files whose class is known from the
+      file name; agreement rate is recorded in audit.json (label_mapping_check). R2 full text
+      should be checked by the author to confirm (docs/decisions.md D-03).
+verification_files:
+  # Optional verification only - never a third source.
+  B_ebbu_copy:
+    repo: fariza25/PhishingURLDetection
+    commit: ff9f1f5b517a80e9c967f0137c07eddd636c043d
+    files:
+      - {path: Datasets/ebbu_train.csv, size: 3697175}
+      - {path: Datasets/ebbu_valid.csv, size: 1228039}
+      - {path: Datasets/ebbu_test.csv, size: 1235980}
