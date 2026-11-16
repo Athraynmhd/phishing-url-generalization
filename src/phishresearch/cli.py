@@ -124,6 +124,16 @@ def cmd_analyze(args):
                     "requires protocol v2/new holdout or explicitly exploratory outputs")
 
 
+def cmd_extend(args):
+    """Exploratory extensions E1-E4 (D-40): FIT/VAL only, new run directory, freeze untouched."""
+    from .extensions.analysis import run_extensions
+    from .extensions.report import write_ext_report
+    cfg, paths = _cfg(args)
+    out = run_extensions(paths, cfg)
+    write_ext_report(out, ROOT / "manuscript" / "corrected")
+    print(f"[extend] exploratory extensions passed -> {out}; tables/macros -> manuscript/corrected/generated")
+
+
 def cmd_report(args):
     from .reporting import run_report
     cfg, paths = _cfg(args)
@@ -196,6 +206,7 @@ def main(argv=None) -> int:
     a.add_argument("--skip-benchmark", action="store_true")
     a.add_argument("--exploratory-correction", action="store_true", help="Run the label-free SHAP correction in a new output directory")
     a.add_argument("--jobs", type=int, default=4, help="Parallel workers for exploratory correction")
+    add("extend", cmd_extend)
     add("report", cmd_report, freeze=True)
     s = add("smoke", cmd_smoke)
     s.add_argument("--synthetic", action="store_true", required=True)

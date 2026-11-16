@@ -67,6 +67,52 @@ SHAP rankings of the same model on source and target TEST samples agree to a Spe
 \label{fig:shap}
 \end{figure*}
 
+\subsection{RQ5 (exploratory): why does transfer fail?}\label{sec:rq5}
+\textit{Validation proxy.} On target VAL the frozen ALL LightGBM models reach F1 \res{xLGBMTgtA} (EBBU$\rightarrow$HP) and \res{xLGBMTgtB} (HP$\rightarrow$EBBU), close to their TEST values \res{F1ABLGBMALL} and \res{F1BALGBMALL}. The VAL-based diagnostics therefore describe the same transfer behaviour without touching TEST.
+
+\textit{Baselines.} LogReg is competitive within a source (source-VAL F1 \res{xLRSrcA} on EBBU, \res{xLRSrcB} on HP; Table~\ref{tab:baseline}) but transfers poorly. From EBBU to HP its F1 collapses to \res{xLRTgtA} (recall \res{xLRTgtRecA}) even though its target AUC is \res{xLRTgtAUCA}: the ranking partly transfers, the source-locked threshold does not. The tree ensembles exceed LogReg on the target by \res{xDLGBMLRA} \res{xDLGBMLRACI} (LightGBM, EBBU$\rightarrow$HP) and \res{xDLGBMLRB} \res{xDLGBMLRBCI} (HP$\rightarrow$EBBU; Table~\ref{tab:extcontrasts}). The untrained ``not HTTPS'' rule reaches F1 \res{xRuleTgtA} on HP and \res{xRuleTgtB} on EBBU, the latter close to HP-trained RF (\res{xRFTgtB}), although its AP is far lower (\res{xRuleTgtAPB} versus \res{xRFTgtAPB}). Part of the apparent EBBU$\rightarrow$HP ease is thus available from a single, collection-dependent cue.
+
+\begin{table}[t]
+\caption{Exploratory baselines and no-HTTPS ablation (mean over seeds where applicable). F1$_{\mathrm{src}}$: source VAL (optimistic, sets the threshold); $\rightarrow$: target VAL at the source threshold.}
+\label{tab:baseline}
+\centering\scriptsize\setlength{\tabcolsep}{3pt}
+\input{generated/tab_baseline.tex}
+\end{table}
+
+\begin{table}[t]
+\caption{Exploratory paired domain-cluster bootstrap contrasts of F1 (\res{nBoot} replicates) on source and target VAL. E = EBBU, H = HP.}
+\label{tab:extcontrasts}
+\centering\scriptsize\setlength{\tabcolsep}{3pt}
+\input{generated/tab_ext_contrasts.tex}
+\end{table}
+
+\textit{Shortcut ablation.} Removing \texttt{is\_https} barely changes source-VAL F1 (\res{xDsLGBMnoHA} for LightGBM on EBBU, \res{xDsLGBMnoHB} on HP) but lowers transfer F1 by \res{xDLGBMnoHA} \res{xDLGBMnoHACI} (EBBU$\rightarrow$HP) and \res{xDLGBMnoHB} \res{xDLGBMnoHBCI} (HP$\rightarrow$EBBU) for LightGBM, and by \res{xDRFnoHA} and \res{xDRFnoHB} for RF. HTTPS is one of the few cues whose direction both collections share (Cohen's $d$ \res{xdF30A} and \res{xdF30B}; Fig.~\ref{fig:eda}), and it matters more for transfer than for internal accuracy. It is also period-dependent: \res{xHttpsPhishA}\% of EBBU and \res{xHttpsPhishB}\% of HP phishing URLs use HTTPS, versus \res{xHttpsBenignA}\% and \res{xHttpsBenignB}\% of benign ones.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{generated/fig_eda.pdf}
+\caption{Class-conditional standardised mean differences on source FIT. Features marked * reverse their direction between the datasets.}
+\label{fig:eda}
+\end{figure}
+
+\textit{Reversed cues.} \res{xNFlip} of \res{xNEda} inspected features reverse their class association between the datasets: \res{xFlipList}. EBBU phishing URLs have \emph{fewer} subdomain labels than its benign URLs ($d{=}$\res{xdF23A}), whereas HP phishing URLs have many more ($d{=}$\res{xdF23B}). Host-structure features are nonetheless useful \emph{within} HP and enter every HP subset (Table~\ref{tab:selection}); no source-only criterion can detect that their meaning flips on the other collection.
+
+\textit{Error analysis.} The slices in Table~\ref{tab:slices} locate the errors. EBBU-trained LightGBM misses \res{xAHttpsHTTPSFNR}\% of HP phishing served over HTTPS but only \res{xAHttpsnotHTTPSFNR}\% of non-HTTPS phishing, which is the HTTPS shortcut at work. HP-trained LightGBM flags \res{xBSub0FPR}\% of EBBU benign URLs without a subdomain and misses \res{xBSub1FNR}\% of EBBU phishing with one subdomain, which is the reversed host-structure cue. The most confident errors (Table~\ref{tab:examples}) follow the same pattern. False positives are long, plain-HTTP benign URLs with tracking or document paths. False negatives are HTTPS phishing on disposable hosts when moving to HP, and short plain-HTTP phishing paths resembling benign EBBU pages when moving to EBBU.
+
+\begin{table}[t]
+\caption{Error rates of the seed-17 frozen ALL LightGBM models on target VAL by pre-defined slice.}
+\label{tab:slices}
+\centering\scriptsize\setlength{\tabcolsep}{3pt}
+\input{generated/tab_slices.tex}
+\end{table}
+
+\begin{table}[t]
+\caption{Most confident errors on target VAL (fixed rule; first two of five per type). URLs are defanged and were never opened.}
+\label{tab:examples}
+\centering\scriptsize\setlength{\tabcolsep}{2pt}
+\input{generated/tab_examples.tex}
+\end{table}
+
 \begin{figure*}[t]
 \centering
 \begin{minipage}[t]{0.48\textwidth}

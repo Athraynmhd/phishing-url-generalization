@@ -98,7 +98,7 @@ def run_report(cfg: dict, paths: Paths, manuscript_dir: Path, *, shap_dir: Path 
         mac.add(f"lossBenign{s}", _pct(audit["sources"][s]["purge_loss_benign"]), "audit.json purge_loss_benign")
         mac.add(f"lossPhish{s}", _pct(audit["sources"][s]["purge_loss_phishing"]), "audit.json purge_loss_phishing")
         mac.add(f"groups{s}", f"{g['n_groups']:,}", "audit.json groups_cohort")
-        top = next(iter(g["top_groups"].items()))
+        top = max(g["top_groups"].items(), key=lambda kv: kv[1])   # JSON keys are sorted alphabetically
         mac.add(f"topGroup{s}", top[0].replace("_", "\\_"), "audit.json top_groups")
         mac.add(f"topGroupShare{s}", _pct(g["largest_group_share"]), "audit.json largest_group_share")
     rows.pop()

@@ -96,7 +96,7 @@ def plot_top_groups(audit: dict, n: int = 8):
     plt = setup_plots()
     fig, axes = plt.subplots(1, 2, figsize=(10, 2.8))
     for ax, s in zip(axes, "AB"):
-        top = pd.Series(audit["sources"][s]["groups_cohort"]["top_groups"]).head(n)[::-1]
+        top = pd.Series(audit["sources"][s]["groups_cohort"]["top_groups"]).sort_values(ascending=False).head(n)[::-1]
         ax.barh(top.index, top.values, color=COLORS["ALL"])
         for y, v in enumerate(top.values):
             ax.text(v, y, f" {v:,}", va="center", fontsize=7)

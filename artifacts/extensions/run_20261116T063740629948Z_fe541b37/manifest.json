@@ -1,0 +1,25 @@
+{
+  "code_sha256": {
+    "pkg/extensions/__init__.py": "8748172cc332d05beb77a72d22dbc2b62ee970cb1613d6316ca90db01495013b",
+    "pkg/extensions/analysis.py": "aa9bba8227f0e34b977aa3117cfbba9e75783dc4ff233b2c475d74a64c1cf63e",
+    "pkg/extensions/report.py": "d2e8db87cfd89de8577549a34f138cda08c82ac5d367d5210814faa869c3e702"
+  },
+  "dataset_urls_opened": false,
+  "decision": "D-40",
+  "output_sha256": {
+    "eda.csv": "26bde7c17aaaf3e460617b24c0baae4d1e5c90e8f9e2c1289692d6739e475d93",
+    "error_examples.csv": "0be6d7107e48394a3800a1a375e3e9fd9f683becb7e5f8274e4b2186ecd5ecec",
+    "metrics.csv": "924a659cbb48b72c25aa4f5ec24a0d3a4644ec07bc1a3ebdd55863c11bba7121",
+    "results.json": "d25de284effc6cfbcc50a065327c97404f07a3e40645462d73c0aa74660dc276",
+    "slices.csv": "5fce8adaf0f4bdf2c0e83710635eeb5f592cc42e484cf3ce73903ad019f739e4"
+  },
+  "parent_freeze_hash": "069912e332d788120e4ba358b1f8cd3dc5f0903d783249a87567ce00d6efc8da",
+  "partitions_used": [
+    "FIT",
+    "VAL"
+  ],
+  "research_status": "exploratory extension of frozen v1",
+  "status": "passed",
+  "test_features_read": false,
+  "test_labels_read": false
+}

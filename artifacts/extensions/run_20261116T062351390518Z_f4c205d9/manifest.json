@@ -1,0 +1,24 @@
+{
+  "code_sha256": {
+    "src/phishresearch/extensions/__init__.py": "8748172cc332d05beb77a72d22dbc2b62ee970cb1613d6316ca90db01495013b",
+    "src/phishresearch/extensions/analysis.py": "5db8d262c5340ad322e756c4f9367b598400a3a6a24841517e0ae4733eb06220"
+  },
+  "dataset_urls_opened": false,
+  "decision": "D-40",
+  "output_sha256": {
+    "eda.csv": "26bde7c17aaaf3e460617b24c0baae4d1e5c90e8f9e2c1289692d6739e475d93",
+    "error_examples.csv": "ed2cb24faf36da11649e267e6d5b93de872d9828843c8334f37b2e67606bf3e3",
+    "metrics.csv": "92dd9a008a8d25c6926731ab0dd1e94f1c1519e2f5ac2398685562a61a0ca993",
+    "results.json": "d25de284effc6cfbcc50a065327c97404f07a3e40645462d73c0aa74660dc276",
+    "slices.csv": "5fce8adaf0f4bdf2c0e83710635eeb5f592cc42e484cf3ce73903ad019f739e4"
+  },
+  "parent_freeze_hash": "069912e332d788120e4ba358b1f8cd3dc5f0903d783249a87567ce00d6efc8da",
+  "partitions_used": [
+    "FIT",
+    "VAL"
+  ],
+  "research_status": "exploratory extension of frozen v1",
+  "status": "passed",
+  "test_features_read": false,
+  "test_labels_read": false
+}

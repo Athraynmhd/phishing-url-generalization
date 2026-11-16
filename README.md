@@ -1,4 +1,16 @@
-# phishresearch
+# Do Stable Features Transfer? Source-Only Feature Selection for Cross-Dataset Phishing URL Detection
+
+**Project category:** General Machine Learning (application project) · package `phishresearch`
+
+| Deliverable | Location |
+|---|---|
+| Final report (IEEE journal, LaTeX + PDF) | [manuscript/corrected/main.tex](manuscript/corrected/main.tex), [main.pdf](manuscript/corrected/main.pdf) |
+| Notebook | [notebooks/phishing_research_pipeline.ipynb](notebooks/phishing_research_pipeline.ipynb) |
+| Python code | [src/phishresearch/](src/phishresearch/) |
+| Slides (15 min) | [slides/slides.tex](slides/slides.tex), [slides.pdf](slides/slides.pdf) |
+| Datasets | EBBU-2017: https://github.com/ebubekirbbr/pdd (commit `90b394d`) · HP: https://github.com/fariza25/PhishingURLDetection (commit `ff9f1f5`) |
+| Discussion / defense notes | [docs/defense_qa.md](docs/defense_qa.md) |
+
 
 Source-only feature selection for lightweight phishing URL detection with **bidirectional cross-dataset evaluation**
 (EBBU-2017 ⇄ HISPAR–Phishstats), Random Forest vs LightGBM, three feature conditions (ALL, MEAN_PI, STABLE_PI).
@@ -7,7 +19,7 @@ Spesifikasi lengkap: [docs/PRD.md](docs/PRD.md). Keputusan yang menafsirkan PRD:
 ## GitHub dan cakupan distribusi
 
 Repository: [Athraynmhd/phishing-url-generalization](https://github.com/Athraynmhd/phishing-url-generalization)
-(privat pada unggahan awal). Kode, konfigurasi, notebook beserta output tersimpan, sumber/PDF
+(publik). Kode, konfigurasi, notebook beserta output tersimpan, sumber/PDF
 naskah, tabel/grafik hasil agregat dan bukti audit terpilih disertakan. Lisensi kode belum
 ditetapkan pemilik; tidak ada pemberian lisensi open source secara otomatis. Keterangan
 lisensi komponen pihak ketiga tetap mengikuti berkas dan sumber masing-masing.
@@ -60,7 +72,7 @@ python -m pip install -e . --no-deps
 python -m pytest -q                               # unit, invariant, integration and notebook-safety checks
 ```
 
-Snapshot ini telah diuji pada instalasi bersih Windows/Python 3.10: `pip check`, 50 tes unit,
+Suite saat ini: **83 tes** (`python -m pytest -q`). Snapshot sebelumnya telah diuji pada instalasi bersih Windows/Python 3.10: `pip check`, 50 tes unit,
 seluruh 48 sel kode notebook, dan reproduksi probabilitas dari 36 model tersimpan lulus.
 Ini bukan pelatihan ulang seluruh eksperimen dari nol. Untuk audit PDF/submission, pasang
 dependency tambahan dengan `python -m pip install -r requirements-audit.txt`.
@@ -83,6 +95,7 @@ python -m phishresearch.cli develop  --source B
 python -m phishresearch.cli freeze   --approved-by "Name"               # hashes code, data, splits, bundles (both directions)
 python -m phishresearch.cli evaluate --freeze artifacts/freeze.json     # reads TEST once, batch
 python notebooks/audit_publication.py                                # audit saved science, no individual TEST labels
+python -m phishresearch.cli extend                                   # RQ5 exploratory: baselines, ablation, EDA, errors (FIT/VAL only, D-40)
 python -m phishresearch.cli report   --freeze artifacts/freeze.json     # manuscript/generated/*
 cd manuscript; latexmk -pdf main.tex
 ```
@@ -115,6 +128,16 @@ benchmark aktif tetap dipertahankan. Peringatan additivity SHAP lama tetap ditam
 | `artifacts/` | `audit.json`, `prepare.json`, `dev/`, `freeze.json`, `eval/`, `analysis/` |
 | `manuscript/` | IEEE journal-format manuscript; angka hanya dari `generated/macros.tex` (`\res{key}`) |
 | `docs/` | PRD, decisions, sources, risk register, literature gap matrix |
+
+## RQ5: ekstensi exploratory (D-40)
+
+`extend` menambahkan baseline Logistic Regression, aturan satu fitur "bukan HTTPS", ablation tanpa F30,
+EDA Cohen's d, serta error analysis per irisan dengan contoh FP/FN yang di-defang. Semuanya **hanya memakai FIT/VAL**,
+dan transfer diukur pada target VAL. Setiap run disimpan di `artifacts/extensions/run_*`, dan perintah yang sama menulis
+`manuscript/corrected/generated/ext_macros.tex` beserta tabel/figurnya. Setelah itu jalankan
+`cd manuscript/corrected; latexmk -pdf main.tex` dan `cd slides; latexmk -pdf slides.tex`.
+Naskah `manuscript/corrected/` kini adalah versi final yang diedit langsung. `notebooks/build_corrected_manuscript.py`
+adalah generator historis dan akan membuat bundle baru dari `manuscript/`, bukan menimpa versi ini.
 
 ## Batas klaim
 

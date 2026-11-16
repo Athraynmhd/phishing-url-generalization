@@ -1,0 +1,15 @@
+\begin{tabular}{lcccccc}
+\toprule
+& \multicolumn{3}{c}{Source EBBU} & \multicolumn{3}{c}{Source HP} \\
+\cmidrule(lr){2-4}\cmidrule(lr){5-7}
+Model & F1$_{\mathrm{src}}$ & F1$_{\rightarrow\mathrm{HP}}$ & AP$_{\rightarrow\mathrm{HP}}$ & F1$_{\mathrm{src}}$ & F1$_{\rightarrow\mathrm{EBBU}}$ & AP$_{\rightarrow\mathrm{EBBU}}$ \\
+\midrule
+Rule: not HTTPS & 0.739 & 0.874 & 0.858 & 0.874 & 0.739 & 0.593 \\
+\midrule
+LogReg (37) & 0.871 & 0.275 & 0.840 & 0.929 & 0.666 & 0.749 \\
+RF (37) v1 & 0.903 & 0.918 & 0.966 & 0.951 & 0.734 & 0.826 \\
+LightGBM (37) v1 & 0.909 & 0.928 & 0.972 & 0.955 & 0.783 & 0.874 \\
+RF w/o F30 & 0.897 & 0.898 & 0.921 & 0.951 & 0.692 & 0.812 \\
+LightGBM w/o F30 & 0.899 & 0.906 & 0.946 & 0.956 & 0.716 & 0.852 \\
+\bottomrule
+\end{tabular}

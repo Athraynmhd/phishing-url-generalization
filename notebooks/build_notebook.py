@@ -24,8 +24,10 @@ def step(num, title, why, src, look=None):
 
 
 md(r"""
-# Phishing URL Detection Across Datasets
-## Source-Only Feature Selection with Bidirectional Cross-Dataset Evaluation
+# Do Stable Features Transfer?
+## Source-Only Feature Selection for Cross-Dataset Phishing URL Detection
+
+**Project category:** General Machine Learning (application project)
 
 **Study question.** If a lexical URL classifier is trained on one public phishing dataset and deployed on a
 different one *without target data for fitting, feature selection or threshold calibration*, how much does it degrade, and does choosing features by
@@ -46,6 +48,7 @@ the **stability** of their importance across held-out domains (STABLE_PI) transf
 | RQ2 | Does STABLE_PI change transfer F1 vs MEAN_PI at the same *k*, and vs ALL? |
 | RQ3 | Does a smaller feature set measurably reduce extraction/inference cost? |
 | RQ4 | Which features do the models rely on, and how do attributions shift source → target? |
+| RQ5 | *(exploratory, FIT/VAL only)* Why does transfer fail where it does? Baselines, HTTPS ablation, EDA, error analysis. |
 
 ### How to read this notebook
 * All logic lives in the tested package `src/phishresearch/`. Every cell below performs **one** step by
@@ -418,6 +421,90 @@ step("8.17", "Beeswarm: LightGBM trained on HP, explained on HP TEST", "",
 step("8.18", "Beeswarm: the same model on EBBU TEST (target)", "Same model, same background; only the input distribution changes.",
      r"""fig = viz.shap_beeswarm(SHAP_A, "B-LGBM-ALL-k37-s17", "target"); plt.show()""")
 
+md("""### RQ5 (exploratory): why does transfer fail where it does?
+
+Added after the frozen evaluation and specified in `docs/decisions.md` **D-40** before running. Everything below
+uses **FIT/VAL only**: baselines (logistic regression, a one-feature HTTPS rule), a no-HTTPS ablation, class-conditional
+EDA and slice-level error analysis. Transfer is measured on the **target VAL** partition, which no model of that direction
+has seen. TEST is not read. Produced by `python -m phishresearch.cli extend`.""")
+step("8.19", "Load the verified extension run",
+     "The run directory, its manifest and every output hash are checked before use.",
+     """
+from phishresearch.extensions.analysis import latest_run
+from phishresearch.prepare import load_dev
+EXT = latest_run(P)
+EXT_MAN = json.loads((EXT / "manifest.json").read_text(encoding="utf-8"))
+EXT_RES = json.loads((EXT / "results.json").read_text(encoding="utf-8"))
+print(EXT.relative_to(ROOT))
+pd.Series({k: EXT_MAN[k] for k in ("status", "decision", "partitions_used", "test_features_read", "test_labels_read", "dataset_urls_opened")})
+""", look="status = passed and test_labels_read = False.")
+step("8.20", "EDA: feature distributions per class and dataset (FIT)",
+     "Raw distributions of four interpretable features on source FIT. The same feature can separate the classes in opposite directions in the two collections.",
+     """
+FIT = pd.concat([load_dev(P, s, "FIT").assign(dataset=viz.SRC_NAME[s]) for s in ("A", "B")])
+FIT["class"] = FIT.label.map({0: "benign", 1: "phishing"})
+fig, axes = plt.subplots(1, 4, figsize=(13, 3))
+for ax, (f, title) in zip(axes, [("F01", "URL length"), ("F23", "subdomain labels"), ("F06", "dots"), ("F30", "HTTPS share")]):
+    if f == "F30":
+        FIT.groupby(["dataset", "class"])[f].mean().unstack().plot.bar(ax=ax, rot=0, color=["#2a78d6", "#eb6834"])
+    else:
+        FIT.assign(v=FIT[f].clip(upper=FIT[f].quantile(0.99))).boxplot(column="v", by=["dataset", "class"], ax=ax, showfliers=False, rot=20)
+    ax.set_title(title); ax.set_xlabel("")
+plt.suptitle(""); fig.tight_layout(); plt.show()
+""", look="Subdomain labels: EBBU phishing is lower than benign, HP phishing is far higher. HTTPS is a benign cue in both.")
+step("8.21", "EDA: class-conditional effect size (Cohen's d) in both sources",
+     "d = standardised mean difference phishing − benign on FIT. `sign_agrees = False` marks a reversed cue.",
+     """
+EDA = pd.read_csv(EXT / "eda.csv")
+fig, ax = plt.subplots(figsize=(6, 4))
+o = EDA.sort_values("B_d").reset_index(drop=True)
+ax.hlines(o.index, o.A_d, o.B_d, color="#c9c8c3")
+ax.scatter(o.A_d, o.index, label="EBBU", color="#2a78d6"); ax.scatter(o.B_d, o.index, label="HP", marker="s", color="#eb6834")
+ax.set_yticks(o.index); ax.set_yticklabels([f"{r.feature} {r.name}{' *' if not r.sign_agrees else ''}" for r in o.itertuples()])
+ax.axvline(0, color="grey", lw=.6); ax.set_xlabel("Cohen's d (phishing − benign)"); ax.legend(); plt.show()
+EDA[["feature", "name", "A_d", "B_d", "sign_agrees"]].round(2)
+""")
+step("8.22", "Baselines and no-HTTPS ablation (source VAL vs target VAL)",
+     "Source-VAL F1 is optimistic (it also sets the threshold); target VAL is the honest transfer estimate. "
+     "Frozen v1 models keep their frozen thresholds; LogReg and ablated models take theirs from source VAL.",
+     """
+XM = pd.read_csv(EXT / "metrics.csv")
+XM["direction"] = XM.source.map(lambda s: f"{viz.SRC_NAME[s]}→{viz.SRC_NAME['B' if s == 'A' else 'A']}")
+XM.groupby(["direction", "config", "eval"])[["f1", "ap", "auc", "recall", "fpr"]].mean().round(3).unstack("eval")
+""", look="LogReg keeps AUC on the target but its F1 collapses at the source threshold; the HTTPS rule alone is strong on HP.")
+step("8.23", "Sanity check: target VAL reproduces target TEST",
+     "If the VAL partition behaves like TEST, diagnostics computed on VAL describe the reported transfer.",
+     """
+v = XM[(XM.kind == "frozen_v1") & (XM["eval"] == "target_val")].groupby(["source", "model"]).f1.mean()
+t = MAIN[(MAIN.config == "ALL") & (MAIN.source != MAIN.target)].set_index(["source", "model"]).f1_mean
+pd.DataFrame({"F1 target VAL": v, "F1 target TEST": t}).round(3)
+""")
+step("8.24", "Paired domain-cluster bootstrap contrasts",
+     "ALL − LogReg (baseline gap) and ALL − no-HTTPS (contribution of the HTTPS cue); 2,000 resamples of domains.",
+     """
+XC = pd.DataFrame(EXT_RES["contrasts"])
+XC["direction"] = XC.source.map(lambda s: f"{viz.SRC_NAME[s]}→{viz.SRC_NAME['B' if s == 'A' else 'A']}")
+XC.pivot_table(index=["direction", "a", "b"], columns="eval", values=["delta", "ci_low", "ci_high"]).round(3)
+""", look="Removing HTTPS costs little inside a source but clearly more across sources.")
+step("8.25", "Error analysis: error rates by pre-defined slice (frozen ALL LightGBM, seed 17)",
+     "FPR = benign flagged; FNR = phishing missed. Slices were fixed in D-40 before running.",
+     """
+XS = pd.read_csv(EXT / "slices.csv")
+XS[XS.model == "LGBM"].pivot_table(index=["slice", "value"], columns=["source", "eval"], values=["fpr", "fnr"]).round(3)
+""", look="EBBU→HP misses HTTPS phishing; HP→EBBU flags EBBU benign URLs without a subdomain.")
+step("8.26", "Error analysis: most confident errors (defanged, never opened)",
+     "Fixed rule: the five highest-scored false positives and lowest-scored false negatives per direction.",
+     """
+XE = pd.read_csv(EXT / "error_examples.csv")
+XE[(XE.model == "LGBM") & (XE["eval"] == "target_val")][["source", "kind", "score", "https", "length", "subdomains", "url"]]
+""")
+step("8.27", "Error analysis: registered domains with the most errors",
+     "Where errors cluster on target VAL (frozen ALL LightGBM, seed 17).",
+     """
+pd.DataFrame({k: {"FP": ", ".join(f"{d} ({c})" for d, c in v["fp"].items()), "FN": ", ".join(f"{d} ({c})" for d, c in v["fn"].items())}
+              for k, v in EXT_RES["error_domains"].items() if k.endswith("target_val") and "/LGBM/" in k}).T
+""")
+
 md(r"""
 ### Validation boundary before interpreting the findings
 
@@ -457,6 +544,13 @@ L.append(f"\n**RQ4: SHAP ranking agreement source vs target:** Spearman ρ {st.s
 if len(SHAP_FAILURES):
     L.append(f"**RQ4 validation limitation:** {len(SHAP_FAILURES)}/{len(SS)} saved explanations exceed the additivity tolerance; "
              "these attributions must not be described as fully validated.")
+XG = XM.groupby(["source", "eval", "config"]).f1.mean()
+noh = XC[(XC.a == "LGBM-ALL") & (XC.b == "LGBM-noHTTPS") & (XC["eval"] == "target_val")]
+L.append(f"\n**RQ5 (exploratory, VAL only):** LogReg transfer F1 {XG[('A', 'target_val', 'LR-ALL')]:.3f} (EBBU→HP) / "
+         f"{XG[('B', 'target_val', 'LR-ALL')]:.3f} (HP→EBBU) vs LightGBM {XG[('A', 'target_val', 'LGBM-ALL')]:.3f} / "
+         f"{XG[('B', 'target_val', 'LGBM-ALL')]:.3f}; the one-feature 'not HTTPS' rule reaches {XG[('A', 'target_val', 'HTTPS-rule')]:.3f} on HP. "
+         f"Removing HTTPS lowers LightGBM transfer F1 by " + ", ".join(f"{r.direction} {r.delta:+.3f}" for r in noh.itertuples())
+         + ". Features whose class association reverses between datasets: " + ", ".join(EDA.loc[~EDA.sign_agrees, "name"]) + ".")
 display(Markdown("\n".join(L)))
 """)
 md(r"""

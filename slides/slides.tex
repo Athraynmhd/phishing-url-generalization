@@ -1,0 +1,244 @@
+% Final presentation (15 min + 5 min Q&A). Numbers come only from the manuscript's generated macros.
+\documentclass[aspectratio=169,10pt]{beamer}
+\usetheme{default}
+\usecolortheme{dove}
+\setbeamertemplate{navigation symbols}{}
+\setbeamertemplate{footline}[frame number]
+\setbeamerfont{frametitle}{series=\bfseries}
+\usepackage{booktabs,graphicx,tikz}
+\usetikzlibrary{positioning,arrows.meta}
+\graphicspath{{../manuscript/corrected/generated/}}
+\input{../manuscript/corrected/generated/macros.tex}
+\input{../manuscript/corrected/generated/ext_macros.tex}
+\definecolor{acc}{HTML}{2a78d6}
+\definecolor{warn}{HTML}{eb6834}
+\newcommand{\key}[1]{{\color{acc}\textbf{#1}}}
+
+\title{Do Stable Features Transfer?}
+\subtitle{Source-Only Feature Selection for Cross-Dataset Phishing URL Detection}
+\author{[TEAM MEMBER 1 FULL NAME] \and [TEAM MEMBER 2 FULL NAME]}
+\institute{Project category: General Machine Learning (application project)}
+\date{}
+
+\begin{document}
+
+\begin{frame}
+\titlepage
+\end{frame}
+
+% ------------------------------------------------------------------ MOTIVATION
+\section{Motivation}
+\begin{frame}{Motivation: detectors are trained on one collection, used on another}
+\begin{itemize}
+\item URL-based phishing filters block a link \emph{before} the page loads: no fetch, no DNS, no third-party lookup.
+\item They are trained on whatever labelled dataset exists, then deployed on \key{different traffic}: other brands, hosts, periods, benign populations.
+\item Published accuracies are mostly \emph{within} one collection.
+\end{itemize}
+\vspace{1em}
+\begin{block}{Goal}
+Measure how much accuracy survives on a dataset the model was \key{never fitted, selected or calibrated on}, and whether choosing \key{stable} features keeps more of it than choosing \key{important} ones, at the same feature budget and lower cost.
+\end{block}
+\end{frame}
+
+\begin{frame}{Research questions}
+\begin{description}[RQ5]
+\item[RQ1] How far do RF and LightGBM drop on another source with disjoint domains?
+\item[RQ2] Does \key{STABLE-PI} transfer better than \key{MEAN-PI} at the same $k$, and versus all 37 features?
+\item[RQ3] Does a smaller feature set measurably reduce detection cost?
+\item[RQ4] Which features do the models rely on, source vs.\ target? (SHAP)
+\item[RQ5] \emph{(exploratory)} \key{Why} does transfer fail where it does? Baselines, ablation, error analysis.
+\end{description}
+\vspace{1em}
+\small Constraint throughout: \textbf{no target data} for fitting, feature selection or thresholds.
+\end{frame}
+
+% ------------------------------------------------------------------ RELATED WORK
+\section{Related Work}
+\begin{frame}{Related work and gap}
+\small
+\begin{tabular}{p{0.24\linewidth}p{0.33\linewidth}p{0.33\linewidth}}
+\toprule
+Study & What it does & What we do differently \\
+\midrule
+S\'anchez-Paniagua et al.\ 2022 (IEEE Access) & RF, LightGBM, TF-IDF+LR on URL data; legitimate-login representativeness & Other datasets; transfer between collections; no replication claim \\
+Rashid et al.\ 2024 (Computer Networks) & Cross-dataset transfer; \key{UDA} uses unlabelled target data; HP dataset & \key{No} target data at all; domain-disjoint splits; both directions \\
+Misiek \& Hyla 2026; Kanon et al.\ 2026 & Feature stability across datasets; cost & Stability from \key{one} source only, matched budget \\
+\bottomrule
+\end{tabular}
+\vspace{1em}
+\begin{block}{Gap}
+Under a strict source-only constraint, does \emph{stability} of importance help transfer at a \emph{matched} budget, and what does compression cost? URL-level random splits leak domains; we split by registered domain.
+\end{block}
+\end{frame}
+
+% ------------------------------------------------------------------ METHOD
+\section{Method}
+\begin{frame}{Data: two public collections, made domain-disjoint}
+\begin{columns}[T]
+\column{0.5\textwidth}
+\begin{itemize}
+\item \key{EBBU-2017}: \res{nAn} URLs \\ \key{HP} (HISPAR--Phishstats): \res{nBn} URLs
+\item Offline canonicalisation; dedup; registered domain via frozen PSL
+\item \res{sharedGroups} domains appear in both $\Rightarrow$ \key{removed from both}
+\item Cohorts: \res{cAn} (EBBU), \res{cBn} (HP)
+\item FIT/VAL/TEST $\approx$ 60/20/20, \key{no domain shared} between partitions
+\end{itemize}
+\column{0.5\textwidth}
+\scriptsize
+\resizebox{\linewidth}{!}{\input{../manuscript/corrected/generated/tab_attrition.tex}}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Pipeline (source-only, frozen before TEST)}
+\centering
+\begin{tikzpicture}[node distance=4mm and 5mm, every node/.style={draw, rounded corners, align=center, font=\scriptsize, minimum height=9mm, fill=gray!8}, >={Stealth}]
+\node (u) {URL string};
+\node[right=of u] (f) {37 lexical\\features};
+\node[right=of f] (pi) {Permutation\\importance on\\3 domain folds};
+\node[right=of pi] (sel) {MEAN-PI / STABLE-PI\\budget $k$ by\\nested CV};
+\node[right=of sel] (m) {RF / LightGBM\\3 seeds};
+\node[below=8mm of m] (t) {Threshold on\\\textbf{source VAL}};
+\node[left=of t] (fr) {Freeze\\(hash all)};
+\node[left=of fr] (ev) {TEST once:\\source + target};
+\draw[->] (u)--(f); \draw[->] (f)--(pi); \draw[->] (pi)--(sel); \draw[->] (sel)--(m); \draw[->] (m)--(t); \draw[->] (t)--(fr); \draw[->] (fr)--(ev);
+\end{tikzpicture}
+\vspace{6mm}
+\begin{itemize}\small
+\item \key{MEAN-PI}: rank by mean PI over folds. \key{STABLE-PI}: rank by \#folds in top-12 with PI$>$0, then median PI, rank dispersion.
+\item \key{Matched-$k$}: STABLE vs.\ MEAN at the \emph{same} $k$ isolates the ranking rule from the budget.
+\item Uncertainty: paired \key{domain-cluster bootstrap} (\res{nBoot} resamples), same resample for both arms.
+\end{itemize}
+\end{frame}
+
+% ------------------------------------------------------------------ EXPERIMENTS
+\section{Experiments}
+\begin{frame}{RQ1: transfer is asymmetric}
+\centering
+\includegraphics[width=0.95\textwidth]{fig_f1.pdf}
+\small
+EBBU$\rightarrow$HP: LightGBM F1 \res{F1AALGBMALL} internal $\rightarrow$ \key{\res{F1ABLGBMALL}} on HP (no drop).\quad
+HP$\rightarrow$EBBU: \res{F1BBLGBMALL} $\rightarrow$ \textcolor{warn}{\textbf{\res{F1BALGBMALL}}} (drop \res{DropBLGBMALL} pp).
+\end{frame}
+
+\begin{frame}{RQ2: does stability help? Only in one direction}
+\begin{itemize}
+\item Matched-$k$ STABLE-PI $-$ MEAN-PI on target TEST F1 (pre-specified, 4 contrasts):
+  \begin{itemize}
+  \item HP$\rightarrow$EBBU: RF \key{\res{DeltaBARF}} [\res{DeltaLoBARF}, \res{DeltaHiBARF}], LightGBM \key{\res{DeltaBALGBM}} [\res{DeltaLoBALGBM}, \res{DeltaHiBALGBM}]
+  \item EBBU$\rightarrow$HP: RF \res{DeltaABRF}, LightGBM \res{DeltaABLGBM} \;(within the $\pm$0.01 band)
+  \end{itemize}
+\item But versus \key{ALL 37 features} on HP$\rightarrow$EBBU: STABLE-PI \textcolor{warn}{\res{SecBARFSTABLEALL}} (RF), \textcolor{warn}{\res{SecBALGBMSTABLEALL}} (LightGBM)
+\end{itemize}
+\begin{alertblock}{Reading}
+Stability \emph{reduces the damage} of compression; it does \emph{not} make a compact model transfer as well as ALL.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{RQ3: cost savings are modest}
+\begin{columns}[T]
+\column{0.55\textwidth}
+\includegraphics[width=\linewidth]{fig_latency.pdf}
+\column{0.45\textwidth}
+\small
+\begin{itemize}
+\item Single URL, 1 thread: reduced subsets take \res{relLatB1Min}--\res{relLatB1Max} of ALL's end-to-end time.
+\item Batch 1024, 4 threads: \res{relLatBkMin}--\res{relLatBkMax}.
+\item Parsing+extraction = \res{extractShareMedian}\% of single-URL time; tree inference barely depends on $k$.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{RQ5: baselines and HTTPS ablation (VAL only, exploratory)}
+\centering\scriptsize
+\input{../manuscript/corrected/generated/tab_baseline.tex}
+\vspace{2mm}
+\begin{itemize}\small
+\item \key{LogReg}: fine inside a source (\res{xLRSrcA}/\res{xLRSrcB}), but EBBU$\rightarrow$HP F1 \textcolor{warn}{\textbf{\res{xLRTgtA}}} with AUC \res{xLRTgtAUCA}: ranking transfers, \key{threshold does not}.
+\item One rule, \key{``not HTTPS $\Rightarrow$ phishing''}, already gets F1 \res{xRuleTgtA} on HP.
+\item Removing HTTPS: $\Delta$ source F1 $\approx$ 0, $\Delta$ transfer F1 \res{xDLGBMnoHA} / \res{xDLGBMnoHB} (LightGBM).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{RQ5: some cues reverse between datasets}
+\begin{columns}[T]
+\column{0.5\textwidth}
+\includegraphics[width=\linewidth]{fig_eda.pdf}
+\column{0.5\textwidth}
+\small
+\begin{itemize}
+\item \res{xNFlip}/\res{xNEda} features flip sign: \res{xFlipList}.
+\item Subdomain labels: EBBU phishing $d{=}$\res{xdF23A}, HP phishing $d{=}$\res{xdF23B}.
+\item HTTPS is shared: \res{xHttpsPhishA}\% / \res{xHttpsPhishB}\% of phishing vs.\ \res{xHttpsBenignA}\% / \res{xHttpsBenignB}\% of benign.
+\end{itemize}
+\begin{alertblock}{Key insight}
+Stability measured \emph{inside one source} cannot see a cue whose meaning flips in another source.
+\end{alertblock}
+\end{columns}
+\end{frame}
+
+\begin{frame}{Error analysis: where the transferred models fail}
+\begin{columns}[T]
+\column{0.55\textwidth}
+\scriptsize
+\resizebox{\linewidth}{!}{\input{../manuscript/corrected/generated/tab_slices.tex}}
+\column{0.45\textwidth}
+\small
+\begin{itemize}
+\item EBBU$\rightarrow$HP misses \key{\res{xAHttpsHTTPSFNR}\%} of HTTPS phishing, but only \res{xAHttpsnotHTTPSFNR}\% of HTTP phishing.
+\item HP$\rightarrow$EBBU flags \key{\res{xBSub0FPR}\%} of EBBU benign URLs without subdomain, misses \res{xBSub1FNR}\% of phishing with one.
+\item Confident FPs: long plain-HTTP document/tracking URLs. FNs: HTTPS phishing on disposable hosts.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+% ------------------------------------------------------------------ DISCUSSION
+\section{Discussion}
+\begin{frame}{Discussion}
+\begin{block}{Did we get what we wanted?}
+Partly. STABLE-PI beat MEAN-PI in the hard direction, neutral in the other. A compact model did \emph{not} keep ALL-feature transfer, and latency gains are modest. We do get a clear \key{mechanism}: period-dependent (HTTPS) and reversed (subdomain) cues.
+\end{block}
+\begin{block}{What we would do differently}
+Pre-register LogReg and the HTTPS rule as baselines; analyse class-conditional differences of both sources \emph{before} designing selectors; plan a third source; report AP-based contrasts next to F1 to separate ranking from threshold transfer.
+\end{block}
+\small\textbf{Limits:} two older public datasets; one split, 3 seeds; CIs conditional on fitted models; RQ5 exploratory and post-freeze.
+\end{frame}
+
+% ------------------------------------------------------------------ FUTURE WORK
+\section{Future Work}
+\begin{frame}{Future work}
+\begin{enumerate}
+\item \key{Cross-source stability}: select features whose class association agrees across several labelled sources; test on a held-out third source.
+\item \key{Contemporary, temporal data}: does HTTPS still separate the classes in recent feeds?
+\item \key{Threshold transfer}: label-free recalibration from target score distributions, compared with UDA under the same domain-disjoint splits.
+\end{enumerate}
+\vspace{1em}
+\begin{block}{Take-home}
+On this benchmark, lexical detectors transfer \emph{asymmetrically}; stability ranking softens but does not remove the cost of compression; and what limits transfer is cues whose meaning depends on the collection.
+\end{block}
+\end{frame}
+
+\begin{frame}
+\centering\Large Thank you. Questions?\\[1em]
+\normalsize Code, notebook, paper: \texttt{github.com/Athraynmhd/phishing-url-generalization}
+\end{frame}
+
+% ------------------------------------------------------------------ BACKUP
+\appendix
+\begin{frame}{Backup: protocol controls}
+\small
+\begin{itemize}
+\item Development loader refuses TEST; TEST labels in a separate vault read only by the evaluator.
+\item Freeze manifest hashes code, configs, splits, features and all bundles (hash \texttt{\res{freezeHash}}) before TEST.
+\item Nested CV: PI recomputed on outer-train only; final PI on full FIT.
+\item RQ5 diagnostics use FIT/VAL only; a test fails if they touch the TEST vault.
+\item Target VAL reproduces target TEST: LightGBM \res{xLGBMTgtA} vs.\ \res{F1ABLGBMALL} (EBBU$\rightarrow$HP), \res{xLGBMTgtB} vs.\ \res{F1BALGBMALL} (HP$\rightarrow$EBBU).
+\end{itemize}
+\end{frame}
+
+\begin{frame}{Backup: RQ4 attributions (exploratory corrected SHAP)}
+\centering
+\includegraphics[width=\textwidth]{fig_shap.pdf}
+\small Source vs.\ target rank agreement: Spearman $\rho$ \res{rhoMin}--\res{rhoMax}. Descriptive, not causal.
+\end{frame}
+
+\end{document}

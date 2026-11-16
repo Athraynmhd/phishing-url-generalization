@@ -13,7 +13,7 @@ purgeA,"7,992",audit.json
 lossBenignA,25.9,audit.json purge_loss_benign
 lossPhishA,1.0,audit.json purge_loss_phishing
 groupsA,"20,913",audit.json groups_cohort
-topGroupA,esy.es,audit.json top_groups
+topGroupA,wikipedia.org,audit.json top_groups
 topGroupShareA,2.9,audit.json largest_group_share
 nBn,"92,500",audit.json sources.B.stages.loaded.n
 cBn,"75,077",audit.json sources.B.stages.cohort.n
@@ -27,7 +27,7 @@ purgeB,"17,405",audit.json
 lossBenignB,35.6,audit.json purge_loss_benign
 lossPhishB,2.0,audit.json purge_loss_phishing
 groupsB,"6,735",audit.json groups_cohort
-topGroupB,esnafbenim.com,audit.json top_groups
+topGroupB,za.com,audit.json top_groups
 topGroupShareB,11.0,audit.json largest_group_share
 sharedGroups,692,audit.json cross_source
 exactOverlap,33,audit.json cross_source

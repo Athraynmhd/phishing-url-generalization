@@ -1,0 +1,469 @@
+{
+  "ablated_features": [
+    "F30"
+  ],
+  "contrasts": [
+    {
+      "a": "RF-ALL",
+      "b": "LR-ALL",
+      "ci_high": 0.03832768066245032,
+      "ci_low": 0.026068322499378706,
+      "delta": 0.03208764248778676,
+      "eval": "source_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0006413682522715125,
+      "median_cluster_size": 1.0,
+      "n_boot": 2000,
+      "n_domains": 6448,
+      "n_invalid": 0,
+      "source": "A",
+      "target": "B"
+    },
+    {
+      "a": "LGBM-ALL",
+      "b": "LR-ALL",
+      "ci_high": 0.04403008144845668,
+      "ci_low": 0.0314641042983778,
+      "delta": 0.0374882280301545,
+      "eval": "source_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0006413682522715125,
+      "median_cluster_size": 1.0,
+      "n_boot": 2000,
+      "n_domains": 6448,
+      "n_invalid": 0,
+      "source": "A",
+      "target": "B"
+    },
+    {
+      "a": "RF-ALL",
+      "b": "RF-noHTTPS",
+      "ci_high": 0.009865151616050729,
+      "ci_low": 0.00314759131703482,
+      "delta": 0.006664377429726476,
+      "eval": "source_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0006413682522715125,
+      "median_cluster_size": 1.0,
+      "n_boot": 2000,
+      "n_domains": 6448,
+      "n_invalid": 0,
+      "source": "A",
+      "target": "B"
+    },
+    {
+      "a": "LGBM-ALL",
+      "b": "LGBM-noHTTPS",
+      "ci_high": 0.013943908256963254,
+      "ci_low": 0.0056405959888102125,
+      "delta": 0.009812410094927948,
+      "eval": "source_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0006413682522715125,
+      "median_cluster_size": 1.0,
+      "n_boot": 2000,
+      "n_domains": 6448,
+      "n_invalid": 0,
+      "source": "A",
+      "target": "B"
+    },
+    {
+      "a": "LR-ALL",
+      "b": "HTTPS-rule",
+      "ci_high": 0.14180376145874768,
+      "ci_low": 0.12211367699332988,
+      "delta": 0.13226326485590523,
+      "eval": "source_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0006413682522715125,
+      "median_cluster_size": 1.0,
+      "n_boot": 2000,
+      "n_domains": 6448,
+      "n_invalid": 0,
+      "source": "A",
+      "target": "B"
+    },
+    {
+      "a": "RF-ALL",
+      "b": "LR-ALL",
+      "ci_high": 0.6738989489976562,
+      "ci_low": 0.6111096654199631,
+      "delta": 0.6430006362084696,
+      "eval": "target_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0023311575862528305,
+      "median_cluster_size": 2.0,
+      "n_boot": 2000,
+      "n_domains": 2060,
+      "n_invalid": 0,
+      "source": "A",
+      "target": "B"
+    },
+    {
+      "a": "LGBM-ALL",
+      "b": "LR-ALL",
+      "ci_high": 0.6824385003661759,
+      "ci_low": 0.6218723530465842,
+      "delta": 0.6527250213291838,
+      "eval": "target_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0023311575862528305,
+      "median_cluster_size": 2.0,
+      "n_boot": 2000,
+      "n_domains": 2060,
+      "n_invalid": 0,
+      "source": "A",
+      "target": "B"
+    },
+    {
+      "a": "RF-ALL",
+      "b": "RF-noHTTPS",
+      "ci_high": 0.032140673518158545,
+      "ci_low": 0.00701858973006328,
+      "delta": 0.01954278319278809,
+      "eval": "target_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0023311575862528305,
+      "median_cluster_size": 2.0,
+      "n_boot": 2000,
+      "n_domains": 2060,
+      "n_invalid": 0,
+      "source": "A",
+      "target": "B"
+    },
+    {
+      "a": "LGBM-ALL",
+      "b": "LGBM-noHTTPS",
+      "ci_high": 0.033847740709319965,
+      "ci_low": 0.009979790226920734,
+      "delta": 0.0218653729965278,
+      "eval": "target_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0023311575862528305,
+      "median_cluster_size": 2.0,
+      "n_boot": 2000,
+      "n_domains": 2060,
+      "n_invalid": 0,
+      "source": "A",
+      "target": "B"
+    },
+    {
+      "a": "LR-ALL",
+      "b": "HTTPS-rule",
+      "ci_high": -0.562476860954837,
+      "ci_low": -0.6327633461820413,
+      "delta": -0.598857329221286,
+      "eval": "target_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0023311575862528305,
+      "median_cluster_size": 2.0,
+      "n_boot": 2000,
+      "n_domains": 2060,
+      "n_invalid": 0,
+      "source": "A",
+      "target": "B"
+    },
+    {
+      "a": "RF-ALL",
+      "b": "LR-ALL",
+      "ci_high": 0.029987791155335182,
+      "ci_low": 0.014250510118416207,
+      "delta": 0.022428656062541814,
+      "eval": "source_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0023311575862528305,
+      "median_cluster_size": 2.0,
+      "n_boot": 2000,
+      "n_domains": 2060,
+      "n_invalid": 0,
+      "source": "B",
+      "target": "A"
+    },
+    {
+      "a": "LGBM-ALL",
+      "b": "LR-ALL",
+      "ci_high": 0.034418962592956084,
+      "ci_low": 0.01837821476514731,
+      "delta": 0.026594660534253745,
+      "eval": "source_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0023311575862528305,
+      "median_cluster_size": 2.0,
+      "n_boot": 2000,
+      "n_domains": 2060,
+      "n_invalid": 0,
+      "source": "B",
+      "target": "A"
+    },
+    {
+      "a": "RF-ALL",
+      "b": "RF-noHTTPS",
+      "ci_high": 0.0013984706223185092,
+      "ci_low": -0.0019289376758138974,
+      "delta": -0.00028305953568737624,
+      "eval": "source_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0023311575862528305,
+      "median_cluster_size": 2.0,
+      "n_boot": 2000,
+      "n_domains": 2060,
+      "n_invalid": 0,
+      "source": "B",
+      "target": "A"
+    },
+    {
+      "a": "LGBM-ALL",
+      "b": "LGBM-noHTTPS",
+      "ci_high": 0.0012386618978194608,
+      "ci_low": -0.0027936008128291888,
+      "delta": -0.0006617508655438753,
+      "eval": "source_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0023311575862528305,
+      "median_cluster_size": 2.0,
+      "n_boot": 2000,
+      "n_domains": 2060,
+      "n_invalid": 0,
+      "source": "B",
+      "target": "A"
+    },
+    {
+      "a": "LR-ALL",
+      "b": "HTTPS-rule",
+      "ci_high": 0.06989117002664998,
+      "ci_low": 0.04149257012135322,
+      "delta": 0.05483680786356937,
+      "eval": "source_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0023311575862528305,
+      "median_cluster_size": 2.0,
+      "n_boot": 2000,
+      "n_domains": 2060,
+      "n_invalid": 0,
+      "source": "B",
+      "target": "A"
+    },
+    {
+      "a": "RF-ALL",
+      "b": "LR-ALL",
+      "ci_high": 0.0804575579532501,
+      "ci_low": 0.055020347594722095,
+      "delta": 0.06754563862042047,
+      "eval": "target_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0006413682522715125,
+      "median_cluster_size": 1.0,
+      "n_boot": 2000,
+      "n_domains": 6448,
+      "n_invalid": 0,
+      "source": "B",
+      "target": "A"
+    },
+    {
+      "a": "LGBM-ALL",
+      "b": "LR-ALL",
+      "ci_high": 0.13068347872423103,
+      "ci_low": 0.104136427957282,
+      "delta": 0.11709598489490591,
+      "eval": "target_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0006413682522715125,
+      "median_cluster_size": 1.0,
+      "n_boot": 2000,
+      "n_domains": 6448,
+      "n_invalid": 0,
+      "source": "B",
+      "target": "A"
+    },
+    {
+      "a": "RF-ALL",
+      "b": "RF-noHTTPS",
+      "ci_high": 0.04760379464663018,
+      "ci_low": 0.03664467657055417,
+      "delta": 0.04203107082985421,
+      "eval": "target_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0006413682522715125,
+      "median_cluster_size": 1.0,
+      "n_boot": 2000,
+      "n_domains": 6448,
+      "n_invalid": 0,
+      "source": "B",
+      "target": "A"
+    },
+    {
+      "a": "LGBM-ALL",
+      "b": "LGBM-noHTTPS",
+      "ci_high": 0.07539554916588222,
+      "ci_low": 0.05971033417535808,
+      "delta": 0.06738383430412875,
+      "eval": "target_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0006413682522715125,
+      "median_cluster_size": 1.0,
+      "n_boot": 2000,
+      "n_domains": 6448,
+      "n_invalid": 0,
+      "source": "B",
+      "target": "A"
+    },
+    {
+      "a": "LR-ALL",
+      "b": "HTTPS-rule",
+      "ci_high": -0.055161243521358524,
+      "ci_low": -0.0888480718670785,
+      "delta": -0.07256583976900322,
+      "eval": "target_val",
+      "invalid_fraction": 0.0,
+      "largest_cluster_share": 0.0006413682522715125,
+      "median_cluster_size": 1.0,
+      "n_boot": 2000,
+      "n_domains": 6448,
+      "n_invalid": 0,
+      "source": "B",
+      "target": "A"
+    }
+  ],
+  "error_domains": {
+    "A/LGBM/source_val": {
+      "fn": {
+        "campusvoteproject.com": 3,
+        "cngkitwala.com": 3,
+        "dsusa.net": 5,
+        "hontnursery.com": 3,
+        "innovi.cc": 3
+      },
+      "fp": {
+        "clevelandclinicmeded.com": 3,
+        "enchantedlearning.com": 3,
+        "howtodelete.co": 3,
+        "johnnetee.com": 3,
+        "vlaurie.com": 3
+      }
+    },
+    "A/LGBM/target_val": {
+      "fn": {
+        "3c5.com": 8,
+        "incuspaze.com": 8,
+        "ipfs.io": 22,
+        "netlify.app": 13,
+        "solarmastertexas.com": 12
+      },
+      "fp": {
+        "cnki.net": 22,
+        "freestreams-live1.com": 24,
+        "juntadeandalucia.es": 23,
+        "livetv353.me": 21,
+        "parspack.com": 21
+      }
+    },
+    "A/RF/source_val": {
+      "fn": {
+        "blogspot.de": 3,
+        "campusvoteproject.com": 3,
+        "cngkitwala.com": 3,
+        "goepsa.com": 3,
+        "hontnursery.com": 3
+      },
+      "fp": {
+        "arre.st": 3,
+        "clevelandclinicmeded.com": 3,
+        "enchantedlearning.com": 3,
+        "howtodelete.co": 3,
+        "johnnetee.com": 3
+      }
+    },
+    "A/RF/target_val": {
+      "fn": {
+        "3c5.com": 8,
+        "4nmn.com": 9,
+        "amplifyapp.com": 8,
+        "ipfs.io": 19,
+        "netlify.app": 14
+      },
+      "fp": {
+        "cnki.net": 23,
+        "duomai.com": 24,
+        "freestreams-live1.com": 23,
+        "juntadeandalucia.es": 24,
+        "livetv353.me": 23
+      }
+    },
+    "B/LGBM/source_val": {
+      "fn": {
+        "com.de": 10,
+        "genial.ly": 7,
+        "incuspaze.com": 7,
+        "tecnigo.co": 7,
+        "vopp.co.za": 6
+      },
+      "fp": {
+        "aliyuncs.com": 25,
+        "freestreams-live1.com": 25,
+        "noodlemagazine.com": 24,
+        "shopifypreview.com": 25,
+        "youzan.com": 25
+      }
+    },
+    "B/LGBM/target_val": {
+      "fn": {
+        "dsusa.net": 6,
+        "innovi.cc": 5,
+        "teste.website": 5,
+        "twionline.org": 5,
+        "upt.ro": 6
+      },
+      "fp": {
+        "arre.st": 3,
+        "behindthevoiceactors.com": 3,
+        "clevelandclinicmeded.com": 3,
+        "crosswordclue.net": 3,
+        "greatbridgelinks.com": 3
+      }
+    },
+    "B/RF/source_val": {
+      "fn": {
+        "com.de": 10,
+        "genial.ly": 7,
+        "incuspaze.com": 7,
+        "tecnigo.co": 9,
+        "vopp.co.za": 9
+      },
+      "fp": {
+        "aliyuncs.com": 25,
+        "freestreams-live1.com": 25,
+        "noodlemagazine.com": 24,
+        "shopifypreview.com": 25,
+        "youzan.com": 25
+      }
+    },
+    "B/RF/target_val": {
+      "fn": {
+        "dsusa.net": 6,
+        "k3yw0r6.com": 6,
+        "monsontos.com": 5,
+        "twionline.org": 5,
+        "upt.ro": 6
+      },
+      "fp": {
+        "choose-piano-lessons.com": 3,
+        "clevelandclinicmeded.com": 3,
+        "greatbridgelinks.com": 3,
+        "johnnetee.com": 3,
+        "legalinsurrection.com": 3
+      }
+    }
+  },
+  "n_boot": 2000,
+  "note": "exploratory; FIT/VAL only; conditional on the v1 split",
+  "prevalence": {
+    "A": {
+      "FIT": 0.5260325718969389,
+      "VAL": 0.5260288615713522
+    },
+    "B": {
+      "FIT": 0.6035738068812431,
+      "VAL": 0.6037032103370188
+    }
+  }
+}

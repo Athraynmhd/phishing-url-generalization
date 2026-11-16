@@ -1,0 +1,17 @@
+\begin{tabular}{lllrrrr}
+\toprule
+Direction & Slice & Value & URLs & Phish (\%) & FPR (\%) & FNR (\%) \\
+\midrule
+EBBU$\rightarrow$HP & HTTPS & HTTPS & 6,552 & 21 & 1.9 & 57.4 \\
+EBBU$\rightarrow$HP & HTTPS & not HTTPS & 8,462 & 90 & 30.2 & 1.6 \\
+EBBU$\rightarrow$HP & Subdomains & 0 & 2,918 & 52 & 7.5 & 35.5 \\
+EBBU$\rightarrow$HP & Subdomains & 1 & 4,957 & 14 & 4.0 & 49.4 \\
+EBBU$\rightarrow$HP & Subdomains & $\geq$2 & 7,139 & 96 & 22.6 & 0.6 \\
+\midrule
+HP$\rightarrow$EBBU & HTTPS & HTTPS & 1,272 & 9 & 11.7 & 33.3 \\
+HP$\rightarrow$EBBU & HTTPS & not HTTPS & 8,083 & 59 & 25.7 & 22.5 \\
+HP$\rightarrow$EBBU & Subdomains & 0 & 4,601 & 74 & 51.9 & 10.5 \\
+HP$\rightarrow$EBBU & Subdomains & 1 & 4,572 & 31 & 10.9 & 53.2 \\
+HP$\rightarrow$EBBU & Subdomains & $\geq$2 & 182 & 53 & 18.8 & 13.4 \\
+\bottomrule
+\end{tabular}

@@ -73,6 +73,15 @@ Thumbs.db
 !/artifacts/github_release/
 !/artifacts/github_release/preflight.json
 !/artifacts/github_release/validation.json
+!/artifacts/extensions/
+!/artifacts/extensions/latest.json
+!/artifacts/extensions/run_*/
+!/artifacts/extensions/run_*/manifest.json
+!/artifacts/extensions/run_*/results.json
+!/artifacts/extensions/run_*/metrics.csv
+!/artifacts/extensions/run_*/slices.csv
+!/artifacts/extensions/run_*/eda.csv
+!/artifacts/extensions/pytest.log
 
 # Third-party full texts and extracted copies are not part of this code release.
 /1-s2.0-S1389128624002305-main.pdf
@@ -89,6 +98,10 @@ Thumbs.db
 *.synctex.gz
 *.blg
 *.bbl
+*.nav
+*.snm
+*.toc
+*.vrb
 # Selected test logs are research evidence.
 !/artifacts/develop.log
 !/artifacts/pytest_prefreeze.log
