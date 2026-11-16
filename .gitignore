@@ -82,6 +82,23 @@ Thumbs.db
 !/artifacts/extensions/run_*/slices.csv
 !/artifacts/extensions/run_*/eda.csv
 !/artifacts/extensions/pytest.log
+!/artifacts/extensions/dagafs/
+!/artifacts/extensions/dagafs/latest.json
+!/artifacts/extensions/dagafs/run_*/
+!/artifacts/extensions/dagafs/run_*/manifest.json
+!/artifacts/extensions/dagafs/run_*/results.json
+!/artifacts/extensions/dagafs/run_*/metrics.csv
+!/artifacts/extensions/dagafs/run_*/features.csv
+!/artifacts/extensions/dagafs/run_*/sweep.csv
+!/artifacts/extensions/dagafs/run_*/ensemble.csv
+!/artifacts/extensions/dagafs/run_*/ensemble_by_direction.csv
+!/artifacts/extensions/dagafs/pytest.log
+!/artifacts/extensions/dagafs_posthoc/
+!/artifacts/extensions/dagafs_posthoc/latest.json
+!/artifacts/extensions/dagafs_posthoc/run_*/
+!/artifacts/extensions/dagafs_posthoc/run_*/manifest.json
+!/artifacts/extensions/dagafs_posthoc/run_*/results.json
+!/artifacts/extensions/dagafs_posthoc/run_*/metrics.csv
 
 # Third-party full texts and extracted copies are not part of this code release.
 /1-s2.0-S1389128624002305-main.pdf

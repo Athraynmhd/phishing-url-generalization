@@ -1,0 +1,34 @@
+{
+  "code_sha256": {
+    "pkg/extensions/__init__.py": "8748172cc332d05beb77a72d22dbc2b62ee970cb1613d6316ca90db01495013b",
+    "pkg/extensions/analysis.py": "2c6de117950dd7fbd0c240b31ce68e7ce2fe0836c0c9a8f45c953db7ea6cb5d4",
+    "pkg/extensions/dagafs.py": "cd240fc23c7793384daeffac95e43a54f9eedf66626d3ff8b481341422b03b1b",
+    "pkg/extensions/report.py": "2e8e0718beea78bc966bafa4de4f9ffa55dd2b6978d39432c4e90fcf5a62c33a"
+  },
+  "constants": {
+    "cost_urls": 2000,
+    "sign_boot": 200,
+    "tau": 0.1,
+    "tol": 0.01
+  },
+  "dataset_urls_opened": false,
+  "decision": "D-41",
+  "output_sha256": {
+    "ensemble.csv": "a4364a5bba862cddc4917083da57e42368e05b17e2b56dbe616a7213421c2dba",
+    "ensemble_by_direction.csv": "7520fa45ca532740fa96f0487bd536727d64679dfc7ecec778705d19a10ed254",
+    "features.csv": "edc137c48340a623bb89ecd8afa908e5f85d521e964c7827c6c39ad9fb995176",
+    "metrics.csv": "117d07b3785c2d373b42d666c73e6248c7b75a90e26300f784bc9b7194b0dd91",
+    "results.json": "9f9e527ce5cdf2354317abc7b562c148a2c9dea570b56f471575a01666deb68c",
+    "sweep.csv": "5a92a780be7ef397defbf2dd3266593d107aa165d8ca755206f03320a79bcb4d"
+  },
+  "parent_freeze_hash": "069912e332d788120e4ba358b1f8cd3dc5f0903d783249a87567ce00d6efc8da",
+  "partitions_used": [
+    "FIT",
+    "VAL"
+  ],
+  "research_status": "exploratory extension of frozen v1",
+  "setting": "multi-source selection (labelled FIT of both collections); fit on source FIT; thresholds on source VAL; transfer on target VAL",
+  "status": "passed",
+  "test_features_read": false,
+  "test_labels_read": false
+}

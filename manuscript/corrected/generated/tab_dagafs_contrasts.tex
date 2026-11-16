@@ -1,0 +1,20 @@
+\begin{tabular}{llcc}
+\toprule
+Model & $a-b$ & EBBU$\rightarrow$HP & HP$\rightarrow$EBBU \\
+\midrule
+RF & DA-GAFS $-$ ALL v1 & -0.002 [-0.004, -0.001] & -0.004 [-0.008, -0.001] \\
+RF & DA-GAFS $-$ STABLE-PI v1 & -0.004 [-0.008, -0.000] & +0.031 [+0.021, +0.040] \\
+RF & C2 gate, matched $k$ & -0.001 [-0.003, +0.000] & -0.007 [-0.011, -0.004] \\
+RF & XS-I $-$ ALL v1$^\dagger$ & +0.005 [-0.000, +0.009] & +0.013 [+0.008, +0.018] \\
+RF & XS-I $-$ STABLE-PI v1$^\dagger$ & +0.003 [+0.000, +0.006] & +0.048 [+0.040, +0.056] \\
+\midrule
+LightGBM & DA-GAFS $-$ ALL v1 & +0.000 [-0.002, +0.002] & +0.006 [+0.002, +0.010] \\
+LightGBM & DA-GAFS $-$ STABLE-PI v1 & +0.003 [+0.000, +0.006] & +0.094 [+0.086, +0.102] \\
+LightGBM & C2 gate, matched $k$ & +0.000 [-0.002, +0.002] & +0.006 [+0.002, +0.010] \\
+LightGBM & XS-I $-$ ALL v1$^\dagger$ & -0.002 [-0.005, +0.001] & -0.022 [-0.028, -0.016] \\
+LightGBM & XS-I $-$ STABLE-PI v1$^\dagger$ & +0.001 [-0.002, +0.003] & +0.066 [+0.058, +0.074] \\
+\midrule
+Ensemble & C5 choice $-$ LightGBM DA-GAFS & +0.000 [+0.000, +0.000] & +0.000 [+0.000, +0.000] \\
+Ensemble & RF+LGBM+LR $-$ LightGBM DA-GAFS & -0.004 [-0.009, -0.000] & -0.031 [-0.038, -0.025] \\
+\bottomrule
+\end{tabular}

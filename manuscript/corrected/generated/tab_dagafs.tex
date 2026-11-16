@@ -1,0 +1,22 @@
+\begin{tabular}{lcccccccc}
+\toprule
+& & & \multicolumn{3}{c}{Source EBBU} & \multicolumn{3}{c}{Source HP} \\
+\cmidrule(lr){4-6}\cmidrule(lr){7-9}
+Configuration & $k$ & $\mu$s & F1$_{\mathrm{src}}$ & F1$_{\rightarrow\mathrm{HP}}$ & AP$_{\rightarrow\mathrm{HP}}$ & F1$_{\mathrm{src}}$ & F1$_{\rightarrow\mathrm{EBBU}}$ & AP$_{\rightarrow\mathrm{EBBU}}$ \\
+\midrule
+RF ALL v1 (source-only) & 37 & 107 & 0.903 & 0.918 & 0.966 & 0.951 & 0.734 & 0.826 \\
+RF STABLE-PI v1 (source-only) & 16/8 & -- & 0.903 & 0.919 & 0.966 & 0.942 & 0.699 & 0.733 \\
+RF XS-I, own $k^*$ (post-hoc) & 12 & 57 & 0.900 & 0.923 & 0.963 & 0.950 & 0.747 & 0.840 \\
+RF XS-IS, own $k^*$ (post-hoc) & 13 & 67 & 0.899 & 0.918 & 0.962 & 0.951 & 0.738 & 0.835 \\
+RF DA-GAFS, $k^*$ & 35 & 107 & 0.905 & 0.916 & 0.962 & 0.949 & 0.729 & 0.827 \\
+\midrule
+LightGBM ALL v1 (source-only) & 37 & 107 & 0.909 & 0.928 & 0.972 & 0.955 & 0.783 & 0.874 \\
+LightGBM STABLE-PI v1 (source-only) & 16/8 & -- & 0.906 & 0.925 & 0.973 & 0.940 & 0.695 & 0.778 \\
+LightGBM XS-I, own $k^*$ (post-hoc) & 12 & 57 & 0.905 & 0.925 & 0.975 & 0.951 & 0.761 & 0.872 \\
+LightGBM XS-IS, own $k^*$ (post-hoc) & 13 & 67 & 0.904 & 0.921 & 0.976 & 0.953 & 0.756 & 0.877 \\
+LightGBM DA-GAFS, $k^*$ & 35 & 107 & 0.908 & 0.928 & 0.976 & 0.955 & 0.789 & 0.874 \\
+\midrule
+C5 choice: LightGBM DA-GAFS & 35 & -- & 0.908 & 0.928 & 0.976 & 0.955 & 0.789 & 0.874 \\
+RF+LightGBM+LogReg DA-GAFS & 35 & -- & 0.907 & 0.924 & 0.945 & 0.954 & 0.758 & 0.853 \\
+\bottomrule
+\end{tabular}

@@ -24,15 +24,17 @@ def step(num, title, why, src, look=None):
 
 
 md(r"""
-# Do Stable Features Transfer?
-## Source-Only Feature Selection for Cross-Dataset Phishing URL Detection
+# DA-GAFS
+## Direction- and Generalization-Aware Feature Selection for Cross-Source Phishing URL Detection
 
 **Project category:** General Machine Learning (application project)
 
-**Study question.** If a lexical URL classifier is trained on one public phishing dataset and deployed on a
-different one *without target data for fitting, feature selection or threshold calibration*, how much does it degrade, and does choosing features by
-the **stability** of their importance across held-out domains (STABLE_PI) transfer better than choosing them by
-**mean** importance (MEAN_PI) or using **all** 37 features (ALL)?
+**Study question.** Which lexical URL features survive when a phishing detector trained on one public collection
+is deployed on another? Stage 1 (frozen, source-only, TEST): does choosing features by the **stability** of their
+importance within the source (STABLE_PI) transfer better than **mean** importance (MEAN_PI) or **all** 37 features?
+Stage 2 (exploratory, FIT/VAL only): does **DA-GAFS**, built from five components (C1 cross-source stability,
+C2 directional consistency, C3 unified ranking, C4 multi-objective accuracy–cost budget, C5 generalization-aware
+ensemble), do better when a second labelled collection is available for selection?
 
 | | |
 |---|---|
@@ -49,6 +51,7 @@ the **stability** of their importance across held-out domains (STABLE_PI) transf
 | RQ3 | Does a smaller feature set measurably reduce extraction/inference cost? |
 | RQ4 | Which features do the models rely on, and how do attributions shift source → target? |
 | RQ5 | *(exploratory, FIT/VAL only)* Why does transfer fail where it does? Baselines, HTTPS ablation, EDA, error analysis. |
+| RQ6 | *(exploratory, FIT/VAL only)* Does DA-GAFS (C1–C5) transfer better, and at what cost? |
 
 ### How to read this notebook
 * All logic lives in the tested package `src/phishresearch/`. Every cell below performs **one** step by
@@ -505,6 +508,100 @@ pd.DataFrame({k: {"FP": ", ".join(f"{d} ({c})" for d, c in v["fp"].items()), "FN
               for k, v in EXT_RES["error_domains"].items() if k.endswith("target_val") and "/LGBM/" in k}).T
 """)
 
+md("""### RQ6 (exploratory): DA-GAFS, the five supervisor components
+
+Specified in `docs/decisions.md` **D-41** before running; produced by `python -m phishresearch.cli dagafs`.
+**DA-GAFS = Direction-Aware, Generalization-Aware Feature Selection.**
+
+| Component | What it does here |
+|---|---|
+| C1 cross-source stability | share of saved v1 PI vectors (2 sources × seeds × 3 folds) where the feature is top-12 with PI > 0 |
+| C2 directional consistency | rank-biserial r = 2·AUC − 1 per source; opposite signs with \\|r\\| ≥ 0.10 in both ⇒ D = 0 |
+| C3 DA-GAFS score | G = D · (I + S) / 2; ablations XS-I (importance only) and XS-IS (no direction) |
+| C4 multi-objective | cross-source AP on FIT vs extraction cost; k* = cheapest prefix within 0.01 AP of the best |
+| C5 generalization-aware ensemble | cheapest RF/LightGBM/LogReg soft-vote within 0.01 cross-source FIT AP of the best |
+
+**Setting.** Selection uses labelled **FIT of both collections** (multi-source, *not* source-only). Models are fitted on
+source FIT only, thresholds come from source VAL, and transfer is measured on **target VAL**, which neither selection nor
+fitting has seen. TEST is not read. With only two collections this is not a zero-shot test on a third source.""")
+step("8.28", "Load the verified DA-GAFS run",
+     "Manifest and every output hash are checked before use.",
+     """
+from phishresearch.extensions.dagafs import latest_dagafs
+DG = latest_dagafs(P)
+DG_MAN = json.loads((DG / "manifest.json").read_text(encoding="utf-8"))
+DG_RES = json.loads((DG / "results.json").read_text(encoding="utf-8"))
+print(DG.relative_to(ROOT))
+pd.Series({k: DG_MAN[k] for k in ("status", "decision", "setting", "partitions_used", "test_labels_read", "dataset_urls_opened")})
+""", look="status = passed, test_labels_read = False.")
+step("8.29", "C2: class-association direction in each source",
+     "r > 0: larger values indicate phishing. A conflict needs opposite signs **and** |r| ≥ 0.10 in both sources. "
+     "`sign_stability` is the share of 200 domain-bootstrap replicates that keep the sign.",
+     """
+FT = pd.read_csv(DG / "features.csv")
+FT[["feature", "name", "r_A", "r_B", "conflict", "sign_stability_A", "sign_stability_B"]] \\
+  .sort_values(["conflict", "feature"], ascending=[False, True]).round(3).head(12)
+""", look="Conflicting features are the host-structure and query cues found by the Cohen's d analysis (step 8.21).")
+step("8.30", "C1 + C3: importance, cross-source stability and the DA-GAFS score",
+     "I = pooled normalised PI, S = cross-source stability, G = D·(I+S)/2. Conflicting features drop to the end of the ranking.",
+     """
+o = FT.sort_values("rank_ISD", ascending=False)
+fig, ax = plt.subplots(figsize=(6, 7))
+ax.barh(o.feature + " " + o.name, o.IS, color="#c9c8c3", label="(I+S)/2, no direction term")
+ax.scatter(o.G, o.feature + " " + o.name, color="#1baf7a", zorder=3, label="DA-GAFS G")
+ax.scatter(o.IS[o.conflict], (o.feature + " " + o.name)[o.conflict], marker="x", color="#eb6834", s=60, zorder=4, label="conflict")
+ax.axhline(len(o) - DG_RES["k"] - 0.5, ls="--", color="grey"); ax.legend(loc="lower right"); plt.show()
+FT.sort_values("rank_ISD")[["feature", "name", "I", "S", "D", "G", "rank_I", "rank_IS", "rank_ISD", "cost_us"]].round(3).head(DG_RES["k"] + 3)
+""")
+step("8.31", "C4: multi-objective budget (cross-source FIT AP vs extraction cost)",
+     "Every prefix k = 1..37 of each ranking; circles mark the cheapest prefix within 0.01 AP of that ranking's best.",
+     """
+SW = pd.read_csv(DG / "sweep.csv")
+fig, ax = plt.subplots(figsize=(7, 3.5))
+for R, c in (("I", "#9a9893"), ("IS", "#2a78d6"), ("ISD", "#1baf7a")):
+    p = SW[SW.ranking == R].sort_values("k")
+    ax.plot(p.cost_us, p.g, marker=".", color=c, label={"ISD": "DA-GAFS"}.get(R, "XS-" + R))
+    ch = p[p.chosen]; ax.scatter(ch.cost_us, ch.g, s=150, facecolors="none", edgecolors=c)
+ax.set_xlabel("parse + extraction µs/URL (additive)"); ax.set_ylabel("cross-source AP on FIT"); ax.legend(); plt.show()
+SW[SW.chosen][["ranking", "k", "ap_A_to_B", "ap_B_to_A", "g", "cost_us"]].round(3)
+""")
+step("8.32", "Transfer on target VAL: source-only v1 vs DA-GAFS and its ablations",
+     "All new models are fitted on source FIT; thresholds from source VAL. v1 bundles keep frozen thresholds.",
+     """
+DM = pd.read_csv(DG / "metrics.csv")
+DM["direction"] = DM.source.map(lambda s: f"{viz.SRC_NAME[s]}→{viz.SRC_NAME['B' if s == 'A' else 'A']}")
+DM.groupby(["direction", "config", "eval"])[["k", "f1", "ap", "recall", "fpr"]].mean().round(3).unstack("eval")
+""")
+step("8.33", "Paired domain-cluster bootstrap contrasts (fixed in D-41)",
+     "Δ F1 = a − b on the same resampled target domains, averaged over seeds.",
+     """
+DC = pd.DataFrame(DG_RES["contrasts"])
+DC["direction"] = DC.source.map(lambda s: f"{viz.SRC_NAME[s]}→{viz.SRC_NAME['B' if s == 'A' else 'A']}")
+DC[DC["eval"] == "target_val"].pivot_table(index=["a", "b"], columns="direction", values=["delta", "ci_low", "ci_high"]).round(3)
+""", look="An interval that contains 0 is not evidence of a difference; these are exploratory, one split.")
+step("8.34", "C5: generalization-aware ensemble choice",
+     "Equal-weight soft vote; g = mean cross-source AP on target FIT (seed-17 members), cost = extraction + summed prediction µs/URL.",
+     """
+pd.read_csv(DG / "ensemble.csv").sort_values("cost_us").round(3)
+""")
+step("8.35", "Post-hoc (D-42): each ranking at its own rule-chosen k*",
+     "Added after seeing the FIT sweep (never target VAL): at k* = 35 the matched ablations coincide with ALL, so the cost "
+     "component is only visible at each ranking's own k*. Labelled post-hoc, not preregistered.",
+     """
+from phishresearch.extensions.analysis import latest_run
+PH = latest_run(P, "dagafs_posthoc")
+PHM = pd.read_csv(PH / "metrics.csv")
+PHM["direction"] = PHM.source.map(lambda s: f"{viz.SRC_NAME[s]}→{viz.SRC_NAME['B' if s == 'A' else 'A']}")
+display(PHM.groupby(["direction", "config", "eval"])[["k", "f1", "ap"]].mean().round(3).unstack("eval"))
+PC = pd.DataFrame(json.loads((PH / "results.json").read_text(encoding="utf-8"))["contrasts"])
+PC[PC["eval"] == "target_val"][["source", "a", "b", "delta", "ci_low", "ci_high"]].round(3)
+""", look="XS-I (12 features, about half the extraction time) beats the source-only STABLE_PI subset from HP to EBBU.")
+step("8.36", "Cost model check: additive estimate vs measured extraction",
+     "C4 uses parse + Σ per-feature cost; the chosen and the full set are also timed end to end.",
+     """
+pd.DataFrame({"additive µs/URL": DG_RES["extract_us_additive"], "measured µs/URL": DG_RES["extract_us_measured"]}).round(1)
+""")
+
 md(r"""
 ### Validation boundary before interpreting the findings
 
@@ -551,6 +648,17 @@ L.append(f"\n**RQ5 (exploratory, VAL only):** LogReg transfer F1 {XG[('A', 'targ
          f"{XG[('B', 'target_val', 'LGBM-ALL')]:.3f}; the one-feature 'not HTTPS' rule reaches {XG[('A', 'target_val', 'HTTPS-rule')]:.3f} on HP. "
          f"Removing HTTPS lowers LightGBM transfer F1 by " + ", ".join(f"{r.direction} {r.delta:+.3f}" for r in noh.itertuples())
          + ". Features whose class association reverses between datasets: " + ", ".join(EDA.loc[~EDA.sign_agrees, "name"]) + ".")
+DGM = pd.read_csv(DG / "metrics.csv").groupby(["source", "eval", "config"]).f1.mean()
+PH = latest_run(P, "dagafs_posthoc")
+PHM = pd.read_csv(PH / "metrics.csv").groupby(["source", "eval", "config"]).f1.mean()
+PHR = json.loads((PH / "results.json").read_text(encoding="utf-8"))
+L.append(f"\n**RQ6 (exploratory, multi-source selection, VAL only):** C2 flags {', '.join(DG_RES['conflicts'])}; "
+         f"the cost rule keeps k* = {DG_RES['k']} for DA-GAFS (the gate removes the strongest cross-source cue). "
+         f"HP→EBBU LightGBM: ALL {DGM[('B', 'target_val', 'LGBM-ALL')]:.3f}, DA-GAFS {DGM[('B', 'target_val', 'LGBM-DAGAFS')]:.3f}, "
+         f"source-only STABLE_PI {DGM[('B', 'target_val', 'LGBM-STABLE')]:.3f}; post-hoc XS-I with {PHR['own_k']['I']} features "
+         f"(extraction {PHR['extract_us_measured']['I'] / PHR['extract_us_measured']['ALL']:.2f}× of ALL): "
+         f"RF {PHM[('B', 'target_val', 'RF-I@own')]:.3f}, LightGBM {PHM[('B', 'target_val', 'LGBM-I@own')]:.3f}. "
+         f"C5 keeps {DG_RES['gae']}; the three-model ensemble reaches {DGM[('B', 'target_val', 'ENS3')]:.3f}.")
 display(Markdown("\n".join(L)))
 """)
 md(r"""

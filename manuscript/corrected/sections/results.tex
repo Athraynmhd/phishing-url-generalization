@@ -40,7 +40,7 @@ The secondary contrasts temper this result: reduced subsets did not match ALL ac
 \end{table*}
 
 \subsection{RQ3: computational cost}
-Table~\ref{tab:cost} and Fig.~\ref{fig:latency} give the latency per URL. For a single URL on one thread, reduced subsets take \res{relLatB1Min}--\res{relLatB1Max} of the end-to-end time of the corresponding ALL model; for batches of 1{,}024 URLs on four threads the ratio is \res{relLatBkMin}--\res{relLatBkMax}. Parsing and feature extraction account for a median of \res{extractShareMedian}\% of single-URL end-to-end time, so pruning features mainly saves extraction work, while tree inference cost depends little on the number of input features.
+Table~\ref{tab:cost} gives the latency per URL. For a single URL on one thread, reduced subsets take \res{relLatB1Min}--\res{relLatB1Max} of the end-to-end time of the corresponding ALL model; for batches of 1{,}024 URLs on four threads the ratio is \res{relLatBkMin}--\res{relLatBkMax}. Parsing and feature extraction account for a median of \res{extractShareMedian}\% of single-URL end-to-end time, so pruning features mainly saves extraction work, while tree inference cost depends little on the number of input features.
 
 \begin{table*}[t]
 \caption{Cost of the seed-17 model of every configuration (median $\mu$s per URL; ``rel.'' = end-to-end time relative to ALL of the same source and classifier). Hardware: \res{cpu}, \res{ram} GB RAM, Python \res{pyver}.}
@@ -51,7 +51,7 @@ Table~\ref{tab:cost} and Fig.~\ref{fig:latency} give the latency per URL. For a 
 
 \subsection{RQ4: attributions}
 The corrected exploratory explanations pass strict additivity (maximum residual \res{shapAddErr}). The following rankings use these corrected outputs; the original failing outputs remain archived. Numerical consistency does not establish causal attribution or complete explanation fidelity.
-SHAP rankings of the same model on source and target TEST samples agree to a Spearman $\rho$ of \res{rhoMin}--\res{rhoMax} (Table~\ref{tab:shap}, Fig.~\ref{fig:shap}); seed-to-seed agreement of the ALL models on the source is at least \res{rhoSeedMin}. Fig.~\ref{fig:pi} shows the permutation-importance evidence from which the subsets were drawn. Because the input distribution changes between cohorts, a different ranking on the target describes \emph{what} the model used there; it is not by itself evidence of an unfaithful explanation, nor of a causal role of a feature.
+SHAP rankings of the same model on source and target TEST samples agree to a Spearman $\rho$ of \res{rhoMin}--\res{rhoMax} (Table~\ref{tab:shap}); seed-to-seed agreement of the ALL models on the source is at least \res{rhoSeedMin}. Because the input distribution changes between cohorts, a different ranking on the target describes \emph{what} the model used there; it is not by itself evidence of an unfaithful explanation, nor of a causal role of a feature.
 
 \begin{table*}[t]
 \caption{Exploratory corrected SHAP rank agreement: source vs.\ target TEST ($\rho$, top-10 Jaccard) and across seeds for ALL; top-5 features on the source.}
@@ -60,17 +60,11 @@ SHAP rankings of the same model on source and target TEST samples agree to a Spe
 \input{generated/tab_shap.tex}
 \end{table*}
 
-\begin{figure*}[t]
-\centering
-\includegraphics[width=\textwidth]{generated/fig_shap.pdf}
-\caption{Exploratory corrected mean $|$SHAP$|$ (probability scale) of the eight most important features of the seed-17 ALL models on source TEST (blue) and target TEST (orange).}
-\label{fig:shap}
-\end{figure*}
 
 \subsection{RQ5 (exploratory): why does transfer fail?}\label{sec:rq5}
 \textit{Validation proxy.} On target VAL the frozen ALL LightGBM models reach F1 \res{xLGBMTgtA} (EBBU$\rightarrow$HP) and \res{xLGBMTgtB} (HP$\rightarrow$EBBU), close to their TEST values \res{F1ABLGBMALL} and \res{F1BALGBMALL}. The VAL-based diagnostics therefore describe the same transfer behaviour without touching TEST.
 
-\textit{Baselines.} LogReg is competitive within a source (source-VAL F1 \res{xLRSrcA} on EBBU, \res{xLRSrcB} on HP; Table~\ref{tab:baseline}) but transfers poorly. From EBBU to HP its F1 collapses to \res{xLRTgtA} (recall \res{xLRTgtRecA}) even though its target AUC is \res{xLRTgtAUCA}: the ranking partly transfers, the source-locked threshold does not. The tree ensembles exceed LogReg on the target by \res{xDLGBMLRA} \res{xDLGBMLRACI} (LightGBM, EBBU$\rightarrow$HP) and \res{xDLGBMLRB} \res{xDLGBMLRBCI} (HP$\rightarrow$EBBU; Table~\ref{tab:extcontrasts}). The untrained ``not HTTPS'' rule reaches F1 \res{xRuleTgtA} on HP and \res{xRuleTgtB} on EBBU, the latter close to HP-trained RF (\res{xRFTgtB}), although its AP is far lower (\res{xRuleTgtAPB} versus \res{xRFTgtAPB}). Part of the apparent EBBU$\rightarrow$HP ease is thus available from a single, collection-dependent cue.
+\textit{Baselines.} LogReg is competitive within a source (source-VAL F1 \res{xLRSrcA} on EBBU, \res{xLRSrcB} on HP; Table~\ref{tab:baseline}) but transfers poorly. From EBBU to HP its F1 collapses to \res{xLRTgtA} (recall \res{xLRTgtRecA}) even though its target AUC is \res{xLRTgtAUCA}: the ranking partly transfers, the source-locked threshold does not. The tree ensembles exceed LogReg on the target by \res{xDLGBMLRA} \res{xDLGBMLRACI} (LightGBM, EBBU$\rightarrow$HP) and \res{xDLGBMLRB} \res{xDLGBMLRBCI} (HP$\rightarrow$EBBU; paired domain-cluster bootstrap). The untrained ``not HTTPS'' rule reaches F1 \res{xRuleTgtA} on HP and \res{xRuleTgtB} on EBBU, the latter close to HP-trained RF (\res{xRFTgtB}), although its AP is far lower (\res{xRuleTgtAPB} versus \res{xRFTgtAPB}). Part of the apparent EBBU$\rightarrow$HP ease is thus available from a single, collection-dependent cue.
 
 \begin{table}[t]
 \caption{Exploratory baselines and no-HTTPS ablation (mean over seeds where applicable). F1$_{\mathrm{src}}$: source VAL (optimistic, sets the threshold); $\rightarrow$: target VAL at the source threshold.}
@@ -79,25 +73,13 @@ SHAP rankings of the same model on source and target TEST samples agree to a Spe
 \input{generated/tab_baseline.tex}
 \end{table}
 
-\begin{table}[t]
-\caption{Exploratory paired domain-cluster bootstrap contrasts of F1 (\res{nBoot} replicates) on source and target VAL. E = EBBU, H = HP.}
-\label{tab:extcontrasts}
-\centering\scriptsize\setlength{\tabcolsep}{3pt}
-\input{generated/tab_ext_contrasts.tex}
-\end{table}
 
-\textit{Shortcut ablation.} Removing \texttt{is\_https} barely changes source-VAL F1 (\res{xDsLGBMnoHA} for LightGBM on EBBU, \res{xDsLGBMnoHB} on HP) but lowers transfer F1 by \res{xDLGBMnoHA} \res{xDLGBMnoHACI} (EBBU$\rightarrow$HP) and \res{xDLGBMnoHB} \res{xDLGBMnoHBCI} (HP$\rightarrow$EBBU) for LightGBM, and by \res{xDRFnoHA} and \res{xDRFnoHB} for RF. HTTPS is one of the few cues whose direction both collections share (Cohen's $d$ \res{xdF30A} and \res{xdF30B}; Fig.~\ref{fig:eda}), and it matters more for transfer than for internal accuracy. It is also period-dependent: \res{xHttpsPhishA}\% of EBBU and \res{xHttpsPhishB}\% of HP phishing URLs use HTTPS, versus \res{xHttpsBenignA}\% and \res{xHttpsBenignB}\% of benign ones.
+\textit{Shortcut ablation.} Removing \texttt{is\_https} barely changes source-VAL F1 (\res{xDsLGBMnoHA} for LightGBM on EBBU, \res{xDsLGBMnoHB} on HP) but lowers transfer F1 by \res{xDLGBMnoHA} \res{xDLGBMnoHACI} (EBBU$\rightarrow$HP) and \res{xDLGBMnoHB} \res{xDLGBMnoHBCI} (HP$\rightarrow$EBBU) for LightGBM, and by \res{xDRFnoHA} and \res{xDRFnoHB} for RF. HTTPS is one of the few cues whose direction both collections share (Cohen's $d$ \res{xdF30A} and \res{xdF30B}), and it matters more for transfer than for internal accuracy. It is also period-dependent: \res{xHttpsPhishA}\% of EBBU and \res{xHttpsPhishB}\% of HP phishing URLs use HTTPS, versus \res{xHttpsBenignA}\% and \res{xHttpsBenignB}\% of benign ones.
 
-\begin{figure}[t]
-\centering
-\includegraphics[width=\columnwidth]{generated/fig_eda.pdf}
-\caption{Class-conditional standardised mean differences on source FIT. Features marked * reverse their direction between the datasets.}
-\label{fig:eda}
-\end{figure}
 
-\textit{Reversed cues.} \res{xNFlip} of \res{xNEda} inspected features reverse their class association between the datasets: \res{xFlipList}. EBBU phishing URLs have \emph{fewer} subdomain labels than its benign URLs ($d{=}$\res{xdF23A}), whereas HP phishing URLs have many more ($d{=}$\res{xdF23B}). Host-structure features are nonetheless useful \emph{within} HP and enter every HP subset (Table~\ref{tab:selection}); no source-only criterion can detect that their meaning flips on the other collection.
+\textit{Reversed cues.} \res{xNFlip} of \res{xNEda} inspected features reverse their class association between the datasets: \res{xFlipList}. EBBU phishing URLs have \emph{fewer} subdomain labels than its benign URLs ($d{=}$\res{xdF23A}), whereas HP phishing URLs have many more ($d{=}$\res{xdF23B}). Host-structure features are nonetheless useful \emph{within} HP and enter every HP subset (Table~\ref{tab:selection}); no source-only criterion can detect that their meaning flips on the other collection. RQ6 tests what a criterion that sees both collections can do.
 
-\textit{Error analysis.} The slices in Table~\ref{tab:slices} locate the errors. EBBU-trained LightGBM misses \res{xAHttpsHTTPSFNR}\% of HP phishing served over HTTPS but only \res{xAHttpsnotHTTPSFNR}\% of non-HTTPS phishing, which is the HTTPS shortcut at work. HP-trained LightGBM flags \res{xBSub0FPR}\% of EBBU benign URLs without a subdomain and misses \res{xBSub1FNR}\% of EBBU phishing with one subdomain, which is the reversed host-structure cue. The most confident errors (Table~\ref{tab:examples}) follow the same pattern. False positives are long, plain-HTTP benign URLs with tracking or document paths. False negatives are HTTPS phishing on disposable hosts when moving to HP, and short plain-HTTP phishing paths resembling benign EBBU pages when moving to EBBU.
+\textit{Error analysis.} The slices in Table~\ref{tab:slices} locate the errors. EBBU-trained LightGBM misses \res{xAHttpsHTTPSFNR}\% of HP phishing served over HTTPS but only \res{xAHttpsnotHTTPSFNR}\% of non-HTTPS phishing, which is the HTTPS shortcut at work. HP-trained LightGBM flags \res{xBSub0FPR}\% of EBBU benign URLs without a subdomain and misses \res{xBSub1FNR}\% of EBBU phishing with one subdomain, which is the reversed host-structure cue. The five most confident errors of each type (listed, defanged, in the notebook) follow the same pattern. False positives are long, plain-HTTP benign URLs with tracking or document paths. False negatives are HTTPS phishing on disposable hosts when moving to HP, and short plain-HTTP phishing paths resembling benign EBBU pages when moving to EBBU.
 
 \begin{table}[t]
 \caption{Error rates of the seed-17 frozen ALL LightGBM models on target VAL by pre-defined slice.}
@@ -106,25 +88,42 @@ SHAP rankings of the same model on source and target TEST samples agree to a Spe
 \input{generated/tab_slices.tex}
 \end{table}
 
+
+
+
+\subsection{RQ6 (exploratory): DA-GAFS}\label{sec:rq6}
+\textit{C1--C2: stable and reversed cues.} Fig.~\ref{fig:dagafs} shows the components. \res{gNSone} features are in the top 12 with positive PI in all 18 source--fold vectors of \emph{both} collections. Two features conflict in direction: \res{gConflictList}. The subdomain count has $r{=}$\res{grF23A} on EBBU and \res{grF23B} on HP, the host-label count \res{grF22A} and \res{grF22B}; every domain-bootstrap replicate keeps these signs (minimum sign stability \res{gSignStabMin}). Query presence, which reversed under Cohen's $d$ (RQ5), stays below the $|r|$ threshold on HP ($r{=}$\res{grF29B}) and is not gated.
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{generated/fig_dagafs_scores.pdf}
+\caption{DA-GAFS components on FIT of both collections: bars show importance plus cross-source stability $(I+S)/2$, dots the gated score $G$; crosses mark direction conflicts with their rank-biserial $r$ on EBBU/HP. Features with $(I+S)/2<0.05$ are omitted.}
+\label{fig:dagafs}
+\end{figure}
+
+\textit{C3--C4: the gate removes the strongest cross-source cue.} The subdomain count is also the feature with the highest pooled importance. Moving it to the end of the ranking caps the cross-source AP on FIT of every DA-GAFS prefix that excludes it at \res{gAPnoTop}, whereas XS-I reaches \res{gAPbestI} (Fig.~\ref{fig:pareto}). The cost rule therefore chose $k^*{=}$\res{gK} for DA-GAFS, i.e.\ all features except the host-label count and the constant-like port number, but only \res{gKI} for XS-I and \res{gKIS} for XS-IS. At the pre-specified matched budget of \res{gK} features, XS-I and XS-IS select identical sets (contrast exactly zero), so C1 cannot be separated from importance there, and the gate amounts to dropping the host-label count: \res{gDLDAISB} \res{gDLDAISBCI} for LightGBM and \res{gDRDAISB} \res{gDRDAISBCI} for RF from HP to EBBU (Table~\ref{tab:dagafscon}). DA-GAFS stays within the 0.01 band of ALL in all four cells and, at more than twice its budget, exceeds the source-only STABLE-PI subset from HP to EBBU by \res{gDRDASTB} (RF) and \res{gDLDASTB} (LightGBM).
+
+\begin{figure}[t]
+\centering
+\includegraphics[width=\columnwidth]{generated/fig_pareto.pdf}
+\caption{C4 on FIT: mean cross-source AP of every ranking prefix versus additive parsing+extraction cost. Circles mark the cheapest prefix within 0.01 AP of each ranking's best.}
+\label{fig:pareto}
+\end{figure}
+
+\begin{table*}[t]
+\caption{RQ6 on VAL (exploratory; mean of 3 seeds). Selection uses labelled FIT of both collections; models are fitted on source FIT; thresholds from source VAL. $\mu$s: measured parsing+extraction time per URL. $^\dagger$Post-hoc (D-42): each ranking at its own rule-chosen $k^*$. STABLE-PI cost is in Table~\ref{tab:cost}.}
+\label{tab:dagafs}
+\centering\scriptsize
+\input{generated/tab_dagafs.tex}
+\end{table*}
+
 \begin{table}[t]
-\caption{Most confident errors on target VAL (fixed rule; first two of five per type). URLs are defanged and were never opened.}
-\label{tab:examples}
-\centering\scriptsize\setlength{\tabcolsep}{2pt}
-\input{generated/tab_examples.tex}
+\caption{RQ6 paired domain-cluster bootstrap contrasts of target-VAL F1 (\res{nBoot} replicates). $^\dagger$Post-hoc.}
+\label{tab:dagafscon}
+\centering\scriptsize
+\resizebox{\columnwidth}{!}{\input{generated/tab_dagafs_contrasts.tex}}
 \end{table}
 
-\begin{figure*}[t]
-\centering
-\begin{minipage}[t]{0.48\textwidth}
-\centering\vspace{0pt}
-\includegraphics[width=\linewidth]{generated/fig_latency.pdf}
-\caption{End-to-end latency for a single URL on one thread (seed-17 models).}
-\label{fig:latency}
-\end{minipage}\hfill
-\begin{minipage}[t]{0.48\textwidth}
-\centering\vspace{0pt}
-\includegraphics[width=\linewidth]{generated/fig_pi.pdf}
-\caption{Permutation importance on full FIT (mean over folds and seeds). Dots mark features that are in the top 12 with positive PI in all three domain folds.}
-\label{fig:pi}
-\end{minipage}
-\end{figure*}
+\textit{Post-hoc: compact cross-source subsets.} Evaluated at its own $k^*$ (Table~\ref{tab:dagafs}), XS-I keeps \res{hKI} features (\res{hFeatI}) and needs \res{hMeasI}~$\mu$s per URL for parsing and extraction, versus \res{hMeasAll}~$\mu$s for all features. From HP to EBBU it exceeds the source-only STABLE-PI subset by \res{gDRISTB} \res{gDRISTBCI} (RF) and \res{gDLISTB} \res{gDLISTBCI} (LightGBM). The RF subset even exceeds RF on all features (\res{gDRIALB} \res{gDRIALBCI}), whereas LightGBM remains below its ALL model (\res{gDLIALB} \res{gDLIALBCI}). From EBBU to HP all differences stay within the 0.01 band. This subset contains the subdomain count: the gain comes from knowing what is important in \emph{both} collections, not from removing reversed cues.
+
+\textit{C5: ensemble choice.} The generalization-aware rule kept a single \res{gGAE} (cross-source AP on FIT \res{gEnsGAEAP} at \res{gEnsGAECost}~$\mu$s per URL) rather than the three-model average (\res{gEnsThreeAP} at \res{gEnsThreeCost}~$\mu$s). On target VAL the three-model average would have lost \res{gDENS3B} \res{gDENS3BCI} F1 from HP to EBBU, largely because LogReg transfers poorly (RQ5). C5 thus avoided a harmful combination but did not find one that beats the best single model.

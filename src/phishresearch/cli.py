@@ -134,6 +134,17 @@ def cmd_extend(args):
     print(f"[extend] exploratory extensions passed -> {out}; tables/macros -> manuscript/corrected/generated")
 
 
+def cmd_dagafs(args):
+    """DA-GAFS (D-41): multi-source feature selection + ensemble, FIT/VAL only, freeze untouched."""
+    from .extensions.dagafs import run_dagafs, run_dagafs_posthoc
+    from .extensions.report import write_dagafs_report
+    cfg, paths = _cfg(args)
+    out = run_dagafs(paths, cfg)                       # D-41, pre-specified
+    post = run_dagafs_posthoc(paths, cfg)              # D-42, post-hoc: each ranking at its own k*
+    write_dagafs_report(out, ROOT / "manuscript" / "corrected", post)
+    print(f"[dagafs] exploratory DA-GAFS passed -> {out}; tables/macros -> manuscript/corrected/generated")
+
+
 def cmd_report(args):
     from .reporting import run_report
     cfg, paths = _cfg(args)
@@ -207,6 +218,7 @@ def main(argv=None) -> int:
     a.add_argument("--exploratory-correction", action="store_true", help="Run the label-free SHAP correction in a new output directory")
     a.add_argument("--jobs", type=int, default=4, help="Parallel workers for exploratory correction")
     add("extend", cmd_extend)
+    add("dagafs", cmd_dagafs)
     add("report", cmd_report, freeze=True)
     s = add("smoke", cmd_smoke)
     s.add_argument("--synthetic", action="store_true", required=True)

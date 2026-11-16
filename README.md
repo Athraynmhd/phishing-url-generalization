@@ -1,4 +1,4 @@
-# Do Stable Features Transfer? Source-Only Feature Selection for Cross-Dataset Phishing URL Detection
+# DA-GAFS: Direction- and Generalization-Aware Feature Selection for Cross-Source Phishing URL Detection
 
 **Project category:** General Machine Learning (application project) · package `phishresearch`
 
@@ -72,7 +72,7 @@ python -m pip install -e . --no-deps
 python -m pytest -q                               # unit, invariant, integration and notebook-safety checks
 ```
 
-Suite saat ini: **83 tes** (`python -m pytest -q`). Snapshot sebelumnya telah diuji pada instalasi bersih Windows/Python 3.10: `pip check`, 50 tes unit,
+Suite saat ini: **87 tes** (`python -m pytest -q`). Snapshot sebelumnya telah diuji pada instalasi bersih Windows/Python 3.10: `pip check`, 50 tes unit,
 seluruh 48 sel kode notebook, dan reproduksi probabilitas dari 36 model tersimpan lulus.
 Ini bukan pelatihan ulang seluruh eksperimen dari nol. Untuk audit PDF/submission, pasang
 dependency tambahan dengan `python -m pip install -r requirements-audit.txt`.
@@ -96,6 +96,7 @@ python -m phishresearch.cli freeze   --approved-by "Name"               # hashes
 python -m phishresearch.cli evaluate --freeze artifacts/freeze.json     # reads TEST once, batch
 python notebooks/audit_publication.py                                # audit saved science, no individual TEST labels
 python -m phishresearch.cli extend                                   # RQ5 exploratory: baselines, ablation, EDA, errors (FIT/VAL only, D-40)
+python -m phishresearch.cli dagafs                                   # RQ6 exploratory: DA-GAFS C1-C5 (D-41) + post-hoc own-k* (D-42)
 python -m phishresearch.cli report   --freeze artifacts/freeze.json     # manuscript/generated/*
 cd manuscript; latexmk -pdf main.tex
 ```
@@ -138,6 +139,19 @@ dan transfer diukur pada target VAL. Setiap run disimpan di `artifacts/extension
 `cd manuscript/corrected; latexmk -pdf main.tex` dan `cd slides; latexmk -pdf slides.tex`.
 Naskah `manuscript/corrected/` kini adalah versi final yang diedit langsung. `notebooks/build_corrected_manuscript.py`
 adalah generator historis dan akan membuat bundle baru dari `manuscript/`, bukan menimpa versi ini.
+
+## RQ6: DA-GAFS, lima komponen arahan pembimbing (D-41, D-42)
+
+`dagafs` mengimplementasikan **DA-GAFS (Direction-Aware, Generalization-Aware Feature Selection)** di
+`src/phishresearch/extensions/dagafs.py`: C1 stabilitas lintas sumber (vektor PI v1 tersimpan, hash diverifikasi),
+C2 konsistensi arah (rank-biserial per sumber, gate konflik), C3 skor terpadu, C4 budget multi-objective
+(AP lintas sumber di FIT vs biaya ekstraksi terukur, Pareto front) dan C5 ensemble generalization-aware.
+Seleksi memakai **label FIT kedua koleksi** (multi-source, bukan source-only); model dilatih di FIT sumber, threshold dari
+source VAL, transfer diukur di target VAL. TEST tidak dibaca. Output: `artifacts/extensions/dagafs/run_*` dan
+`artifacts/extensions/dagafs_posthoc/run_*` (evaluasi post-hoc tiap ranking pada k* miliknya); tabel/figur/macro
+ditulis ke `manuscript/corrected/generated/` (`dagafs_macros.tex`, `tab_dagafs*.tex`, `fig_dagafs_scores.pdf`, `fig_pareto.pdf`).
+Hasil utama: gate arah tidak membantu (k*=35, ≈ ALL), sedangkan subset lintas sumber 12 fitur (ekstraksi 0,53× ALL)
+jauh mengungguli subset source-only di HP→EBBU. Lihat `docs/defense_qa.md` §C2.
 
 ## Batas klaim
 

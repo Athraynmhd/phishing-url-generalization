@@ -10,12 +10,13 @@
 \graphicspath{{../manuscript/corrected/generated/}}
 \input{../manuscript/corrected/generated/macros.tex}
 \input{../manuscript/corrected/generated/ext_macros.tex}
+\input{../manuscript/corrected/generated/dagafs_macros.tex}
 \definecolor{acc}{HTML}{2a78d6}
 \definecolor{warn}{HTML}{eb6834}
 \newcommand{\key}[1]{{\color{acc}\textbf{#1}}}
 
-\title{Do Stable Features Transfer?}
-\subtitle{Source-Only Feature Selection for Cross-Dataset Phishing URL Detection}
+\title{DA-GAFS}
+\subtitle{Direction- and Generalization-Aware Feature Selection for Cross-Source Phishing URL Detection}
 \author{[TEAM MEMBER 1 FULL NAME] \and [TEAM MEMBER 2 FULL NAME]}
 \institute{Project category: General Machine Learning (application project)}
 \date{}
@@ -36,20 +37,24 @@
 \end{itemize}
 \vspace{1em}
 \begin{block}{Goal}
-Measure how much accuracy survives on a dataset the model was \key{never fitted, selected or calibrated on}, and whether choosing \key{stable} features keeps more of it than choosing \key{important} ones, at the same feature budget and lower cost.
+Find which lexical features \key{survive the move to another collection}: first under a strict source-only protocol, then with \key{DA-GAFS}, a selector built from five components (cross-source stability, directional consistency, unified ranking, accuracy--cost budget, generalization-aware ensemble).
 \end{block}
 \end{frame}
 
 \begin{frame}{Research questions}
+\small
+\textbf{Stage 1: frozen, source-only, evaluated once on TEST}
 \begin{description}[RQ5]
 \item[RQ1] How far do RF and LightGBM drop on another source with disjoint domains?
 \item[RQ2] Does \key{STABLE-PI} transfer better than \key{MEAN-PI} at the same $k$, and versus all 37 features?
 \item[RQ3] Does a smaller feature set measurably reduce detection cost?
 \item[RQ4] Which features do the models rely on, source vs.\ target? (SHAP)
-\item[RQ5] \emph{(exploratory)} \key{Why} does transfer fail where it does? Baselines, ablation, error analysis.
 \end{description}
-\vspace{1em}
-\small Constraint throughout: \textbf{no target data} for fitting, feature selection or thresholds.
+\textbf{Stage 2: exploratory, FIT/VAL only}
+\begin{description}[RQ5]
+\item[RQ5] \key{Why} does transfer fail where it does? Baselines, ablation, error analysis.
+\item[RQ6] Does \key{DA-GAFS} (C1--C5) transfer better, and at what cost, when a second labelled collection can be used for selection?
+\end{description}
 \end{frame}
 
 % ------------------------------------------------------------------ RELATED WORK
@@ -62,7 +67,7 @@ Study & What it does & What we do differently \\
 \midrule
 S\'anchez-Paniagua et al.\ 2022 (IEEE Access) & RF, LightGBM, TF-IDF+LR on URL data; legitimate-login representativeness & Other datasets; transfer between collections; no replication claim \\
 Rashid et al.\ 2024 (Computer Networks) & Cross-dataset transfer; \key{UDA} uses unlabelled target data; HP dataset & \key{No} target data at all; domain-disjoint splits; both directions \\
-Misiek \& Hyla 2026; Kanon et al.\ 2026 & Feature stability across datasets; cost & Stability from \key{one} source only, matched budget \\
+Misiek \& Hyla 2026; Kanon et al.\ 2026 & Feature stability across datasets; cost & Stage 1: \key{one} source only; DA-GAFS adds a \key{direction} test, cost-aware budget and ensemble \\
 \bottomrule
 \end{tabular}
 \vspace{1em}
@@ -191,11 +196,83 @@ Stability measured \emph{inside one source} cannot see a cue whose meaning flips
 \end{columns}
 \end{frame}
 
+
+% ------------------------------------------------------------------ DA-GAFS
+\section{DA-GAFS}
+\begin{frame}{DA-GAFS: five components}
+\small
+\begin{tabular}{p{0.27\linewidth}p{0.66\linewidth}}
+\toprule
+Component & Definition (fixed before running, D-41) \\
+\midrule
+\key{C1} cross-source stability & $S_f$ = share of 18 PI vectors (2 sources $\times$ 3 seeds $\times$ 3 folds) with $f$ in top-12 and PI$>$0; importance $I_f$ pooled over sources \\
+\key{C2} directional consistency & $r_{s,f}=2\,$AUC$-1$ per source; \textcolor{warn}{conflict} if signs differ and $|r|\ge0.10$ in both $\Rightarrow D_f=0$ \\
+\key{C3} unified ranking & $G_f = D_f\,(I_f+S_f)/2$; ablations XS-I ($I$) and XS-IS (no $D$) \\
+\key{C4} multi-objective budget & cross-source AP on FIT vs.\ extraction $\mu$s; cheapest $k$ within 0.01 AP of best \\
+\key{C5} generalization-aware ensemble & RF/LightGBM/LogReg soft votes; cheapest combination within 0.01 AP of best \\
+\bottomrule
+\end{tabular}
+\vspace{2mm}
+\begin{alertblock}{Setting (be explicit)}
+Selection uses labelled \textbf{FIT of both collections}; models are fitted on source FIT only; thresholds from source VAL; transfer on \textbf{target VAL}. Not source-only, not zero-shot; TEST never read.
+\end{alertblock}
+\end{frame}
+
+\begin{frame}{C1--C2: reversed cues are robust, but the strongest one is also the most useful}
+\begin{columns}[T]
+\column{0.5\textwidth}
+\includegraphics[width=\linewidth]{fig_dagafs_scores.pdf}
+\column{0.5\textwidth}
+\small
+\begin{itemize}
+\item Conflicts: \res{gConflictList}; sign kept in every bootstrap replicate (min.\ \res{gSignStabMin}).
+\item Subdomain count: $r$ = \res{grF23A} (EBBU) vs.\ \res{grF23B} (HP), yet it has the \key{highest pooled importance}.
+\item \res{gNSone} features are top-12 in all 18 vectors of both sources.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{C4: the gate costs accuracy, so the budget rule refuses to compress}
+\begin{columns}[T]
+\column{0.55\textwidth}
+\includegraphics[width=\linewidth]{fig_pareto.pdf}
+\column{0.45\textwidth}
+\small
+\begin{itemize}
+\item Without the subdomain count, cross-source AP $\le$ \textcolor{warn}{\res{gAPnoTop}}; XS-I reaches \res{gAPbestI}.
+\item Rule picks $k^*$ = \key{\res{gKI}} (XS-I), \res{gKIS} (XS-IS), but \textcolor{warn}{\res{gK}} for DA-GAFS.
+\item At $k$=\res{gK}, XS-I and XS-IS choose the same set: C1 not separable there.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}{RQ6 results on target VAL (exploratory)}
+\centering\tiny
+\resizebox{\linewidth}{!}{\input{../manuscript/corrected/generated/tab_dagafs.tex}}
+\vspace{1mm}
+\small
+\begin{itemize}
+\item DA-GAFS $\approx$ ALL: LightGBM HP$\rightarrow$EBBU \res{gDLDAALB} \res{gDLDAALBCI}.
+\item Post-hoc XS-I, \res{hKI} features at \res{hRelI}$\times$ extraction time: vs.\ source-only STABLE-PI HP$\rightarrow$EBBU \key{\res{gDRISTB}} (RF), \key{\res{gDLISTB}} (LightGBM); RF vs.\ ALL \res{gDRIALB}.
+\item C5 keeps a single \res{gGAE}; the 3-model average would lose \textcolor{warn}{\res{gDENS3B}}.
+\end{itemize}
+\end{frame}
+
+\begin{frame}{What the five components show}
+\begin{block}{Works}
+\key{C1 cross-source evidence}: a compact subset chosen with both collections transfers far better than a source-only subset, at about half the extraction cost. \key{C4} exposes the trade-off; \key{C5} blocks a harmful ensemble.
+\end{block}
+\begin{alertblock}{Does not work}
+\key{C2 marginal direction gate}: it finds real reversals, but removing the reversed subdomain count costs more than it saves. A marginal reversal $\neq$ non-transferable for tree ensembles.
+\end{alertblock}
+\small\textbf{Limits:} uses target-collection FIT labels for selection; one split, 3 seeds; post-hoc compact-subset evaluation; no third source.
+\end{frame}
+
 % ------------------------------------------------------------------ DISCUSSION
 \section{Discussion}
 \begin{frame}{Discussion}
 \begin{block}{Did we get what we wanted?}
-Partly. STABLE-PI beat MEAN-PI in the hard direction, neutral in the other. A compact model did \emph{not} keep ALL-feature transfer, and latency gains are modest. We do get a clear \key{mechanism}: period-dependent (HTTPS) and reversed (subdomain) cues.
+Partly. STABLE-PI beat MEAN-PI in the hard direction, neutral in the other; a source-only compact model did \emph{not} keep ALL-feature transfer. With cross-source evidence a 12-feature subset did, for RF. The direction gate, the most novel component, did not help. We do get a clear \key{mechanism}: period-dependent (HTTPS) and reversed (subdomain) cues.
 \end{block}
 \begin{block}{What we would do differently}
 Pre-register LogReg and the HTTPS rule as baselines; analyse class-conditional differences of both sources \emph{before} designing selectors; plan a third source; report AP-based contrasts next to F1 to separate ranking from threshold transfer.
@@ -207,13 +284,14 @@ Pre-register LogReg and the HTTPS rule as baselines; analyse class-conditional d
 \section{Future Work}
 \begin{frame}{Future work}
 \begin{enumerate}
-\item \key{Cross-source stability}: select features whose class association agrees across several labelled sources; test on a held-out third source.
+\item \key{Third source}: select on two collections, evaluate on an untouched third one (new protocol + holdout).
+\item \key{Conditional direction}: replace the marginal gate by sign agreement of attributions within slices, or a soft penalty.
 \item \key{Contemporary, temporal data}: does HTTPS still separate the classes in recent feeds?
 \item \key{Threshold transfer}: label-free recalibration from target score distributions, compared with UDA under the same domain-disjoint splits.
 \end{enumerate}
 \vspace{1em}
 \begin{block}{Take-home}
-On this benchmark, lexical detectors transfer \emph{asymmetrically}; stability ranking softens but does not remove the cost of compression; and what limits transfer is cues whose meaning depends on the collection.
+Lexical detectors transfer \emph{asymmetrically}. Stability must be measured \key{across sources}, not inside one; but a cue whose marginal direction flips can still be useful, so it should not simply be removed.
 \end{block}
 \end{frame}
 
@@ -230,7 +308,7 @@ On this benchmark, lexical detectors transfer \emph{asymmetrically}; stability r
 \item Development loader refuses TEST; TEST labels in a separate vault read only by the evaluator.
 \item Freeze manifest hashes code, configs, splits, features and all bundles (hash \texttt{\res{freezeHash}}) before TEST.
 \item Nested CV: PI recomputed on outer-train only; final PI on full FIT.
-\item RQ5 diagnostics use FIT/VAL only; a test fails if they touch the TEST vault.
+\item RQ5/RQ6 use FIT/VAL only; tests fail if they touch the TEST vault. RQ6 spec fixed in D-41; post-hoc part labelled D-42.
 \item Target VAL reproduces target TEST: LightGBM \res{xLGBMTgtA} vs.\ \res{F1ABLGBMALL} (EBBU$\rightarrow$HP), \res{xLGBMTgtB} vs.\ \res{F1BALGBMALL} (HP$\rightarrow$EBBU).
 \end{itemize}
 \end{frame}

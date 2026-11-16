@@ -234,10 +234,10 @@ def run_extensions(paths: Paths, cfg: dict) -> Path:
     return out
 
 
-def latest_run(paths: Paths) -> Path:
-    """Verified pointer to the latest passed extension run (used by notebook and report)."""
+def latest_run(paths: Paths, sub: str = "") -> Path:
+    """Verified pointer to the latest passed extension run (sub="dagafs" for D-41)."""
     from ..common import read_json
-    ptr = read_json(paths.artifacts / "extensions" / "latest.json")
+    ptr = read_json(paths.artifacts / "extensions" / sub / "latest.json")
     run = paths.root / ptr["artifact"]
     if sha256_file(run / "manifest.json") != ptr["manifest_sha256"]:
         raise GateError("extension manifest hash mismatch")

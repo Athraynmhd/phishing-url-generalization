@@ -11,12 +11,13 @@
 \usepackage[hidelinks]{hyperref}
 \input{generated/macros.tex}
 \input{generated/ext_macros.tex}
+\input{generated/dagafs_macros.tex}
 \newcommand{\EBBU}{EBBU}
 \newcommand{\HP}{HP}
 
 \begin{document}
 
-\title{Do Stable Features Transfer? Source-Only Feature Selection for Cross-Dataset Phishing URL Detection}
+\title{DA-GAFS: Direction- and Generalization-Aware Feature Selection for Cross-Source Phishing URL Detection}
 
 % Replace placeholders with the actual team; do not invent identities.
 \author{\textbf{[TEAM MEMBER 1 FULL NAME]} and \textbf{[TEAM MEMBER 2 FULL NAME]}\thanks{[Study programme, university, city, country. Emails.]}}
@@ -27,7 +28,7 @@
 \input{sections/abstract.tex}
 
 \begin{IEEEkeywords}
-phishing detection, URL classification, cross-dataset evaluation, feature selection, permutation importance, LightGBM, random forest, domain-disjoint split
+phishing detection, URL classification, cross-source generalization, feature selection, feature stability, multi-objective optimization, ensemble learning, domain-disjoint split
 \end{IEEEkeywords}
 
 \input{sections/introduction.tex}

@@ -1,0 +1,25 @@
+{
+  "code_sha256": {
+    "pkg/extensions/__init__.py": "8748172cc332d05beb77a72d22dbc2b62ee970cb1613d6316ca90db01495013b",
+    "pkg/extensions/analysis.py": "2c6de117950dd7fbd0c240b31ce68e7ce2fe0836c0c9a8f45c953db7ea6cb5d4",
+    "pkg/extensions/dagafs.py": "cd240fc23c7793384daeffac95e43a54f9eedf66626d3ff8b481341422b03b1b",
+    "pkg/extensions/report.py": "9e5878accc2eb7c89fed0172213ddc05477377aedd244d22ee6817f432ef5252"
+  },
+  "dataset_urls_opened": false,
+  "decision": "D-42",
+  "output_sha256": {
+    "metrics.csv": "a777ca1f4bcd95494b7a4ed8ac85ab6b271d2b54deaf5887483f83b8aa696e1f",
+    "results.json": "7351fac110f5b09127a911c26273417cff9df6f07596b5e827115ab042b7e04b"
+  },
+  "parent_freeze_hash": "069912e332d788120e4ba358b1f8cd3dc5f0903d783249a87567ce00d6efc8da",
+  "parent_manifest_sha256": "c0390f28b65315dcae020af6fc7d47800c66f6e8e938ef105fbdb7768846b575",
+  "parent_run": "artifacts/extensions/dagafs/run_20261116T110821476166Z_4fa2a65e",
+  "partitions_used": [
+    "FIT",
+    "VAL"
+  ],
+  "research_status": "post-hoc exploratory (not preregistered)",
+  "status": "passed",
+  "test_features_read": false,
+  "test_labels_read": false
+}

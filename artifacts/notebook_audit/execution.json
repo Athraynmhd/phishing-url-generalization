@@ -1,10 +1,10 @@
 {
-  "code_cells_executed": 57,
+  "code_cells_executed": 66,
   "error_outputs": 0,
-  "executed_at_utc": "20261116T063845652869Z",
+  "executed_at_utc": "20261116T115052757240Z",
   "freeze_hash": "069912e332d788120e4ba358b1f8cd3dc5f0903d783249a87567ce00d6efc8da",
   "kernel": "phishresearch",
-  "notebook_sha256": "4ec25f022884a90b2f76f65a8a103efa1a268a718fd1a34dbd69397f5f9002f9",
+  "notebook_sha256": "218498d8acb5e014d9702bff44c75c1e529dc1d0235be8e042d9136e75ddc5a6",
   "protected_output_sha256": {
     "artifacts\\analysis\\benchmark.csv": "6096c9399b2916f1c91b21d9797f61812a908ce2b3be670759a90cca1b7260b6",
     "artifacts\\analysis\\benchmark.json": "0f76a63676bf0ded78c7b4977fa0351ba620e83b26cda7b9934bb04c46543564",
@@ -64,6 +64,6 @@
   },
   "protected_outputs_unchanged": true,
   "runner_python": "C:\\Program Files\\Python310\\python.exe",
-  "seconds": 16.024120999999468,
+  "seconds": 19.128474000001006,
   "status": "passed"
 }
