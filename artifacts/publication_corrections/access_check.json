@@ -1,0 +1,17 @@
+{
+  "cohort": "source",
+  "guard_probe_denied_before_file_open": true,
+  "individual_test_label_read_attempts": [],
+  "legacy_v1_route_executed": false,
+  "parent_freeze_hash": "069912e332d788120e4ba358b1f8cd3dc5f0903d783249a87567ce00d6efc8da",
+  "parquet_reads": [
+    {
+      "columns": null,
+      "file": "D:\\S2-AI\\SEMESTER-1\\Pemrograman Untuk Sains Data Dan Kecerdasan Artificial\\UAS\\PROJECT\\ex\\data\\processed\\dev_features.parquet"
+    }
+  ],
+  "rows": 500,
+  "scope": "real correction worker, source FIT background and saved explanation features",
+  "status": "passed",
+  "worker": "A-LGBM-ALL-k37-s17"
+}

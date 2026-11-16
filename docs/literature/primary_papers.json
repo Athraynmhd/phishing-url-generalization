@@ -1,0 +1,43 @@
+{
+  "active_bibliography_historical_exemption": false,
+  "as_of": "2026-11-16",
+  "eligibility_window": "five years; three years preferred",
+  "five_year_cutoff": "2021-11-16",
+  "frozen_experiments_changed": false,
+  "historical_dataset_reference": {
+    "citation_key": "sahingoz2019",
+    "counts_toward_recent_primary_papers": false,
+    "publication_year": 2019,
+    "ref_id": "R1"
+  },
+  "primary_papers": [
+    {
+      "citation_key": "sanchez2022",
+      "date_evidence": "Publisher PDF front page: 2022-04-18; Crossref identity",
+      "doi": "10.1109/ACCESS.2022.3168681",
+      "full_text_status": "Institutional PDF obtained and methods/results checked",
+      "publication_day": 18,
+      "publication_month": 4,
+      "publication_year": 2022,
+      "ref_id": "R15",
+      "role": "URL classifiers RF/LightGBM and login representativeness; not a reproduction of best TF-IDF/LR pipeline"
+    },
+    {
+      "citation_key": "rashid2024",
+      "date_evidence": "Crossref published-print: 2024-05",
+      "doi": "10.1016/j.comnet.2024.110398",
+      "full_text_file": "1-s2.0-S1389128624002305-main.pdf",
+      "full_text_review": "docs/literature/r2_fulltext_review.md",
+      "full_text_sha256": "4d4ead94d9224a644ea753dbaa2bb7c989ea222091aeec00c591258b99ce2edd",
+      "full_text_status": "User-supplied publisher PDF, all 14 pages reviewed; Table 1, Algorithm 1, results and limitations checked",
+      "publication_month": 5,
+      "publication_year": 2024,
+      "ref_id": "R2",
+      "role": "Cross-source generalisation and UDA; HP provenance"
+    }
+  ],
+  "replication_of_primary_methods_claimed": false,
+  "required_count": 2,
+  "strict_three_year_rule_applied": false,
+  "three_year_cutoff": "2023-11-16"
+}

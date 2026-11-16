@@ -1,0 +1,90 @@
+{
+  "candidates": [
+    {
+      "benign": 0,
+      "matches_all_splits": true,
+      "phishing": 1
+    },
+    {
+      "benign": 1,
+      "matches_all_splits": false,
+      "phishing": 0
+    }
+  ],
+  "dataset_urls_opened": false,
+  "evidence_kind": "unique six-cell match to primary-paper Table 1; not an author-written codebook",
+  "freeze_hash": "069912e332d788120e4ba358b1f8cd3dc5f0903d783249a87567ce00d6efc8da",
+  "individual_labels_returned": false,
+  "mapping": {
+    "benign": 0,
+    "matches_all_splits": true,
+    "phishing": 1
+  },
+  "observed_numeric_counts": {
+    "test": {
+      "0": 9330,
+      "1": 9170
+    },
+    "train": {
+      "0": 27740,
+      "1": 27760
+    },
+    "valid": {
+      "0": 9180,
+      "1": 9320
+    }
+  },
+  "paper": {
+    "counts": {
+      "test": {
+        "benign": 9330,
+        "phishing": 9170
+      },
+      "train": {
+        "benign": 27740,
+        "phishing": 27760
+      },
+      "valid": {
+        "benign": 9180,
+        "phishing": 9320
+      }
+    },
+    "doi": "10.1016/j.comnet.2024.110398",
+    "interpretation": "External published class counts, not a verbatim numeric label codebook. Both encoding candidates must be checked across all three original splits.",
+    "locator": "Section 4, Table 1, HP row; columns Training/Validation/Test, Ben/Phish",
+    "source": "https://doi.org/10.1016/j.comnet.2024.110398"
+  },
+  "paper_table_sha256": "23881ca99f8c0a9de72209c6f6ecd7183d953405eedc5b543083d22cd0d838a6",
+  "published_table_1": {
+    "test": {
+      "benign": 9330,
+      "phishing": 9170
+    },
+    "train": {
+      "benign": 27740,
+      "phishing": 27760
+    },
+    "valid": {
+      "benign": 9180,
+      "phishing": 9320
+    }
+  },
+  "raw_provenance": {
+    "test": {
+      "commit": "ff9f1f5b517a80e9c967f0137c07eddd636c043d",
+      "rows": 18500,
+      "sha256": "971d98f2a395ef81474e3c6d973e977cfe4d382f99cba3747da2e5ac83c92ed5"
+    },
+    "train": {
+      "commit": "ff9f1f5b517a80e9c967f0137c07eddd636c043d",
+      "rows": 55500,
+      "sha256": "8202ce7f62929dc0366883f5c8cc903ac5ff511af1ee3e743302ceee7b0362c9"
+    },
+    "valid": {
+      "commit": "ff9f1f5b517a80e9c967f0137c07eddd636c043d",
+      "rows": 18500,
+      "sha256": "540ac148a682073b7b3689f209a024203465abe5fcb68959cc61b4b41e4f9e76"
+    }
+  },
+  "status": "published_class_counts_crossvalidated"
+}

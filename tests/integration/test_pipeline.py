@@ -68,9 +68,9 @@ def test_metrics_recompute_from_predictions(frozen):
 
 
 def test_cli_smoke_end_to_end():
-    from phishresearch.cli import main
-    assert main(["smoke", "--synthetic", "--config", str(ROOT / "configs" / "protocol.yaml")]) == 0
-    root = ROOT / "artifacts" / "smoke"
+    from types import SimpleNamespace
+    from phishresearch.cli import cmd_smoke
+    root = cmd_smoke(SimpleNamespace(config=str(ROOT / "configs" / "protocol.yaml")))
     assert (root / "SYNTHETIC_NOT_A_RESULT.json").exists()
     assert "smoke-synthetic" in read_json(root / "artifacts" / "freeze.json")["approved_by"]
     assert (root / "artifacts" / "analysis" / "contrasts.json").exists()

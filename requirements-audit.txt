@@ -1,0 +1,3 @@
+# Optional PDF/submission audit tools, in addition to research/notebook/test dependencies.
+-r requirements-research.txt
+PyMuPDF==1.28.2

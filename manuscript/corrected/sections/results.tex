@@ -1,0 +1,84 @@
+\section{Results}
+\subsection{Selected budgets}
+Nested source-only cross-validation chose $k{=}16$ for every EBBU configuration and $k{=}8$ for every HP configuration, identically for both selectors, both classifiers and all three seeds (Table~\ref{tab:selection}). The matched-$k$ contrast therefore compares two rankings with the same number of input features. Model capacity and tree structure need not be identical, even at equal $k$.
+
+\begin{table}[t]
+\caption{Selected budgets ($k$ for seeds 17/29/43) and the STABLE-PI subset of seed 17.}
+\label{tab:selection}
+\centering\scriptsize
+\setlength{\tabcolsep}{4pt}
+\input{generated/tab_selection.tex}
+\end{table}
+
+\subsection{RQ1: internal versus cross-dataset performance}
+Table~\ref{tab:main} and Fig.~\ref{fig:f1} report all four evaluation cells. Transfer is \emph{asymmetric}. With all features, EBBU-trained LightGBM reaches F1 \res{F1AALGBMALL} internally and \res{F1ABLGBMALL} [\res{F1loABLGBMALL}, \res{F1hiABLGBMALL}] on HP, a drop of \res{DropALGBMALL} percentage points (negative = gain); RF behaves similarly (\res{F1AARFALL} vs.\ \res{F1ABRFALL}). HP-trained models, by contrast, fall from \res{F1BBLGBMALL} to \res{F1BALGBMALL} [\res{F1loBALGBMALL}, \res{F1hiBALGBMALL}] (LightGBM, drop \res{DropBLGBMALL} pp) and from \res{F1BBRFALL} to \res{F1BARFALL} (RF, drop \res{DropBRFALL} pp) on EBBU. LightGBM has higher mean ALL-feature transfer F1 in both directions of this benchmark; this is not a general classifier-superiority result. Average precision also decreases in the harder direction (HP$\rightarrow$EBBU LightGBM AP \res{APBALGBMALL}). At the source-locked low-FPR operating point, HP-trained LightGBM recalls \res{RecBALGBMALL} of EBBU phishing and achieves \res{FPRBALGBMALL}\% FPR; EBBU-trained LightGBM recalls \res{RecABLGBMALL} of HP phishing at \res{FPRABLGBMALL}\% FPR. A VAL FPR constraint therefore does not guarantee the same operating point on either TEST population.
+
+\begin{table*}[t]
+\caption{Test results (mean of 3 seeds). F1 at the source-VAL F1-max threshold with 95\% domain-cluster bootstrap CI; F1 at 0.5; AP; MCC; recall and achieved FPR at the source-VAL threshold with FPR$\le$1\%. MEAN-PI (matched $k$) is omitted where it equals the budget model.}
+\label{tab:main}
+\centering\scriptsize
+\input{generated/tab_main.tex}
+\end{table*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{generated/fig_f1.pdf}
+\caption{F1 on TEST for the four evaluation cells (bars: mean of 3 seeds; whiskers: 95\% domain-cluster bootstrap CI). Feature sets: ALL (blue), MEAN-PI (orange), STABLE-PI (green, hatched).}
+\label{fig:f1}
+\end{figure*}
+
+\subsection{RQ2: stability-based versus mean-importance selection}
+Table~\ref{tab:contrasts} lists the four pre-specified contrasts. In EBBU$\rightarrow$HP, differences between STABLE-PI and MEAN-PI are small (RF \res{DeltaABRF} [\res{DeltaLoABRF}, \res{DeltaHiABRF}], LightGBM \res{DeltaABLGBM} [\res{DeltaLoABLGBM}, \res{DeltaHiABLGBM}]) relative to the pre-set practical band. We do not claim statistical equivalence. In HP$\rightarrow$EBBU, the paired differences favour STABLE-PI: \res{DeltaBARF} [\res{DeltaLoBARF}, \res{DeltaHiBARF}] for RF and \res{DeltaBALGBM} [\res{DeltaLoBALGBM}, \res{DeltaHiBALGBM}] for LightGBM; the sign is positive in every seed, although the size varies (Table~\ref{tab:contrasts}). Internally, the observed selector differences are below the practical threshold.
+
+The secondary contrasts temper this result: reduced subsets did not match ALL across both datasets. On HP$\rightarrow$EBBU, the STABLE-PI minus ALL F1 differences are \res{SecBARFSTABLEALL} (RF) and \res{SecBALGBMSTABLEALL} (LightGBM), while MEAN-PI minus ALL gives \res{SecBARFMEANALL} and \res{SecBALGBMMEANALL}. Stability ranking mitigates the loss associated with these compact configurations, without recovering ALL performance. This does not prove that the feature count alone causes the loss; membership and fitted trees also differ. On EBBU$\rightarrow$HP the STABLE-PI minus ALL differences are \res{SecABRFSTABLEALL} and \res{SecABLGBMSTABLEALL}.
+
+\begin{table*}[t]
+\caption{Paired domain-cluster bootstrap contrasts of target-TEST F1 (\res{nBoot} replicates; same resampled domains for both arms and all seeds). Top: the four primary contrasts; bottom: secondary cross-dataset contrasts. Per-seed deltas for seeds 17/29/43.}
+\label{tab:contrasts}
+\centering\scriptsize
+\input{generated/tab_contrasts.tex}
+\end{table*}
+
+\subsection{RQ3: computational cost}
+Table~\ref{tab:cost} and Fig.~\ref{fig:latency} give the latency per URL. For a single URL on one thread, reduced subsets take \res{relLatB1Min}--\res{relLatB1Max} of the end-to-end time of the corresponding ALL model; for batches of 1{,}024 URLs on four threads the ratio is \res{relLatBkMin}--\res{relLatBkMax}. Parsing and feature extraction account for a median of \res{extractShareMedian}\% of single-URL end-to-end time, so pruning features mainly saves extraction work, while tree inference cost depends little on the number of input features.
+
+\begin{table*}[t]
+\caption{Cost of the seed-17 model of every configuration (median $\mu$s per URL; ``rel.'' = end-to-end time relative to ALL of the same source and classifier). Hardware: \res{cpu}, \res{ram} GB RAM, Python \res{pyver}.}
+\label{tab:cost}
+\centering\scriptsize
+\input{generated/tab_cost.tex}
+\end{table*}
+
+\subsection{RQ4: attributions}
+The corrected exploratory explanations pass strict additivity (maximum residual \res{shapAddErr}). The following rankings use these corrected outputs; the original failing outputs remain archived. Numerical consistency does not establish causal attribution or complete explanation fidelity.
+SHAP rankings of the same model on source and target TEST samples agree to a Spearman $\rho$ of \res{rhoMin}--\res{rhoMax} (Table~\ref{tab:shap}, Fig.~\ref{fig:shap}); seed-to-seed agreement of the ALL models on the source is at least \res{rhoSeedMin}. Fig.~\ref{fig:pi} shows the permutation-importance evidence from which the subsets were drawn. Because the input distribution changes between cohorts, a different ranking on the target describes \emph{what} the model used there; it is not by itself evidence of an unfaithful explanation, nor of a causal role of a feature.
+
+\begin{table*}[t]
+\caption{Exploratory corrected SHAP rank agreement: source vs.\ target TEST ($\rho$, top-10 Jaccard) and across seeds for ALL; top-5 features on the source.}
+\label{tab:shap}
+\centering\scriptsize
+\input{generated/tab_shap.tex}
+\end{table*}
+
+\begin{figure*}[t]
+\centering
+\includegraphics[width=\textwidth]{generated/fig_shap.pdf}
+\caption{Exploratory corrected mean $|$SHAP$|$ (probability scale) of the eight most important features of the seed-17 ALL models on source TEST (blue) and target TEST (orange).}
+\label{fig:shap}
+\end{figure*}
+
+\begin{figure*}[t]
+\centering
+\begin{minipage}[t]{0.48\textwidth}
+\centering\vspace{0pt}
+\includegraphics[width=\linewidth]{generated/fig_latency.pdf}
+\caption{End-to-end latency for a single URL on one thread (seed-17 models).}
+\label{fig:latency}
+\end{minipage}\hfill
+\begin{minipage}[t]{0.48\textwidth}
+\centering\vspace{0pt}
+\includegraphics[width=\linewidth]{generated/fig_pi.pdf}
+\caption{Permutation importance on full FIT (mean over folds and seeds). Dots mark features that are in the top 12 with positive PI in all three domain folds.}
+\label{fig:pi}
+\end{minipage}
+\end{figure*}

@@ -1,0 +1,19 @@
+{
+  "additivity_max_abs_err": 2.5639515731888662e-08,
+  "baseline_max_abs_err": 1.5543122344752192e-15,
+  "bundle_id": "A-RF-STABLE_PI-k16-s17",
+  "cohort": "target",
+  "config": "STABLE_PI@budget",
+  "expected_value": 0.5742920098246566,
+  "input_sha256": "e1900cb5a5af5a9d5c6ad4bdfae09f47f35c0b5dfcba21f0016ceeb64f7d3a3e",
+  "max_attribution_change": 5.678422690835738e-05,
+  "model": "RF",
+  "n": 500,
+  "old_additivity_max_abs_err": 2.5640355060495282e-08,
+  "output_sha256": "7da5479f7a73956f7698d2a2b060c77897c7c2b7ce699ab249ef1fed0197273f",
+  "representation_max_abs_err": 4.107825191113079e-15,
+  "seed": 17,
+  "source": "A",
+  "thresholds_represented_at_float32_floor": 16831,
+  "top10": "F30 F23 F06 F09 F02 F21 F03 F35 F07 F04"
+}

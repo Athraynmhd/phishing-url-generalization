@@ -1,0 +1,19 @@
+{
+  "additivity_max_abs_err": 2.543370040096471e-08,
+  "baseline_max_abs_err": 1.4432899320127035e-15,
+  "bundle_id": "A-RF-ALL-k37-s29",
+  "cohort": "source",
+  "config": "ALL",
+  "expected_value": 0.5726716181451463,
+  "input_sha256": "938d08786bf8bcb2ffde83253288db00a2f27af0318c172e5e16ae96d1d7df2e",
+  "max_attribution_change": 0.00013233214136562296,
+  "model": "RF",
+  "n": 500,
+  "old_additivity_max_abs_err": 2.543532576747276e-08,
+  "output_sha256": "e16f20eeef6d8e050936f8261a4635f899c448a9c275503ad4ae1e14d69ef021",
+  "representation_max_abs_err": 3.9968028886505635e-15,
+  "seed": 29,
+  "source": "A",
+  "thresholds_represented_at_float32_floor": 31313,
+  "top10": "F23 F09 F30 F07 F03 F35 F06 F21 F02 F16"
+}

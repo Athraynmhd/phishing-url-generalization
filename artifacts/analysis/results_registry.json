@@ -1,0 +1,9 @@
+{
+  "freeze_hash": "069912e332d788120e4ba358b1f8cd3dc5f0903d783249a87567ce00d6efc8da",
+  "run_id": "eval-069912e332d7",
+  "status": {
+    "benchmark": "completed",
+    "evaluation": "completed",
+    "shap": "completed"
+  }
+}

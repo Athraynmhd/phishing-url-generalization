@@ -1,0 +1,10 @@
+{
+  "background": 100,
+  "explainer": "TreeExplainer",
+  "feature_perturbation": "interventional",
+  "model_output": "probability",
+  "n_source": 500,
+  "n_target": 500,
+  "sampling": "label-stratified n/2 per class from TEST, seed fixed; background = source FIT",
+  "seed": 17
+}

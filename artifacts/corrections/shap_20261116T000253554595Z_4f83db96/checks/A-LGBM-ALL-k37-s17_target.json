@@ -1,0 +1,19 @@
+{
+  "additivity_max_abs_err": 8.30934188122967e-09,
+  "baseline_max_abs_err": 0.0,
+  "bundle_id": "A-LGBM-ALL-k37-s17",
+  "cohort": "target",
+  "config": "ALL",
+  "expected_value": 0.5836056346021546,
+  "input_sha256": "393dff651f132ce15c169fa8ab6947ee686c48c5fb2ff02f47599ea9ccd5ac0e",
+  "max_attribution_change": 0.0,
+  "model": "LGBM",
+  "n": 500,
+  "old_additivity_max_abs_err": 8.30934188122967e-09,
+  "output_sha256": "ff32120a2d1c29ece33c9dc57d86a0d54db15df7197ad52961c79fd4369cb249",
+  "representation_max_abs_err": null,
+  "seed": 17,
+  "source": "A",
+  "thresholds_represented_at_float32_floor": 0,
+  "top10": "F30 F23 F06 F09 F02 F21 F03 F07 F24 F18"
+}

@@ -58,7 +58,7 @@ def _style(plt):
                          "pdf.fonttype": 42})
 
 
-def run_report(cfg: dict, paths: Paths, manuscript_dir: Path) -> None:
+def run_report(cfg: dict, paths: Paths, manuscript_dir: Path, *, shap_dir: Path | None = None) -> None:
     import matplotlib
     matplotlib.use("Agg")
     import matplotlib.pyplot as plt
@@ -215,7 +215,7 @@ def run_report(cfg: dict, paths: Paths, manuscript_dir: Path) -> None:
         mac.add(f"highCorr{s}", str(len(info["high_corr_pairs_fit"])), "selection.json high_corr_pairs_fit")
         mac.add(f"piSec{s}", info["timing"]["pi_seconds"] / 60, "develop.json timing.pi_seconds (min)", "{:.1f}")
     (out / "tab_selection.tex").write_text(
-        "\\begin{tabular}{llccp{4.2cm}}\n\\toprule\nSource & Model & $k$ MEAN & $k$ STABLE & STABLE-PI features (seed 17) \\\\\n\\midrule\n"
+        "\\begin{tabular}{llccp{3.4cm}}\n\\toprule\nSource & Model & $k$ MEAN & $k$ STABLE & STABLE-PI features (seed 17) \\\\\n\\midrule\n"
         + "\n".join(srows) + "\n\\bottomrule\n\\end{tabular}\n", encoding="utf-8")
     esc = {f: FEATURE_NAMES[f].replace("_", "\\_") for f in FEATURE_IDS}
     fmap = "; ".join(f"{f}~{esc[f]}" for f in FEATURE_IDS)
@@ -257,9 +257,10 @@ def run_report(cfg: dict, paths: Paths, manuscript_dir: Path) -> None:
         _fig_latency(plt, b, out)
 
     # ------------------------------------------------------------------ SHAP
-    if (A / "shap_compare.csv").exists():
-        sc = pd.read_csv(A / "shap_compare.csv")
-        ss = pd.read_csv(A / "shap_summary.csv")
+    shap_source = Path(shap_dir) if shap_dir is not None else A
+    if (shap_source / "shap_compare.csv").exists():
+        sc = pd.read_csv(shap_source / "shap_compare.csv")
+        ss = pd.read_csv(shap_source / "shap_summary.csv")
         st = sc[sc.kind == "source_vs_target"]
         sd = sc[sc.kind == "seed_stability_source"]
         shrows = []
@@ -277,7 +278,17 @@ def run_report(cfg: dict, paths: Paths, manuscript_dir: Path) -> None:
         mac.add("rhoMin", st.spearman.min(), "shap_compare.csv", "{:.2f}")
         mac.add("rhoMax", st.spearman.max(), "shap_compare.csv", "{:.2f}")
         mac.add("rhoSeedMin", sd.spearman.min() if len(sd) else None, "shap_compare.csv seeds", "{:.2f}")
-        _fig_shap(plt, A, out)
+        _fig_shap(plt, shap_source, out, legend_outside=shap_dir is not None)
+
+    # FIT-only descriptive profile per source/class (used to discuss the transfer asymmetry)
+    from .prepare import load_dev
+    fit = pd.concat([load_dev(paths, source, "FIT") for source in ("A", "B")], ignore_index=True)
+    for (s, lab), g in fit.groupby(["dataset_id", "label"]):
+        c = "Phish" if lab == 1 else "Benign"
+        mac.add(f"medLen{s}{c}", g.F01.median(), "dev_features FIT median F01", "{:.0f}")
+        mac.add(f"medDots{s}{c}", g.F06.median(), "dev_features FIT median F06", "{:.0f}")
+        mac.add(f"medSub{s}{c}", g.F23.median(), "dev_features FIT median F23", "{:.0f}")
+        mac.add(f"https{s}{c}", _pct(g.F30.mean()), "dev_features FIT mean F30 (%)")
 
     _fig_f1(plt, main, out)
     _fig_pi(plt, sel, out)
@@ -329,7 +340,7 @@ def _fig_pi(plt, sel, out):
         ax.grid(axis="y", visible=False)
     axes[0].set_yticks(y, [f"{f} {FEATURE_NAMES[f]}" for f in FEATURE_IDS], fontsize=4.8)
     axes[0].invert_yaxis()                 # shared y: invert once
-    fig.supxlabel("mean permutation importance ($\Delta$AP), full FIT, mean of seeds", fontsize=6)
+    fig.supxlabel(r"mean permutation importance ($\Delta$AP), full FIT, mean of seeds", fontsize=6)
     fig.text(0.5, -0.03, "dot = feature in top-12 with PI>0 in all 3 domain folds (mean over seeds)", ha="center", fontsize=5.5, color=INK2)
     fig.tight_layout()
     fig.savefig(out / "fig_pi.pdf", bbox_inches="tight")
@@ -354,7 +365,7 @@ def _fig_latency(plt, b, out):
     plt.close(fig)
 
 
-def _fig_shap(plt, A, out):
+def _fig_shap(plt, A, out, *, legend_outside=False):
     rk = pd.read_csv(A / "shap_mean_abs.csv", index_col=0)
     cols = [c for c in rk.columns if "-ALL-" in c and c.endswith("s17|source")]
     fig, axes = plt.subplots(1, len(cols), figsize=(7.16, 1.9))
@@ -369,7 +380,13 @@ def _fig_shap(plt, A, out):
         ax.set_title(c.split("|")[0].replace("-ALL-k37-s17", " ALL"), fontsize=6.5)
         ax.set_xlabel("mean |SHAP| (prob.)", fontsize=5.5)
         ax.grid(axis="y", visible=False)
-    np.atleast_1d(axes)[0].legend(fontsize=5, loc="lower right")
-    fig.tight_layout()
+    if legend_outside:
+        handles, labels = np.atleast_1d(axes)[0].get_legend_handles_labels()
+        fig.legend(handles, labels, loc="upper center", bbox_to_anchor=(0.5, 1.05),
+                   fontsize=5, ncol=2, frameon=False)
+        fig.tight_layout(rect=(0, 0, 1, 0.94))
+    else:
+        np.atleast_1d(axes)[0].legend(fontsize=5, loc="lower right")
+        fig.tight_layout()
     fig.savefig(out / "fig_shap.pdf", bbox_inches="tight")
     plt.close(fig)

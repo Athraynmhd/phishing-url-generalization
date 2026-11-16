@@ -1,6 +1,24 @@
-\section{Related Work}
-\textit{Lexical URL detection.} Sahingoz~\textit{et al.}~\cite{sahingoz2019} released the EBBU-2017 corpus and showed that NLP-style URL features with tree ensembles reach high accuracy on that corpus. We reuse its raw URLs only; our 37 features are our own design and we do not attempt to reproduce their numbers.
+\section{Related Work and Research Position}
+\textit{Primary paper 1: URL detection and representativeness (2022).} S\'anchez-Paniagua~\textit{et al.}~\cite{sanchez2022} evaluate RF, LightGBM and other classifiers using handcrafted URL features, alongside TF-IDF/character n-grams and neural models. Their PILU-90K dataset distinguishes legitimate index and login URLs, and they examine changes across collection periods. The strongest overall reported pipeline uses TF-IDF/n-grams with logistic regression. We use their evaluation of RF/LightGBM to motivate our comparator choice, not to claim those classifiers are their proposed best method. We do not use PILU-90K, reproduce their features, or establish login-specific or temporal robustness.
 
-\textit{Cross-dataset generalisation.} Rashid~\textit{et al.}~\cite{rashid2024} studied the generalisation of phishing URL classifiers across datasets and proposed unsupervised domain adaptation, which uses unlabelled target URLs during training; their public repository distributes EBBU, HP and ISCX files, from which we take HP. Our setting is strictly source-only; we do not replicate their algorithm or their splits. Kanon~\textit{et al.}~\cite{kanon2026} proposed cross-dataset feature stability selection: the intersection of top-$K$ Gini-important features across three datasets, two of which contribute a 15\% labelled sample of the external evaluation sets (pp.~9, 22 of~\cite{kanon2026}); splits are random at URL level. Misiek and Hyla~\cite{misiek2026} selected XGBoost features with criteria computed on importance across all datasets including the external ones and reported training/inference cost. Both studies therefore select features with information from the target population; neither purges shared domains. The closest idea to ours, stability of importance, is thus not new; what differs is \emph{where} stability is measured (held-out domain folds of the source only), the domain-disjoint protocol, the matched-budget contrast and the bidirectional design.
+\textit{Primary paper 2: cross-source generalisation (2024).} Rashid~\textit{et al.}~\cite{rashid2024} already evaluate cross-dataset transfer before proposing target-informed, unsupervised feature alignment. Therefore, unadapted transfer evaluation alone is not our contribution. They motivate our transfer question and provide the HP data source. We keep learning source-only, rebuild the HP cohort and use our own domain-disjoint splits. We neither implement UDA nor claim superior scores: the data partitions, feature representations and budgets differ. Complete PDF review remains pending; publisher material supports these stated roles, while unavailable details are not treated as evidence that a control is absent.
 
-\textit{Selection bias and evaluation.} Feature selection performed outside the cross-validation loop biases error estimates~\cite{ambroise2002,varma2006}; we therefore nest selection inside source-only outer folds. Permutation importance~\cite{altmann2010} is computed on held-out domains and stability is borrowed in spirit from stability selection~\cite{meinshausen2010}. We report average precision rather than a trapezoidal PR-AUC~\cite{davis2006} and explain the actual tree models with TreeExplainer~\cite{lundberg2020}.
+\textit{Adjacent feature-stability research.} Misiek and Hyla~\cite{misiek2026} study an XGBoost-based detector with cross-dataset importance criteria and computational comparisons. Their selection considers importance across datasets (Sec.~II-B), which differs from our source-domain PI ranking. Kanon~\textit{et al.}~\cite{kanon2026} likewise connect feature stability with external evaluation. Stability and cost are therefore prior work; our proposed distinction concerns the source of selection evidence and the matched-budget, bidirectional domain-disjoint comparison. No universal priority claim is made.
+
+\begin{table}[t]
+\caption{Roles of the two primary papers and the question evaluated here. Entries distinguish scope, not comparative performance.}
+\label{tab:positioning}
+\centering\scriptsize
+\setlength{\tabcolsep}{3pt}
+\begin{tabular}{>{\raggedright\arraybackslash}p{0.22\columnwidth}>{\raggedright\arraybackslash}p{0.31\columnwidth}>{\raggedright\arraybackslash}p{0.35\columnwidth}}
+\toprule
+Study & Role in this project & Boundary of the comparison \\
+\midrule
+S.-Paniagua et al. (2022) & URL classifiers, login representativeness & PILU differs from EBBU/HP; no exact replication \\
+Rashid et al. (2024) & Transfer problem, UDA, HP & Target-informed adaptation; no UDA baseline here \\
+This study & Source-only ranking and transfer--cost evaluation & Matched-$k$ selectors, domain groups, fixed source thresholds, two directions \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\textit{Evaluation validity.} Leakage and a mismatch between the test population and the scientific claim can invalidate apparently strong results~\cite{kapoor2023}. We specify source-only nested selection, domain grouping, source-locked thresholds and bounded claims to make these assumptions inspectable. PI, RF, LightGBM and TreeExplainer are established components whose original provenance is preserved in the repository; combining them does not establish a novel learning algorithm. STABLE-PI is an explicit ranking heuristic, without a transferred theoretical guarantee of feature-selection consistency.

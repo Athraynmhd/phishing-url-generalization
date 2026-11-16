@@ -1,0 +1,35 @@
+{
+  "blockers": [
+    "SHAP real-data additivity failures: exploratory diagnostics only",
+    "Frozen legacy analysis contains direct TEST-label access; CLI execution blocked"
+  ],
+  "checks": {
+    "AP_AUC_independently_recomputed": false,
+    "aggregate_metrics_recomputed": true,
+    "bundles": 36,
+    "fit_feature_rows_reextracted_offline": 32,
+    "group_disjoint": true,
+    "max_probability_abs_difference": 4.440892098500626e-16,
+    "metric_rows": 216,
+    "nested_selector_lineage": true,
+    "prediction_rows": 877176,
+    "primary_contrasts_matched_k": true,
+    "raw_files": 8,
+    "shap_additivity_failures": 4,
+    "shap_outputs": 24,
+    "summary_rows": 120,
+    "val_thresholds_reproduced": 108
+  },
+  "freeze_hash": "069912e332d788120e4ba358b1f8cd3dc5f0903d783249a87567ce00d6efc8da",
+  "limitations": [
+    "No new labelled TEST read: AP/AUC and bootstrap replicate resampling rely on existing I06/provenance",
+    "Fixed split/three seeds do not establish training-population uncertainty",
+    "No independent recent holdout or complete primary-paper reproduction",
+    "HP numeric label mapping indirectly verified; direct codebook confirmation pending"
+  ],
+  "protected_outputs_unchanged": true,
+  "scores_verified": true,
+  "seconds": 21.429002799995942,
+  "status": "engineering_checks_passed_scientific_blockers_remain",
+  "tests_labels_read": false
+}

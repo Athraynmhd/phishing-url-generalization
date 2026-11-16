@@ -1,0 +1,20 @@
+\begin{tabular}{lllrrrrrrrrr}
+\toprule
+ & & & & \multicolumn{4}{c}{batch 1, 1 thread ($\mu$s/URL)} & \multicolumn{2}{c}{batch 1024, 4 thr.} & & \\
+\cmidrule(lr){5-8}\cmidrule(lr){9-10}
+Src & Model & Features & $k$ & extract & predict & e2e & rel. & e2e $\mu$s/URL & rel. & MB & fit s \\
+\midrule
+A & LGBM & MEAN-PI & 16 & 172 & 821 & 888 & 0.76 & 74.3 & 0.66 & 0.99 & 0.6 \\
+A & LGBM & STABLE-PI & 16 & 177 & 598 & 881 & 0.75 & 75.0 & 0.67 & 0.99 & 0.6 \\
+A & LGBM & ALL & 37 & 252 & 908 & 1167 & 1.00 & 112.5 & 1.00 & 1.00 & 0.8 \\
+A & RF & MEAN-PI & 16 & 131 & 9881 & 9995 & 0.83 & 122.2 & 0.81 & 55.75 & 2.7 \\
+A & RF & STABLE-PI & 16 & 112 & 9575 & 10110 & 0.84 & 121.0 & 0.81 & 55.75 & 2.7 \\
+A & RF & ALL & 37 & 155 & 10244 & 12094 & 1.00 & 150.3 & 1.00 & 56.45 & 3.1 \\
+B & LGBM & MEAN-PI & 8 & 150 & 539 & 772 & 0.93 & 61.0 & 0.55 & 0.99 & 0.6 \\
+B & LGBM & STABLE-PI & 8 & 146 & 486 & 721 & 0.87 & 52.6 & 0.47 & 0.99 & 0.5 \\
+B & LGBM & ALL & 37 & 228 & 556 & 830 & 1.00 & 111.3 & 1.00 & 1.00 & 0.9 \\
+B & RF & MEAN-PI & 8 & 105 & 10316 & 10795 & 1.10 & 152.1 & 1.01 & 45.91 & 1.7 \\
+B & RF & STABLE-PI & 8 & 111 & 10704 & 10455 & 1.06 & 92.7 & 0.61 & 44.15 & 1.5 \\
+B & RF & ALL & 37 & 150 & 9356 & 9852 & 1.00 & 151.1 & 1.00 & 41.45 & 3.6 \\
+\bottomrule
+\end{tabular}

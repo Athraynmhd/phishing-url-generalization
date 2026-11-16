@@ -1,0 +1,11 @@
+{
+  "doi": "10.1016/j.comnet.2024.110398",
+  "source": "https://doi.org/10.1016/j.comnet.2024.110398",
+  "locator": "Section 4, Table 1, HP row; columns Training/Validation/Test, Ben/Phish",
+  "counts": {
+    "train": {"benign": 27740, "phishing": 27760},
+    "valid": {"benign": 9180, "phishing": 9320},
+    "test": {"benign": 9330, "phishing": 9170}
+  },
+  "interpretation": "External published class counts, not a verbatim numeric label codebook. Both encoding candidates must be checked across all three original splits."
+}

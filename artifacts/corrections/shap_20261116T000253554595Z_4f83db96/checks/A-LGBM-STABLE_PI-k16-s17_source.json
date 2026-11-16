@@ -1,0 +1,19 @@
+{
+  "additivity_max_abs_err": 6.499671648119154e-09,
+  "baseline_max_abs_err": 0.0,
+  "bundle_id": "A-LGBM-STABLE_PI-k16-s17",
+  "cohort": "source",
+  "config": "STABLE_PI@budget",
+  "expected_value": 0.5825699713813418,
+  "input_sha256": "a2d7433a94cfaa6cd0526343e591ddee4e32f2f38caea13dccdc227e694a494a",
+  "max_attribution_change": 0.0,
+  "model": "LGBM",
+  "n": 500,
+  "old_additivity_max_abs_err": 6.499671648119154e-09,
+  "output_sha256": "85c8be3d99725083f2bcb91d5dc68ee93337e95e2928ecb5e675a1027611ea10",
+  "representation_max_abs_err": null,
+  "seed": 17,
+  "source": "A",
+  "thresholds_represented_at_float32_floor": 0,
+  "top10": "F23 F09 F03 F06 F30 F07 F21 F02 F18 F16"
+}

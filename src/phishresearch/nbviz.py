@@ -7,7 +7,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 
-from .common import Paths, read_json
+from .common import GateError, Paths, read_json, sha256_file
 from .features import FEATURE_NAMES, extract_features
 from .reporting import COLORS, HATCH, INK2, _style
 from .selection import PiResult, rank_features
@@ -16,6 +16,48 @@ from .urls import canonicalize_url
 CELLS = [("A", "A", "EBBU internal"), ("A", "B", "EBBU → HP"), ("B", "B", "HP internal"), ("B", "A", "HP → EBBU")]
 FAMS = ("ALL", "MEAN_PI@budget", "STABLE_PI@budget")
 SRC_NAME = {"A": "EBBU", "B": "HP"}
+
+
+def require_artifacts(*files: Path) -> None:
+    """A presentation notebook must never rebuild missing research outputs."""
+    missing = [str(p) for p in files if not Path(p).is_file()]
+    if missing:
+        raise GateError("Missing saved artefacts: " + ", ".join(missing)
+                        + ". Preserve partial/failed runs; restore verified outputs before continuing.")
+
+
+def verify_saved_evaluation(paths: Paths, freeze: dict) -> dict:
+    """Check provenance and prediction bytes without loading individual TEST labels."""
+    require_artifacts(paths.eval / "metrics.json", paths.eval / "predictions.parquet")
+    evaluation = read_json(paths.eval / "metrics.json")
+    if evaluation.get("status") != "completed" or evaluation.get("freeze_hash") != freeze["freeze_hash"]:
+        raise GateError("Saved evaluation is incomplete or belongs to another freeze")
+    if sha256_file(paths.eval / "predictions.parquet") != evaluation.get("predictions_sha256"):
+        raise GateError("Saved prediction hash does not match metrics.json")
+    return evaluation
+
+
+def verify_shap_correction(paths: Paths, freeze: dict):
+    """Load only a complete, hashed exploratory correction; never silently use partial runs."""
+    pointer = paths.artifacts / "corrections/latest_shap.json"
+    if not pointer.exists():
+        return None
+    latest = read_json(pointer)
+    folder = paths.root / latest["artifact"]
+    if sha256_file(folder / "manifest.json") != latest["manifest_sha256"]:
+        raise GateError("SHAP correction manifest hash mismatch")
+    doc = read_json(folder / "manifest.json")
+    if doc["status"] != "passed" or doc["parent_freeze_hash"] != freeze["freeze_hash"]:
+        raise GateError("Incomplete SHAP correction or different parent freeze")
+    if not doc["all_additivity_passed"] or doc["max_additivity_residual"] > 1e-6:
+        raise GateError("Corrected SHAP additivity did not pass")
+    for name, digest in doc["output_sha256"].items():
+        if sha256_file(folder / name) != digest:
+            raise GateError(f"Corrected SHAP output changed: {name}")
+    for name, digest in doc["code_sha256"].items():
+        if sha256_file(paths.root / name) != digest:
+            raise GateError(f"Correction code changed since execution: {name}")
+    return folder, doc
 
 
 def setup_plots():
@@ -88,7 +130,7 @@ def parse_demo(urls: list[str]) -> pd.DataFrame:
     for u in urls:
         p = canonicalize_url(u)
         rows.append({"url": u, "result": type(p).__name__, "url_key / reason": getattr(p, "url_key", getattr(p, "reason", "")),
-                     "group (registered domain)": getattr(p, "group_key", "—")})
+                     "group (registered domain)": getattr(p, "group_key", "n/a")})
     return pd.DataFrame(rows).set_index("url")
 
 
@@ -149,9 +191,9 @@ def plot_pi(paths: Paths, dev: dict, q: int):
     fig, axes = plt.subplots(1, 2, figsize=(11, 7.5), sharey=True)
     for ax, s in zip(axes, "AB"):
         t = pi_table(paths, dev, s, q)
-        ax.barh(t.index, t.mean_pi, color=[COLORS["STABLE_PI"] if v >= 2.5 else COLORS["ALL"] for v in t.votes])
+        ax.barh(t.index, t.mean_pi, color=[COLORS["STABLE_PI"] if v == 3 else COLORS["ALL"] for v in t.votes])
         ax.axvline(0, color=INK2, lw=.6)
-        ax.set_title(f"{SRC_NAME[s]} FIT: mean PI (ΔAP), green = stable in 3/3 folds")
+        ax.set_title(f"{SRC_NAME[s]} FIT: mean PI (ΔAP), green = 3/3 folds in every seed")
         ax.grid(axis="y", visible=False)
     axes[0].invert_yaxis()
     fig.tight_layout()
@@ -320,6 +362,6 @@ def shap_beeswarm(analysis: Path, bundle: str, cohort: str = "source", max_displ
     names = [f"{i} {FEATURE_NAMES[i]}" for i in z["ids"]]
     plt.figure()
     shap.summary_plot(z["shap"], z["X"], feature_names=names, max_display=max_display, show=False, plot_size=(7, 3.4))
-    plt.title(f"{bundle} — {cohort} TEST", fontsize=9)
+    plt.title(f"{bundle}, {cohort} TEST", fontsize=9)
     plt.tight_layout()
     return plt.gcf()

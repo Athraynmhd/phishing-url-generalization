@@ -1,0 +1,101 @@
+{
+  "freeze_hash": "069912e332d788120e4ba358b1f8cd3dc5f0903d783249a87567ce00d6efc8da",
+  "model_refits": 0,
+  "results": [
+    {
+      "bundle_id": "A-RF-ALL-k37-s17",
+      "cohort": "source",
+      "failing_rows": 1,
+      "old_max_residual": 0.0033333434800615347,
+      "sampled_rows": [
+        0,
+        1,
+        2,
+        340
+      ],
+      "variants": {
+        "float32": {
+          "max_residual": 0.0033333434808573426,
+          "passed_1e_6": false,
+          "seconds": 1.6463635999825783
+        },
+        "float64": {
+          "max_residual": 0.0033333434800615347,
+          "passed_1e_6": false,
+          "seconds": 1.601001399976667
+        }
+      }
+    },
+    {
+      "bundle_id": "B-RF-ALL-k37-s17",
+      "cohort": "source",
+      "failing_rows": 500,
+      "old_max_residual": 1.3349593226075207e-05,
+      "sampled_rows": [
+        0,
+        1,
+        2
+      ],
+      "variants": {
+        "float32": {
+          "max_residual": 2.576694533955315e-08,
+          "passed_1e_6": true,
+          "seconds": 0.8713191999995615
+        },
+        "float64": {
+          "max_residual": 1.3342859770615334e-05,
+          "passed_1e_6": false,
+          "seconds": 0.9654481999750715
+        }
+      }
+    },
+    {
+      "bundle_id": "B-RF-ALL-k37-s17",
+      "cohort": "target",
+      "failing_rows": 500,
+      "old_max_residual": 1.335043503492006e-05,
+      "sampled_rows": [
+        0,
+        1,
+        2
+      ],
+      "variants": {
+        "float32": {
+          "max_residual": 1.5038969153335913e-08,
+          "passed_1e_6": true,
+          "seconds": 0.8165196999907494
+        },
+        "float64": {
+          "max_residual": 1.3329825184482669e-05,
+          "passed_1e_6": false,
+          "seconds": 0.8614557000109926
+        }
+      }
+    },
+    {
+      "bundle_id": "B-RF-ALL-k37-s29",
+      "cohort": "source",
+      "failing_rows": 500,
+      "old_max_residual": 0.0025019809819547822,
+      "sampled_rows": [
+        0,
+        1,
+        2
+      ],
+      "variants": {
+        "float32": {
+          "max_residual": 2.4095977526217977e-08,
+          "passed_1e_6": true,
+          "seconds": 0.8699896000034641
+        },
+        "float64": {
+          "max_residual": 1.984880880081131e-06,
+          "passed_1e_6": false,
+          "seconds": 0.8886396999878343
+        }
+      }
+    }
+  ],
+  "status": "exploratory_precision_diagnostic",
+  "test_labels_read": false
+}

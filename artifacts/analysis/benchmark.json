@@ -1,0 +1,1166 @@
+{
+  "bundles": [
+    {
+      "bundle_id": "A-LGBM-ALL-k37-s17",
+      "fit_seconds": 0.7670629000058398,
+      "k": 37,
+      "load_ms": 11.2566,
+      "model": "LGBM",
+      "model_file_bytes": 1045348,
+      "n_features": 37,
+      "peak_mb": 985.76171875,
+      "rss_delta_mb": 2.9375,
+      "selector": "ALL",
+      "source": "A",
+      "stages": {
+        "t1/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 1.1669,
+            "median_us_per_url": 1166.9,
+            "p95_ms_per_batch": 1.85507,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.2515,
+            "median_us_per_url": 251.5,
+            "p95_ms_per_batch": 0.45231000000000005,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 0.9082,
+            "median_us_per_url": 908.2,
+            "p95_ms_per_batch": 1.6053550000000005,
+            "repeats": 300
+          }
+        },
+        "t1/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 123.4873,
+            "median_us_per_url": 120.59306640625,
+            "p95_ms_per_batch": 134.19725499999998,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 96.5704,
+            "median_us_per_url": 94.30703125000001,
+            "p95_ms_per_batch": 108.13735999999999,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 29.03585,
+            "median_us_per_url": 28.355322265625,
+            "p95_ms_per_batch": 32.578179999999996,
+            "repeats": 30
+          }
+        },
+        "t4/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 1.28085,
+            "median_us_per_url": 1280.8500000000001,
+            "p95_ms_per_batch": 1.5564900000000002,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.2006,
+            "median_us_per_url": 200.6,
+            "p95_ms_per_batch": 0.42369,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 0.92415,
+            "median_us_per_url": 924.15,
+            "p95_ms_per_batch": 1.2837100000000001,
+            "repeats": 300
+          }
+        },
+        "t4/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 115.18825000000001,
+            "median_us_per_url": 112.48852539062501,
+            "p95_ms_per_batch": 127.34042499999998,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 82.65995000000001,
+            "median_us_per_url": 80.72260742187501,
+            "p95_ms_per_batch": 98.52257999999999,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 7.995900000000001,
+            "median_us_per_url": 7.8084960937500005,
+            "p95_ms_per_batch": 8.86864,
+            "repeats": 30
+          }
+        }
+      }
+    },
+    {
+      "bundle_id": "A-LGBM-MEAN_PI-k16-s17",
+      "fit_seconds": 0.6219077999994624,
+      "k": 16,
+      "load_ms": 9.6274,
+      "model": "LGBM",
+      "model_file_bytes": 1040532,
+      "n_features": 16,
+      "peak_mb": 985.76171875,
+      "rss_delta_mb": 1.0,
+      "selector": "MEAN_PI",
+      "source": "A",
+      "stages": {
+        "t1/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 0.88815,
+            "median_us_per_url": 888.15,
+            "p95_ms_per_batch": 1.3783250000000002,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.1716,
+            "median_us_per_url": 171.6,
+            "p95_ms_per_batch": 0.222005,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 0.8206500000000001,
+            "median_us_per_url": 820.6500000000001,
+            "p95_ms_per_batch": 1.17238,
+            "repeats": 300
+          }
+        },
+        "t1/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 79.5108,
+            "median_us_per_url": 77.647265625,
+            "p95_ms_per_batch": 87.16744999999999,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 53.2164,
+            "median_us_per_url": 51.969140625,
+            "p95_ms_per_batch": 66.444925,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 25.024900000000002,
+            "median_us_per_url": 24.43837890625,
+            "p95_ms_per_batch": 27.962495,
+            "repeats": 30
+          }
+        },
+        "t4/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 1.22075,
+            "median_us_per_url": 1220.75,
+            "p95_ms_per_batch": 1.647385,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.1575,
+            "median_us_per_url": 157.5,
+            "p95_ms_per_batch": 0.291385,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 0.87195,
+            "median_us_per_url": 871.95,
+            "p95_ms_per_batch": 1.12137,
+            "repeats": 300
+          }
+        },
+        "t4/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 76.1197,
+            "median_us_per_url": 74.33564453125,
+            "p95_ms_per_batch": 81.0813,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 54.8263,
+            "median_us_per_url": 53.54130859375,
+            "p95_ms_per_batch": 66.25883999999999,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 7.53945,
+            "median_us_per_url": 7.362744140625001,
+            "p95_ms_per_batch": 8.572999999999999,
+            "repeats": 30
+          }
+        }
+      }
+    },
+    {
+      "bundle_id": "A-LGBM-STABLE_PI-k16-s17",
+      "fit_seconds": 0.6302151000127196,
+      "k": 16,
+      "load_ms": 8.3235,
+      "model": "LGBM",
+      "model_file_bytes": 1040532,
+      "n_features": 16,
+      "peak_mb": 985.76171875,
+      "rss_delta_mb": 0.0078125,
+      "selector": "STABLE_PI",
+      "source": "A",
+      "stages": {
+        "t1/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 0.88095,
+            "median_us_per_url": 880.95,
+            "p95_ms_per_batch": 1.3671000000000002,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.17665,
+            "median_us_per_url": 176.65,
+            "p95_ms_per_batch": 0.316155,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 0.5984,
+            "median_us_per_url": 598.4000000000001,
+            "p95_ms_per_batch": 0.9984449999999999,
+            "repeats": 300
+          }
+        },
+        "t1/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 75.679,
+            "median_us_per_url": 73.9052734375,
+            "p95_ms_per_batch": 90.41963999999999,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 57.1215,
+            "median_us_per_url": 55.78271484375,
+            "p95_ms_per_batch": 72.139725,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 19.940150000000003,
+            "median_us_per_url": 19.472802734375,
+            "p95_ms_per_batch": 23.622295,
+            "repeats": 30
+          }
+        },
+        "t4/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 1.1162,
+            "median_us_per_url": 1116.2,
+            "p95_ms_per_batch": 1.49971,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.12514999999999998,
+            "median_us_per_url": 125.14999999999998,
+            "p95_ms_per_batch": 0.251345,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 0.8168,
+            "median_us_per_url": 816.8,
+            "p95_ms_per_batch": 1.007865,
+            "repeats": 300
+          }
+        },
+        "t4/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 76.80485,
+            "median_us_per_url": 75.004736328125,
+            "p95_ms_per_batch": 83.18808,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 55.1101,
+            "median_us_per_url": 53.818457031250006,
+            "p95_ms_per_batch": 65.16967,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 7.16095,
+            "median_us_per_url": 6.993115234375,
+            "p95_ms_per_batch": 7.905749999999999,
+            "repeats": 30
+          }
+        }
+      }
+    },
+    {
+      "bundle_id": "A-RF-ALL-k37-s17",
+      "fit_seconds": 3.122411499993177,
+      "k": 37,
+      "load_ms": 149.4988,
+      "model": "RF",
+      "model_file_bytes": 59189577,
+      "n_features": 37,
+      "peak_mb": 1058.8046875,
+      "rss_delta_mb": 61.8359375,
+      "selector": "ALL",
+      "source": "A",
+      "stages": {
+        "t1/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 12.09385,
+            "median_us_per_url": 12093.85,
+            "p95_ms_per_batch": 18.256045,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.1552,
+            "median_us_per_url": 155.20000000000002,
+            "p95_ms_per_batch": 0.32845500000000005,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 10.243749999999999,
+            "median_us_per_url": 10243.749999999998,
+            "p95_ms_per_batch": 15.20574,
+            "repeats": 300
+          }
+        },
+        "t1/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 141.4404,
+            "median_us_per_url": 138.12539062500002,
+            "p95_ms_per_batch": 165.91290499999994,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 81.30995,
+            "median_us_per_url": 79.404248046875,
+            "p95_ms_per_batch": 102.70971499999999,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 60.4481,
+            "median_us_per_url": 59.03134765625,
+            "p95_ms_per_batch": 81.21723,
+            "repeats": 30
+          }
+        },
+        "t4/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 47.1675,
+            "median_us_per_url": 47167.5,
+            "p95_ms_per_batch": 62.58564,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.1593,
+            "median_us_per_url": 159.3,
+            "p95_ms_per_batch": 0.3682900000000001,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 61.3935,
+            "median_us_per_url": 61393.5,
+            "p95_ms_per_batch": 77.791065,
+            "repeats": 300
+          }
+        },
+        "t4/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 153.89465,
+            "median_us_per_url": 150.28774414062502,
+            "p95_ms_per_batch": 157.69116,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 79.7148,
+            "median_us_per_url": 77.846484375,
+            "p95_ms_per_batch": 96.330235,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 77.75355,
+            "median_us_per_url": 75.931201171875,
+            "p95_ms_per_batch": 79.0607,
+            "repeats": 30
+          }
+        }
+      }
+    },
+    {
+      "bundle_id": "A-RF-MEAN_PI-k16-s17",
+      "fit_seconds": 2.739343599998392,
+      "k": 16,
+      "load_ms": 139.0652,
+      "model": "RF",
+      "model_file_bytes": 58456457,
+      "n_features": 16,
+      "peak_mb": 1058.8046875,
+      "rss_delta_mb": 63.25,
+      "selector": "MEAN_PI",
+      "source": "A",
+      "stages": {
+        "t1/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 9.9952,
+            "median_us_per_url": 9995.2,
+            "p95_ms_per_batch": 14.818145000000001,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.13065,
+            "median_us_per_url": 130.64999999999998,
+            "p95_ms_per_batch": 0.24764500000000003,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 9.880849999999999,
+            "median_us_per_url": 9880.849999999999,
+            "p95_ms_per_batch": 15.532205000000006,
+            "repeats": 300
+          }
+        },
+        "t1/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 106.2619,
+            "median_us_per_url": 103.77138671875,
+            "p95_ms_per_batch": 124.1933,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 48.2761,
+            "median_us_per_url": 47.14462890625,
+            "p95_ms_per_batch": 66.376565,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 51.8574,
+            "median_us_per_url": 50.6419921875,
+            "p95_ms_per_batch": 58.97968,
+            "repeats": 30
+          }
+        },
+        "t4/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 47.2513,
+            "median_us_per_url": 47251.3,
+            "p95_ms_per_batch": 63.531434999999995,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.1107,
+            "median_us_per_url": 110.7,
+            "p95_ms_per_batch": 0.26369000000000004,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 46.92525,
+            "median_us_per_url": 46925.25,
+            "p95_ms_per_batch": 62.532875000000004,
+            "repeats": 300
+          }
+        },
+        "t4/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 125.12565000000001,
+            "median_us_per_url": 122.19301757812501,
+            "p95_ms_per_batch": 140.267795,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 46.90935,
+            "median_us_per_url": 45.809912109375006,
+            "p95_ms_per_batch": 62.356244999999994,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 78.35265000000001,
+            "median_us_per_url": 76.51625976562501,
+            "p95_ms_per_batch": 79.828485,
+            "repeats": 30
+          }
+        }
+      }
+    },
+    {
+      "bundle_id": "A-RF-STABLE_PI-k16-s17",
+      "fit_seconds": 2.679171399999177,
+      "k": 16,
+      "load_ms": 169.2996,
+      "model": "RF",
+      "model_file_bytes": 58456457,
+      "n_features": 16,
+      "peak_mb": 1058.8046875,
+      "rss_delta_mb": 63.6328125,
+      "selector": "STABLE_PI",
+      "source": "A",
+      "stages": {
+        "t1/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 10.110050000000001,
+            "median_us_per_url": 10110.050000000001,
+            "p95_ms_per_batch": 17.241660000000007,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.11195,
+            "median_us_per_url": 111.94999999999999,
+            "p95_ms_per_batch": 0.19760500000000006,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 9.5748,
+            "median_us_per_url": 9574.8,
+            "p95_ms_per_batch": 14.958055000000002,
+            "repeats": 300
+          }
+        },
+        "t1/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 98.57385,
+            "median_us_per_url": 96.26352539062499,
+            "p95_ms_per_batch": 113.117155,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 45.192400000000006,
+            "median_us_per_url": 44.13320312500001,
+            "p95_ms_per_batch": 70.544295,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 52.1374,
+            "median_us_per_url": 50.9154296875,
+            "p95_ms_per_batch": 61.209864999999986,
+            "repeats": 30
+          }
+        },
+        "t4/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 47.0478,
+            "median_us_per_url": 47047.8,
+            "p95_ms_per_batch": 63.022200000000005,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.12285,
+            "median_us_per_url": 122.85,
+            "p95_ms_per_batch": 0.215095,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 47.02085,
+            "median_us_per_url": 47020.850000000006,
+            "p95_ms_per_batch": 62.844945,
+            "repeats": 300
+          }
+        },
+        "t4/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 123.94659999999999,
+            "median_us_per_url": 121.04160156249999,
+            "p95_ms_per_batch": 149.05174499999995,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 49.46515,
+            "median_us_per_url": 48.305810546875,
+            "p95_ms_per_batch": 61.51074,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 77.0947,
+            "median_us_per_url": 75.28779296875,
+            "p95_ms_per_batch": 78.66683499999999,
+            "repeats": 30
+          }
+        }
+      }
+    },
+    {
+      "bundle_id": "B-LGBM-ALL-k37-s17",
+      "fit_seconds": 0.8570904000080191,
+      "k": 37,
+      "load_ms": 8.6055,
+      "model": "LGBM",
+      "model_file_bytes": 1045124,
+      "n_features": 37,
+      "peak_mb": 1058.8046875,
+      "rss_delta_mb": 2.1171875,
+      "selector": "ALL",
+      "source": "B",
+      "stages": {
+        "t1/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 0.8303,
+            "median_us_per_url": 830.3000000000001,
+            "p95_ms_per_batch": 1.2039350000000002,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.22835,
+            "median_us_per_url": 228.35,
+            "p95_ms_per_batch": 0.3804600000000001,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 0.5559499999999999,
+            "median_us_per_url": 555.9499999999999,
+            "p95_ms_per_batch": 0.88978,
+            "repeats": 300
+          }
+        },
+        "t1/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 97.23485,
+            "median_us_per_url": 94.95590820312499,
+            "p95_ms_per_batch": 109.92705999999998,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 87.68665,
+            "median_us_per_url": 85.631494140625,
+            "p95_ms_per_batch": 110.72814,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 19.581400000000002,
+            "median_us_per_url": 19.1224609375,
+            "p95_ms_per_batch": 23.372935,
+            "repeats": 30
+          }
+        },
+        "t4/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 1.1950500000000002,
+            "median_us_per_url": 1195.0500000000002,
+            "p95_ms_per_batch": 1.389765,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.132,
+            "median_us_per_url": 132.0,
+            "p95_ms_per_batch": 0.27445,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 0.82295,
+            "median_us_per_url": 822.9499999999999,
+            "p95_ms_per_batch": 1.3011250000000003,
+            "repeats": 300
+          }
+        },
+        "t4/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 113.95155,
+            "median_us_per_url": 111.280810546875,
+            "p95_ms_per_batch": 117.13808,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 75.2858,
+            "median_us_per_url": 73.52128906249999,
+            "p95_ms_per_batch": 89.4382,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 7.4579,
+            "median_us_per_url": 7.2831054687500005,
+            "p95_ms_per_batch": 8.32096,
+            "repeats": 30
+          }
+        }
+      }
+    },
+    {
+      "bundle_id": "B-LGBM-MEAN_PI-k8-s17",
+      "fit_seconds": 0.5508287999837194,
+      "k": 8,
+      "load_ms": 9.6518,
+      "model": "LGBM",
+      "model_file_bytes": 1034628,
+      "n_features": 8,
+      "peak_mb": 1058.8046875,
+      "rss_delta_mb": 1.99609375,
+      "selector": "MEAN_PI",
+      "source": "B",
+      "stages": {
+        "t1/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 0.77235,
+            "median_us_per_url": 772.35,
+            "p95_ms_per_batch": 1.1106650000000002,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.1498,
+            "median_us_per_url": 149.79999999999998,
+            "p95_ms_per_batch": 0.19002500000000003,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 0.53915,
+            "median_us_per_url": 539.15,
+            "p95_ms_per_batch": 0.93708,
+            "repeats": 300
+          }
+        },
+        "t1/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 54.28105,
+            "median_us_per_url": 53.008837890625,
+            "p95_ms_per_batch": 64.39881,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 37.92845,
+            "median_us_per_url": 37.039501953125,
+            "p95_ms_per_batch": 50.023894999999996,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 17.63335,
+            "median_us_per_url": 17.220068359375,
+            "p95_ms_per_batch": 19.902879999999996,
+            "repeats": 30
+          }
+        },
+        "t4/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 1.0929,
+            "median_us_per_url": 1092.9,
+            "p95_ms_per_batch": 1.5122950000000002,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.13505,
+            "median_us_per_url": 135.05,
+            "p95_ms_per_batch": 0.26743000000000006,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 0.76915,
+            "median_us_per_url": 769.15,
+            "p95_ms_per_batch": 1.0157850000000002,
+            "repeats": 300
+          }
+        },
+        "t4/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 62.423550000000006,
+            "median_us_per_url": 60.960498046875,
+            "p95_ms_per_batch": 68.17639,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 37.32765,
+            "median_us_per_url": 36.452783203125,
+            "p95_ms_per_batch": 48.45457999999999,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 6.841200000000001,
+            "median_us_per_url": 6.680859375000001,
+            "p95_ms_per_batch": 8.39148,
+            "repeats": 30
+          }
+        }
+      }
+    },
+    {
+      "bundle_id": "B-LGBM-STABLE_PI-k8-s17",
+      "fit_seconds": 0.5355328999867197,
+      "k": 8,
+      "load_ms": 9.047,
+      "model": "LGBM",
+      "model_file_bytes": 1036564,
+      "n_features": 8,
+      "peak_mb": 1058.8046875,
+      "rss_delta_mb": 0.3125,
+      "selector": "STABLE_PI",
+      "source": "B",
+      "stages": {
+        "t1/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 0.72125,
+            "median_us_per_url": 721.25,
+            "p95_ms_per_batch": 1.1298549999999998,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.1459,
+            "median_us_per_url": 145.9,
+            "p95_ms_per_batch": 0.17521,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 0.48645000000000005,
+            "median_us_per_url": 486.45000000000005,
+            "p95_ms_per_batch": 0.602535,
+            "repeats": 300
+          }
+        },
+        "t1/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 53.0664,
+            "median_us_per_url": 51.82265625,
+            "p95_ms_per_batch": 62.89901999999999,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 29.70125,
+            "median_us_per_url": 29.005126953125,
+            "p95_ms_per_batch": 39.24113,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 17.73485,
+            "median_us_per_url": 17.319189453125002,
+            "p95_ms_per_batch": 23.283144999999994,
+            "repeats": 30
+          }
+        },
+        "t4/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 1.06375,
+            "median_us_per_url": 1063.75,
+            "p95_ms_per_batch": 1.1862,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.0848,
+            "median_us_per_url": 84.8,
+            "p95_ms_per_batch": 0.17550000000000002,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 0.7622,
+            "median_us_per_url": 762.2,
+            "p95_ms_per_batch": 0.8838500000000001,
+            "repeats": 300
+          }
+        },
+        "t4/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 53.8591,
+            "median_us_per_url": 52.59677734375,
+            "p95_ms_per_batch": 57.78308499999999,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 33.06465,
+            "median_us_per_url": 32.289697265625,
+            "p95_ms_per_batch": 42.715685,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 6.9207,
+            "median_us_per_url": 6.75849609375,
+            "p95_ms_per_batch": 7.492715,
+            "repeats": 30
+          }
+        }
+      }
+    },
+    {
+      "bundle_id": "B-RF-ALL-k37-s17",
+      "fit_seconds": 3.570354800001951,
+      "k": 37,
+      "load_ms": 144.5873,
+      "model": "RF",
+      "model_file_bytes": 43458377,
+      "n_features": 37,
+      "peak_mb": 1058.8046875,
+      "rss_delta_mb": 41.109375,
+      "selector": "ALL",
+      "source": "B",
+      "stages": {
+        "t1/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 9.8525,
+            "median_us_per_url": 9852.5,
+            "p95_ms_per_batch": 15.908875,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.1498,
+            "median_us_per_url": 149.79999999999998,
+            "p95_ms_per_batch": 0.39816,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 9.35615,
+            "median_us_per_url": 9356.15,
+            "p95_ms_per_batch": 13.852195000000002,
+            "repeats": 300
+          }
+        },
+        "t1/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 126.90445,
+            "median_us_per_url": 123.930126953125,
+            "p95_ms_per_batch": 160.686265,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 76.18879999999999,
+            "median_us_per_url": 74.40312499999999,
+            "p95_ms_per_batch": 92.37792,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 49.754900000000006,
+            "median_us_per_url": 48.58876953125001,
+            "p95_ms_per_batch": 61.977579999999996,
+            "repeats": 30
+          }
+        },
+        "t4/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 46.976600000000005,
+            "median_us_per_url": 46976.600000000006,
+            "p95_ms_per_batch": 62.579115,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.1686,
+            "median_us_per_url": 168.6,
+            "p95_ms_per_batch": 0.35359,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 47.020399999999995,
+            "median_us_per_url": 47020.399999999994,
+            "p95_ms_per_batch": 62.87055,
+            "repeats": 300
+          }
+        },
+        "t4/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 154.77224999999999,
+            "median_us_per_url": 151.144775390625,
+            "p95_ms_per_batch": 170.53473,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 71.77515,
+            "median_us_per_url": 70.092919921875,
+            "p95_ms_per_batch": 84.09572499999999,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 77.15035,
+            "median_us_per_url": 75.342138671875,
+            "p95_ms_per_batch": 78.9899,
+            "repeats": 30
+          }
+        }
+      }
+    },
+    {
+      "bundle_id": "B-RF-MEAN_PI-k8-s17",
+      "fit_seconds": 1.7380206999951042,
+      "k": 8,
+      "load_ms": 126.756,
+      "model": "RF",
+      "model_file_bytes": 48141737,
+      "n_features": 8,
+      "peak_mb": 1058.8046875,
+      "rss_delta_mb": 46.27734375,
+      "selector": "MEAN_PI",
+      "source": "B",
+      "stages": {
+        "t1/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 10.79545,
+            "median_us_per_url": 10795.45,
+            "p95_ms_per_batch": 17.111445,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.10515,
+            "median_us_per_url": 105.14999999999999,
+            "p95_ms_per_batch": 0.19090500000000007,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 10.31605,
+            "median_us_per_url": 10316.050000000001,
+            "p95_ms_per_batch": 15.739195000000002,
+            "repeats": 300
+          }
+        },
+        "t1/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 92.0156,
+            "median_us_per_url": 89.858984375,
+            "p95_ms_per_batch": 116.21269999999998,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 37.63515,
+            "median_us_per_url": 36.753076171875,
+            "p95_ms_per_batch": 43.855149999999995,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 50.657650000000004,
+            "median_us_per_url": 49.470361328125,
+            "p95_ms_per_batch": 62.344114999999995,
+            "repeats": 30
+          }
+        },
+        "t4/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 62.5048,
+            "median_us_per_url": 62504.8,
+            "p95_ms_per_batch": 138.856185,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.11235,
+            "median_us_per_url": 112.35000000000001,
+            "p95_ms_per_batch": 0.30608,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 47.2478,
+            "median_us_per_url": 47247.799999999996,
+            "p95_ms_per_batch": 64.15548,
+            "repeats": 300
+          }
+        },
+        "t4/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 155.73975000000002,
+            "median_us_per_url": 152.08959960937503,
+            "p95_ms_per_batch": 200.699275,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 41.97845,
+            "median_us_per_url": 40.994580078125004,
+            "p95_ms_per_batch": 52.99362999999998,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 76.54554999999999,
+            "median_us_per_url": 74.75151367187499,
+            "p95_ms_per_batch": 91.932215,
+            "repeats": 30
+          }
+        }
+      }
+    },
+    {
+      "bundle_id": "B-RF-STABLE_PI-k8-s17",
+      "fit_seconds": 1.525984999985667,
+      "k": 8,
+      "load_ms": 200.0631,
+      "model": "RF",
+      "model_file_bytes": 46292617,
+      "n_features": 8,
+      "peak_mb": 1058.8046875,
+      "rss_delta_mb": 46.4765625,
+      "selector": "STABLE_PI",
+      "source": "B",
+      "stages": {
+        "t1/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 10.455449999999999,
+            "median_us_per_url": 10455.449999999999,
+            "p95_ms_per_batch": 15.903910000000003,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.1109,
+            "median_us_per_url": 110.9,
+            "p95_ms_per_batch": 0.24812000000000006,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 10.70365,
+            "median_us_per_url": 10703.65,
+            "p95_ms_per_batch": 22.14743000000001,
+            "repeats": 300
+          }
+        },
+        "t1/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 75.70564999999999,
+            "median_us_per_url": 73.931298828125,
+            "p95_ms_per_batch": 92.23708999999998,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 29.891849999999998,
+            "median_us_per_url": 29.191259765625,
+            "p95_ms_per_batch": 37.687955,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 45.59135,
+            "median_us_per_url": 44.522802734375,
+            "p95_ms_per_batch": 50.50478999999999,
+            "repeats": 30
+          }
+        },
+        "t4/batch1": {
+          "end_to_end": {
+            "median_ms_per_batch": 47.632000000000005,
+            "median_us_per_url": 47632.00000000001,
+            "p95_ms_per_batch": 76.89216000000002,
+            "repeats": 300
+          },
+          "extract": {
+            "median_ms_per_batch": 0.1007,
+            "median_us_per_url": 100.7,
+            "p95_ms_per_batch": 0.16523500000000002,
+            "repeats": 300
+          },
+          "predict": {
+            "median_ms_per_batch": 46.8564,
+            "median_us_per_url": 46856.4,
+            "p95_ms_per_batch": 61.402795000000005,
+            "repeats": 300
+          }
+        },
+        "t4/batch1024": {
+          "end_to_end": {
+            "median_ms_per_batch": 94.9613,
+            "median_us_per_url": 92.73564453124999,
+            "p95_ms_per_batch": 125.25328,
+            "repeats": 30
+          },
+          "extract": {
+            "median_ms_per_batch": 37.068,
+            "median_us_per_url": 36.19921875,
+            "p95_ms_per_batch": 54.43922,
+            "repeats": 30
+          },
+          "predict": {
+            "median_ms_per_batch": 62.79385,
+            "median_us_per_url": 61.322119140625,
+            "p95_ms_per_batch": 78.229775,
+            "repeats": 30
+          }
+        }
+      }
+    }
+  ],
+  "environment": {
+    "cpu_count_logical": 16,
+    "cpu_count_physical": 10,
+    "packages": {
+      "idna": "3.20",
+      "joblib": "1.5.3",
+      "lightgbm": "4.6.0",
+      "numpy": "2.2.6",
+      "pandas": "2.3.1",
+      "pyarrow": "21.0.0",
+      "shap": "0.49.1",
+      "sklearn": "1.7.2",
+      "yaml": "6.0.2"
+    },
+    "platform": "Windows-10-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
+    "python": "3.10.0",
+    "ram_gb": 31.73
+  },
+  "note": "seed-17 bundle of every final configuration",
+  "threads": 4,
+  "url_pool": "interleaved source-VAL URLs of A and B"
+}

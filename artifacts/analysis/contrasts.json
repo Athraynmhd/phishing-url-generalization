@@ -1,0 +1,921 @@
+{
+  "effect_threshold_f1_abs": 0.01,
+  "n_boot": 2000,
+  "note": "CIs are conditional on the fixed split and seed set; no familywise claim.",
+  "primary": [
+    {
+      "a": "STABLE_PI@matched",
+      "b": "MEAN_PI@matched",
+      "ci_high": 0.00029505764518254285,
+      "ci_low": -0.001206480106312651,
+      "delta": -0.00046781527686049856,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        16,
+        16,
+        16
+      ],
+      "k_b": [
+        16,
+        16,
+        16
+      ],
+      "largest_cluster_share": 0.0023313128621861054,
+      "median_cluster_size": 2.0,
+      "model": "RF",
+      "n_boot": 2000,
+      "n_domains": 2061,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        0.0,
+        0.002488817891789119,
+        -0.0038922637223706147
+      ],
+      "policy": "f1_max",
+      "source": "A",
+      "target": "B",
+      "unstable_interval": false
+    },
+    {
+      "a": "STABLE_PI@matched",
+      "b": "MEAN_PI@matched",
+      "ci_high": 0.000298468581962093,
+      "ci_low": -0.0007049045485404692,
+      "delta": -0.00022514839190890257,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        16,
+        16,
+        16
+      ],
+      "k_b": [
+        16,
+        16,
+        16
+      ],
+      "largest_cluster_share": 0.0023313128621861054,
+      "median_cluster_size": 2.0,
+      "model": "LGBM",
+      "n_boot": 2000,
+      "n_domains": 2061,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        0.0,
+        -0.0017613706683693442,
+        0.0010859254926426365
+      ],
+      "policy": "f1_max",
+      "source": "A",
+      "target": "B",
+      "unstable_interval": false
+    },
+    {
+      "a": "STABLE_PI@matched",
+      "b": "MEAN_PI@matched",
+      "ci_high": 0.06642322969457537,
+      "ci_low": 0.0510863692599807,
+      "delta": 0.05858798518806374,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        8,
+        8,
+        8
+      ],
+      "k_b": [
+        8,
+        8,
+        8
+      ],
+      "largest_cluster_share": 0.0006415053993371111,
+      "median_cluster_size": 1.0,
+      "model": "RF",
+      "n_boot": 2000,
+      "n_domains": 6447,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        0.0950826959887292,
+        0.0142836424492786,
+        0.06639761712618342
+      ],
+      "policy": "f1_max",
+      "source": "B",
+      "target": "A",
+      "unstable_interval": false
+    },
+    {
+      "a": "STABLE_PI@matched",
+      "b": "MEAN_PI@matched",
+      "ci_high": 0.08593915727100429,
+      "ci_low": 0.06913034822797896,
+      "delta": 0.077304759542141,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        8,
+        8,
+        8
+      ],
+      "k_b": [
+        8,
+        8,
+        8
+      ],
+      "largest_cluster_share": 0.0006415053993371111,
+      "median_cluster_size": 1.0,
+      "model": "LGBM",
+      "n_boot": 2000,
+      "n_domains": 6447,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        0.07339730162276259,
+        0.039004733285656346,
+        0.11951224371800406
+      ],
+      "policy": "f1_max",
+      "source": "B",
+      "target": "A",
+      "unstable_interval": false
+    }
+  ],
+  "secondary": [
+    {
+      "a": "STABLE_PI@budget",
+      "b": "ALL",
+      "ci_high": -0.002521684055569142,
+      "ci_low": -0.006080513487840916,
+      "delta": -0.004216505841509492,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        16,
+        16,
+        16
+      ],
+      "k_b": [
+        37,
+        37,
+        37
+      ],
+      "largest_cluster_share": 0.0023313128621861054,
+      "median_cluster_size": 2.0,
+      "model": "RF",
+      "n_boot": 2000,
+      "n_domains": 2061,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        -0.0007193336413853224,
+        -0.0024006552656070657,
+        -0.009529528617536087
+      ],
+      "policy": "f1_max",
+      "source": "A",
+      "target": "B",
+      "unstable_interval": false
+    },
+    {
+      "a": "MEAN_PI@budget",
+      "b": "ALL",
+      "ci_high": -0.002103805730705522,
+      "ci_low": -0.0054401763037898124,
+      "delta": -0.003748690564648993,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        16,
+        16,
+        16
+      ],
+      "k_b": [
+        37,
+        37,
+        37
+      ],
+      "largest_cluster_share": 0.0023313128621861054,
+      "median_cluster_size": 2.0,
+      "model": "RF",
+      "n_boot": 2000,
+      "n_domains": 2061,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        -0.0007193336413853224,
+        -0.004889473157396185,
+        -0.0056372648951654725
+      ],
+      "policy": "f1_max",
+      "source": "A",
+      "target": "B",
+      "unstable_interval": false
+    },
+    {
+      "a": "STABLE_PI@budget",
+      "b": "MEAN_PI@budget",
+      "ci_high": 0.00029505764518254285,
+      "ci_low": -0.001206480106312651,
+      "delta": -0.00046781527686049856,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        16,
+        16,
+        16
+      ],
+      "k_b": [
+        16,
+        16,
+        16
+      ],
+      "largest_cluster_share": 0.0023313128621861054,
+      "median_cluster_size": 2.0,
+      "model": "RF",
+      "n_boot": 2000,
+      "n_domains": 2061,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        0.0,
+        0.002488817891789119,
+        -0.0038922637223706147
+      ],
+      "policy": "f1_max",
+      "source": "A",
+      "target": "B",
+      "unstable_interval": false
+    },
+    {
+      "a": "STABLE_PI@matched",
+      "b": "MEAN_PI@matched",
+      "ci_high": 0.0003165370514224961,
+      "ci_low": -0.001995093098935183,
+      "delta": -0.0008705533164028815,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        16,
+        16,
+        16
+      ],
+      "k_b": [
+        16,
+        16,
+        16
+      ],
+      "largest_cluster_share": 0.0006415053993371111,
+      "median_cluster_size": 1.0,
+      "model": "RF",
+      "n_boot": 2000,
+      "n_domains": 6447,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        0.0,
+        -0.0009700816051594341,
+        -0.0016415783440492104
+      ],
+      "policy": "f1_max",
+      "source": "A",
+      "target": "A",
+      "unstable_interval": false
+    },
+    {
+      "a": "STABLE_PI@budget",
+      "b": "ALL",
+      "ci_high": 0.0038290455935020592,
+      "ci_low": -0.0013867895819414924,
+      "delta": 0.0011208117877627248,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        16,
+        16,
+        16
+      ],
+      "k_b": [
+        37,
+        37,
+        37
+      ],
+      "largest_cluster_share": 0.0006415053993371111,
+      "median_cluster_size": 1.0,
+      "model": "RF",
+      "n_boot": 2000,
+      "n_domains": 6447,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        9.784662165723823e-05,
+        0.002732415990712833,
+        0.0005321727509181029
+      ],
+      "policy": "f1_max",
+      "source": "A",
+      "target": "A",
+      "unstable_interval": false
+    },
+    {
+      "a": "STABLE_PI@budget",
+      "b": "ALL",
+      "ci_high": -0.004362685509117941,
+      "ci_low": -0.009209776540939327,
+      "delta": -0.006650531701901108,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        16,
+        16,
+        16
+      ],
+      "k_b": [
+        37,
+        37,
+        37
+      ],
+      "largest_cluster_share": 0.0023313128621861054,
+      "median_cluster_size": 2.0,
+      "model": "LGBM",
+      "n_boot": 2000,
+      "n_domains": 2061,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        -0.00701250686611532,
+        -0.00701250686611532,
+        -0.0059265813734726835
+      ],
+      "policy": "f1_max",
+      "source": "A",
+      "target": "B",
+      "unstable_interval": false
+    },
+    {
+      "a": "MEAN_PI@budget",
+      "b": "ALL",
+      "ci_high": -0.004144067431098621,
+      "ci_low": -0.008885238143005661,
+      "delta": -0.006425383309992205,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        16,
+        16,
+        16
+      ],
+      "k_b": [
+        37,
+        37,
+        37
+      ],
+      "largest_cluster_share": 0.0023313128621861054,
+      "median_cluster_size": 2.0,
+      "model": "LGBM",
+      "n_boot": 2000,
+      "n_domains": 2061,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        -0.00701250686611532,
+        -0.005251136197745976,
+        -0.00701250686611532
+      ],
+      "policy": "f1_max",
+      "source": "A",
+      "target": "B",
+      "unstable_interval": false
+    },
+    {
+      "a": "STABLE_PI@budget",
+      "b": "MEAN_PI@budget",
+      "ci_high": 0.000298468581962093,
+      "ci_low": -0.0007049045485404692,
+      "delta": -0.00022514839190890257,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        16,
+        16,
+        16
+      ],
+      "k_b": [
+        16,
+        16,
+        16
+      ],
+      "largest_cluster_share": 0.0023313128621861054,
+      "median_cluster_size": 2.0,
+      "model": "LGBM",
+      "n_boot": 2000,
+      "n_domains": 2061,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        0.0,
+        -0.0017613706683693442,
+        0.0010859254926426365
+      ],
+      "policy": "f1_max",
+      "source": "A",
+      "target": "B",
+      "unstable_interval": false
+    },
+    {
+      "a": "STABLE_PI@matched",
+      "b": "MEAN_PI@matched",
+      "ci_high": 0.0003780793447308905,
+      "ci_low": -0.0011504228581476826,
+      "delta": -0.0003927169885521072,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        16,
+        16,
+        16
+      ],
+      "k_b": [
+        16,
+        16,
+        16
+      ],
+      "largest_cluster_share": 0.0006415053993371111,
+      "median_cluster_size": 1.0,
+      "model": "LGBM",
+      "n_boot": 2000,
+      "n_domains": 6447,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        0.0,
+        -0.0015993083478458292,
+        0.0004211573821895076
+      ],
+      "policy": "f1_max",
+      "source": "A",
+      "target": "A",
+      "unstable_interval": false
+    },
+    {
+      "a": "STABLE_PI@budget",
+      "b": "ALL",
+      "ci_high": 0.0011578838542131938,
+      "ci_low": -0.004718111328497412,
+      "delta": -0.001884259252987408,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        16,
+        16,
+        16
+      ],
+      "k_b": [
+        37,
+        37,
+        37
+      ],
+      "largest_cluster_share": 0.0006415053993371111,
+      "median_cluster_size": 1.0,
+      "model": "LGBM",
+      "n_boot": 2000,
+      "n_domains": 6447,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        -0.0020246450470505772,
+        -0.0020246450470505772,
+        -0.0016034876648610696
+      ],
+      "policy": "f1_max",
+      "source": "A",
+      "target": "A",
+      "unstable_interval": false
+    },
+    {
+      "a": "STABLE_PI@budget",
+      "b": "ALL",
+      "ci_high": -0.03302742429000383,
+      "ci_low": -0.04954196888969995,
+      "delta": -0.04154115609559883,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        8,
+        8,
+        8
+      ],
+      "k_b": [
+        37,
+        37,
+        37
+      ],
+      "largest_cluster_share": 0.0006415053993371111,
+      "median_cluster_size": 1.0,
+      "model": "RF",
+      "n_boot": 2000,
+      "n_domains": 6447,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        -0.0480578706750745,
+        -0.02709314588055045,
+        -0.04947245173117154
+      ],
+      "policy": "f1_max",
+      "source": "B",
+      "target": "A",
+      "unstable_interval": false
+    },
+    {
+      "a": "MEAN_PI@budget",
+      "b": "ALL",
+      "ci_high": -0.09162112561734659,
+      "ci_low": -0.10850081131605566,
+      "delta": -0.10012914128366257,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        8,
+        8,
+        8
+      ],
+      "k_b": [
+        37,
+        37,
+        37
+      ],
+      "largest_cluster_share": 0.0006415053993371111,
+      "median_cluster_size": 1.0,
+      "model": "RF",
+      "n_boot": 2000,
+      "n_domains": 6447,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        -0.1431405666638037,
+        -0.04137678832982905,
+        -0.11587006885735496
+      ],
+      "policy": "f1_max",
+      "source": "B",
+      "target": "A",
+      "unstable_interval": false
+    },
+    {
+      "a": "STABLE_PI@budget",
+      "b": "MEAN_PI@budget",
+      "ci_high": 0.06642322969457537,
+      "ci_low": 0.0510863692599807,
+      "delta": 0.05858798518806374,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        8,
+        8,
+        8
+      ],
+      "k_b": [
+        8,
+        8,
+        8
+      ],
+      "largest_cluster_share": 0.0006415053993371111,
+      "median_cluster_size": 1.0,
+      "model": "RF",
+      "n_boot": 2000,
+      "n_domains": 6447,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        0.0950826959887292,
+        0.0142836424492786,
+        0.06639761712618342
+      ],
+      "policy": "f1_max",
+      "source": "B",
+      "target": "A",
+      "unstable_interval": false
+    },
+    {
+      "a": "STABLE_PI@matched",
+      "b": "MEAN_PI@matched",
+      "ci_high": 0.007559669832777697,
+      "ci_low": -0.0008501101858523522,
+      "delta": 0.0030694158876968616,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        8,
+        8,
+        8
+      ],
+      "k_b": [
+        8,
+        8,
+        8
+      ],
+      "largest_cluster_share": 0.0023313128621861054,
+      "median_cluster_size": 2.0,
+      "model": "RF",
+      "n_boot": 2000,
+      "n_domains": 2061,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        0.0031962401455686296,
+        0.004029136481373041,
+        0.0019828710361489144
+      ],
+      "policy": "f1_max",
+      "source": "B",
+      "target": "B",
+      "unstable_interval": false
+    },
+    {
+      "a": "STABLE_PI@budget",
+      "b": "ALL",
+      "ci_high": -0.006361683843838004,
+      "ci_low": -0.017253468517495558,
+      "delta": -0.011701487777415753,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        8,
+        8,
+        8
+      ],
+      "k_b": [
+        37,
+        37,
+        37
+      ],
+      "largest_cluster_share": 0.0023313128621861054,
+      "median_cluster_size": 2.0,
+      "model": "RF",
+      "n_boot": 2000,
+      "n_domains": 2061,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        -0.012605482724688089,
+        -0.00990564200037336,
+        -0.012593338607185811
+      ],
+      "policy": "f1_max",
+      "source": "B",
+      "target": "B",
+      "unstable_interval": false
+    },
+    {
+      "a": "STABLE_PI@budget",
+      "b": "ALL",
+      "ci_high": -0.08460493280292929,
+      "ci_low": -0.10091777203709018,
+      "delta": -0.09276722087578977,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        8,
+        8,
+        8
+      ],
+      "k_b": [
+        37,
+        37,
+        37
+      ],
+      "largest_cluster_share": 0.0006415053993371111,
+      "median_cluster_size": 1.0,
+      "model": "LGBM",
+      "n_boot": 2000,
+      "n_domains": 6447,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        -0.09272776226275758,
+        -0.09272776226275758,
+        -0.09284613810185416
+      ],
+      "policy": "f1_max",
+      "source": "B",
+      "target": "A",
+      "unstable_interval": false
+    },
+    {
+      "a": "MEAN_PI@budget",
+      "b": "ALL",
+      "ci_high": -0.15878991397848252,
+      "ci_low": -0.1811492856447968,
+      "delta": -0.17007198041793078,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        8,
+        8,
+        8
+      ],
+      "k_b": [
+        37,
+        37,
+        37
+      ],
+      "largest_cluster_share": 0.0006415053993371111,
+      "median_cluster_size": 1.0,
+      "model": "LGBM",
+      "n_boot": 2000,
+      "n_domains": 6447,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        -0.16612506388552017,
+        -0.13173249554841393,
+        -0.21235838181985822
+      ],
+      "policy": "f1_max",
+      "source": "B",
+      "target": "A",
+      "unstable_interval": false
+    },
+    {
+      "a": "STABLE_PI@budget",
+      "b": "MEAN_PI@budget",
+      "ci_high": 0.08593915727100429,
+      "ci_low": 0.06913034822797896,
+      "delta": 0.077304759542141,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        8,
+        8,
+        8
+      ],
+      "k_b": [
+        8,
+        8,
+        8
+      ],
+      "largest_cluster_share": 0.0006415053993371111,
+      "median_cluster_size": 1.0,
+      "model": "LGBM",
+      "n_boot": 2000,
+      "n_domains": 6447,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        0.07339730162276259,
+        0.039004733285656346,
+        0.11951224371800406
+      ],
+      "policy": "f1_max",
+      "source": "B",
+      "target": "A",
+      "unstable_interval": false
+    },
+    {
+      "a": "STABLE_PI@matched",
+      "b": "MEAN_PI@matched",
+      "ci_high": 0.00894043156267826,
+      "ci_low": 0.00023607910720382198,
+      "delta": 0.004357069353498999,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        8,
+        8,
+        8
+      ],
+      "k_b": [
+        8,
+        8,
+        8
+      ],
+      "largest_cluster_share": 0.0023313128621861054,
+      "median_cluster_size": 2.0,
+      "model": "LGBM",
+      "n_boot": 2000,
+      "n_domains": 2061,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        0.003941270914246453,
+        0.0056614415277317365,
+        0.0034684956185188076
+      ],
+      "policy": "f1_max",
+      "source": "B",
+      "target": "B",
+      "unstable_interval": false
+    },
+    {
+      "a": "STABLE_PI@budget",
+      "b": "ALL",
+      "ci_high": -0.006365299575888621,
+      "ci_low": -0.016958917975495934,
+      "delta": -0.01184589660196611,
+      "identical_bundle": [
+        false,
+        false,
+        false
+      ],
+      "invalid_fraction": 0.0,
+      "k_a": [
+        8,
+        8,
+        8
+      ],
+      "k_b": [
+        37,
+        37,
+        37
+      ],
+      "largest_cluster_share": 0.0023313128621861054,
+      "median_cluster_size": 2.0,
+      "model": "LGBM",
+      "n_boot": 2000,
+      "n_domains": 2061,
+      "n_invalid": 0,
+      "per_seed_delta": [
+        -0.010548570174587657,
+        -0.010548570174587657,
+        -0.014440549456723017
+      ],
+      "policy": "f1_max",
+      "source": "B",
+      "target": "B",
+      "unstable_interval": false
+    }
+  ]
+}

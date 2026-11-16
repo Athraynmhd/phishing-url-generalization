@@ -1,0 +1,53 @@
+{
+  "active_benchmark_sha256": {
+    "benchmark.csv": "6096c9399b2916f1c91b21d9797f61812a908ce2b3be670759a90cca1b7260b6",
+    "benchmark.json": "0f76a63676bf0ded78c7b4977fa0351ba620e83b26cda7b9934bb04c46543564"
+  },
+  "additivity_failures": 4,
+  "additivity_tolerance": 1e-06,
+  "deterministic_sha256": {
+    "config_ci.csv": "57f86159f7b0c1c1a5860f62d9f7d61631b05abc13f0fdba8db78f594dbb1e3b",
+    "contrasts.json": "30c8ecbbf539e47d21ff72011c0b44e15c9282f08033f0b2f7c8be5e8b00ebe3",
+    "selection.json": "edf6b4ed8202d9dddfdd724ad66aac723e68c884a7f4a332f66e00e38cdad775",
+    "summary.csv": "babf782373617069fc06e94ddc427b52f8cc3afdfc98120d93d46ff6724a6971",
+    "transfer_drop.csv": "0144e88618a19b16ac6bbeeaadd288c931ea8f24ec9fe593ab554e61c65f955e"
+  },
+  "freeze_hash": "069912e332d788120e4ba358b1f8cd3dc5f0903d783249a87567ce00d6efc8da",
+  "individual_test_labels_read": false,
+  "max_additivity_error": 0.0033333434800614237,
+  "method": "verified reuse of saved SHAP; active benchmark retained",
+  "prediction_sha256": "343ba41e8153dfa866fa9a74f96e95d9ad6d27ce1b78d4d835b5ed4a59cb9551",
+  "reused_sha256": {
+    "shap/A-LGBM-ALL-k37-s17_source.npz": "88d36a76cf9a505da77714eebc16f835e8ac41bbf22cc0b4615b91545bb26e5b",
+    "shap/A-LGBM-ALL-k37-s17_target.npz": "393dff651f132ce15c169fa8ab6947ee686c48c5fb2ff02f47599ea9ccd5ac0e",
+    "shap/A-LGBM-ALL-k37-s29_source.npz": "88d36a76cf9a505da77714eebc16f835e8ac41bbf22cc0b4615b91545bb26e5b",
+    "shap/A-LGBM-ALL-k37-s43_source.npz": "88d36a76cf9a505da77714eebc16f835e8ac41bbf22cc0b4615b91545bb26e5b",
+    "shap/A-LGBM-STABLE_PI-k16-s17_source.npz": "a2d7433a94cfaa6cd0526343e591ddee4e32f2f38caea13dccdc227e694a494a",
+    "shap/A-LGBM-STABLE_PI-k16-s17_target.npz": "0b588e33e88badfb13998cddcba5eada19a6fb8685b399e57465be7dfe23566b",
+    "shap/A-RF-ALL-k37-s17_source.npz": "4e04973011186e89506156b5fe78cd6ee82620010c66566daae0b31ff6de3a1a",
+    "shap/A-RF-ALL-k37-s17_target.npz": "d99ef50472abf596b831956c9a4e54c90b5c1fba7de097fcca597e7ccf471f0e",
+    "shap/A-RF-ALL-k37-s29_source.npz": "938d08786bf8bcb2ffde83253288db00a2f27af0318c172e5e16ae96d1d7df2e",
+    "shap/A-RF-ALL-k37-s43_source.npz": "80d3256bf0bfdfbd6fa5f905eda5d1bade55d50ea7b06a37acd038e2db1d5980",
+    "shap/A-RF-STABLE_PI-k16-s17_source.npz": "63f8642fcd5a68961456eed1ef5ec9a3581446c65c9fd165849d77d8766a8f00",
+    "shap/A-RF-STABLE_PI-k16-s17_target.npz": "e1900cb5a5af5a9d5c6ad4bdfae09f47f35c0b5dfcba21f0016ceeb64f7d3a3e",
+    "shap/B-LGBM-ALL-k37-s17_source.npz": "d8a970069e3c3b4cff9c46ca1f4b7d15e186f053f8d518b9080dba4a684b3e37",
+    "shap/B-LGBM-ALL-k37-s17_target.npz": "26c5c753203c6deeb366fe2581a58c4e1e821f3a5854bb82d0f93312ce1f39cb",
+    "shap/B-LGBM-ALL-k37-s29_source.npz": "d8a970069e3c3b4cff9c46ca1f4b7d15e186f053f8d518b9080dba4a684b3e37",
+    "shap/B-LGBM-ALL-k37-s43_source.npz": "d8a970069e3c3b4cff9c46ca1f4b7d15e186f053f8d518b9080dba4a684b3e37",
+    "shap/B-LGBM-STABLE_PI-k8-s17_source.npz": "a96076721e72926130897e605d7e38425615d22136ee3363ccbca48a22466f76",
+    "shap/B-LGBM-STABLE_PI-k8-s17_target.npz": "8138139a82e6f0e8f53d28af5957a9c08e914171cd1988648eb073070bc9b498",
+    "shap/B-RF-ALL-k37-s17_source.npz": "a983fb3951a1774fe2e79a4621f0a6e9c03e41dafc840944510222dd4d720b73",
+    "shap/B-RF-ALL-k37-s17_target.npz": "2315a6120752d2762a18d7eeb463acfa65670370c4ba6e16daa9fcb5f521f211",
+    "shap/B-RF-ALL-k37-s29_source.npz": "730174edae1fa86404deaa8ef90fa7e93328399f1a838b541f295a34ab9c32a6",
+    "shap/B-RF-ALL-k37-s43_source.npz": "33a0105f8b34c71de240fbe924fab97adfb02c2b2abb64143a8ed0d24fcc0254",
+    "shap/B-RF-STABLE_PI-k8-s17_source.npz": "c52b8a2741f3c19f1f17d3bc266d6317d8211b0f0bd590fd9947586efa0a64f0",
+    "shap/B-RF-STABLE_PI-k8-s17_target.npz": "e73b1988bfd9cefa551d7ae69c06df73f22eb86ba97223433276a92c8780492c",
+    "shap_compare.csv": "2651dc16e6544133aed378708f23fa9563087d0729ded074530e933b6e4da3a0",
+    "shap_mean_abs.csv": "8c2285361bfadc1fdd27e256e0287130dc72a1c902cd41f055e38a07d2a0f5dc",
+    "shap_meta.json": "265b917680282d2e2955a52d65dcdfd9556593dea626ee18ff4d81748ff028b6",
+    "shap_summary.csv": "1c303faefca1ec724ffc11cab75748b66bfa2b910a51c0b2d22f1823b20f0a01"
+  },
+  "run_id": "eval-069912e332d7",
+  "shap_arrays_checked": 24,
+  "source": "artifacts/analysis_run1_contaminated_benchmark"
+}

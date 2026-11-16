@@ -1,0 +1,11 @@
+{
+  "status": "passed",
+  "history_scope": "HEAD only; local refs/codex snapshots are not pushed",
+  "candidate_files": 217,
+  "total_bytes": 3869776,
+  "candidate_credential_hits": [],
+  "history_credential_hits": [],
+  "history_forbidden_paths": [],
+  "history_large_blobs": [],
+  "fixture_exception": "reserved example.com user:pw parser fixtures only"
+}

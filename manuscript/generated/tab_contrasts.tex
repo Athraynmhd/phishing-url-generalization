@@ -1,0 +1,23 @@
+\begin{tabular}{lllcccc}
+\toprule
+Cell & Model & Contrast & $k$ & $\Delta$F1 & 95\% CI & per seed \\
+\midrule
+A$\rightarrow$B & RF & STABLE vs MEAN (matched $k$) & 16/16/16 vs 16/16/16 & -0.000 & [-0.001, +0.000] & +0.000 +0.002 -0.004 \\
+A$\rightarrow$B & LGBM & STABLE vs MEAN (matched $k$) & 16/16/16 vs 16/16/16 & -0.000 & [-0.001, +0.000] & +0.000 -0.002 +0.001 \\
+B$\rightarrow$A & RF & STABLE vs MEAN (matched $k$) & 8/8/8 vs 8/8/8 & +0.059 & [+0.051, +0.066] & +0.095 +0.014 +0.066 \\
+B$\rightarrow$A & LGBM & STABLE vs MEAN (matched $k$) & 8/8/8 vs 8/8/8 & +0.077 & [+0.069, +0.086] & +0.073 +0.039 +0.120 \\
+\midrule
+A$\rightarrow$B & RF & STABLE vs ALL & 16/16/16 vs 37/37/37 & -0.004 & [-0.006, -0.003] & -0.001 -0.002 -0.010 \\
+A$\rightarrow$B & RF & MEAN vs ALL & 16/16/16 vs 37/37/37 & -0.004 & [-0.005, -0.002] & -0.001 -0.005 -0.006 \\
+A$\rightarrow$B & RF & STABLE vs MEAN (budget $k$) & 16/16/16 vs 16/16/16 & -0.000 & [-0.001, +0.000] & +0.000 +0.002 -0.004 \\
+A$\rightarrow$B & LGBM & STABLE vs ALL & 16/16/16 vs 37/37/37 & -0.007 & [-0.009, -0.004] & -0.007 -0.007 -0.006 \\
+A$\rightarrow$B & LGBM & MEAN vs ALL & 16/16/16 vs 37/37/37 & -0.006 & [-0.009, -0.004] & -0.007 -0.005 -0.007 \\
+A$\rightarrow$B & LGBM & STABLE vs MEAN (budget $k$) & 16/16/16 vs 16/16/16 & -0.000 & [-0.001, +0.000] & +0.000 -0.002 +0.001 \\
+B$\rightarrow$A & RF & STABLE vs ALL & 8/8/8 vs 37/37/37 & -0.042 & [-0.050, -0.033] & -0.048 -0.027 -0.049 \\
+B$\rightarrow$A & RF & MEAN vs ALL & 8/8/8 vs 37/37/37 & -0.100 & [-0.109, -0.092] & -0.143 -0.041 -0.116 \\
+B$\rightarrow$A & RF & STABLE vs MEAN (budget $k$) & 8/8/8 vs 8/8/8 & +0.059 & [+0.051, +0.066] & +0.095 +0.014 +0.066 \\
+B$\rightarrow$A & LGBM & STABLE vs ALL & 8/8/8 vs 37/37/37 & -0.093 & [-0.101, -0.085] & -0.093 -0.093 -0.093 \\
+B$\rightarrow$A & LGBM & MEAN vs ALL & 8/8/8 vs 37/37/37 & -0.170 & [-0.181, -0.159] & -0.166 -0.132 -0.212 \\
+B$\rightarrow$A & LGBM & STABLE vs MEAN (budget $k$) & 8/8/8 vs 8/8/8 & +0.077 & [+0.069, +0.086] & +0.073 +0.039 +0.120 \\
+\bottomrule
+\end{tabular}

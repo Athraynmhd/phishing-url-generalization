@@ -2,6 +2,14 @@
 
 Versi 1.0 • 15 November 2026 • Status spesifikasi implementasi dan protokol kandidat yang harus dibekukan sebelum eksperimen final
 
+Catatan administratif 16 November 2026: instruksi pengguna terbaru memperbolehkan **dua paper utama**
+untuk tugas (D-26); ketentuan sepuluh paper pada lampiran lama tidak dipakai. Pengguna menegaskan
+usia 3–5 tahun tetap berlaku: **R15 (2022) dan R2 (2024)** menjadi paper utama aktif pada audit
+publikasi D-33, menggantikan pasangan sementara R2/R5 (D-29). R1 (2019) hanya provenance internal
+asal EBBU; bibliography aktif mengikuti pembatasan umur pada `PRD (1).md` v1.1. Satu jurnal per classifier
+tidak tercantum dalam lampiran yang diterima. Rincian kepatuhan usia paper dan posisi kontribusi ada di
+`docs/project_positioning.md`. Catatan ini memperjelas deliverable, tanpa mengubah eksperimen beku v1.
+
 ## 1 Keputusan dan tujuan
 
 Bangun paket riset Python berbasis CLI untuk membandingkan Random Forest dan LightGBM pada EBBU-2017 dan HISPAR–Phishstats. Terapkan tiga kondisi fitur: seluruh fitur, seleksi konvensional, dan seleksi berbasis kestabilan sumber. Uji secara internal dan lintas dataset dua arah. Ukur kualitas deteksi, penurunan transfer, biaya komputasi, serta atribusi model. Implementasi ditujukan untuk pengembangan dengan agent AI di VS Code, dengan keputusan ilmiah, kontrak data, pengujian, serta jejak hasil yang eksplisit.

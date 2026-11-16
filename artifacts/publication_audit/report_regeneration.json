@@ -1,0 +1,14 @@
+{
+  "same_tables_macros_provenance": {
+    "feature_legend.tex": true,
+    "macros.tex": true,
+    "provenance.csv": true,
+    "tab_attrition.tex": true,
+    "tab_contrasts.tex": true,
+    "tab_cost.tex": true,
+    "tab_main.tex": true,
+    "tab_selection.tex": true,
+    "tab_shap.tex": true,
+    "tab_splits.tex": true
+  }
+}

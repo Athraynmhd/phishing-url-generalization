@@ -6,11 +6,12 @@ from __future__ import annotations
 
 import argparse
 import copy
-import shutil
+import datetime as dt
 import sys
+import uuid
 from pathlib import Path
 
-from .common import GateError, Paths, effective_threads, environment_info, load_yaml, sha256_file, write_json
+from .common import GateError, Paths, effective_threads, environment_info, load_yaml, read_json, sha256_file, write_json
 
 ROOT = Path.cwd()
 
@@ -18,6 +19,25 @@ ROOT = Path.cwd()
 def _cfg(args) -> tuple[dict, Paths]:
     cfg = load_yaml(args.config)
     return cfg, Paths.from_config(cfg, ROOT)
+
+
+def _before_freeze(paths: Paths, command: str) -> None:
+    if paths.freeze.exists():
+        raise GateError(f"[{command}] freeze exists: preserve v1 inputs; use a new protocol/workspace for changes")
+
+
+def _empty_output(folder: Path, command: str) -> None:
+    if folder.exists() and any(folder.iterdir()):
+        raise GateError(f"[{command}] output already exists at {folder}; preserve completed/failed runs")
+
+
+def _new_smoke_root() -> Path:
+    """Keep every failed/completed synthetic run; never recursively delete old evidence."""
+    base = ROOT / "artifacts" / "smoke"
+    if not base.exists():
+        return base
+    stamp = dt.datetime.now(dt.timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
+    return ROOT / "artifacts" / "smoke_runs" / f"{stamp}-{uuid.uuid4().hex[:8]}"
 
 
 def provenance(paths: Paths) -> dict:
@@ -36,12 +56,16 @@ def provenance(paths: Paths) -> dict:
 def cmd_acquire(args):
     from .acquire import acquire
     cfg = load_yaml(args.config)
-    acquire(Path(args.registry), Paths.from_config(cfg, ROOT).raw)
+    paths = Paths.from_config(cfg, ROOT)
+    _before_freeze(paths, "acquire")
+    acquire(Path(args.registry), paths.raw)
 
 
 def cmd_audit(args):
     from .prepare import run_audit
     cfg, paths = _cfg(args)
+    _before_freeze(paths, "audit")
+    _empty_output(paths.processed, "audit")
     rep = run_audit(cfg, load_yaml(args.registry), paths)
     print(f"[audit] written {paths.artifacts / 'audit.json'}; warnings: {rep['warnings'] or 'none'}")
 
@@ -49,6 +73,10 @@ def cmd_audit(args):
 def cmd_prepare(args):
     from .prepare import run_prepare
     cfg, paths = _cfg(args)
+    _before_freeze(paths, "prepare")
+    for name in ("splits.parquet", "dev_features.parquet", "test_vault"):
+        if (paths.processed / name).exists():
+            raise GateError(f"[prepare] existing output {name}; preserve the previous run")
     rep = run_prepare(cfg, paths)
     for k, v in rep["partitions"].items():
         print(f"[prepare] {k}: n={v['n']} groups={v['groups']} frac={v['frac']:.3f} prevalence={v['prevalence']:.3f}")
@@ -59,11 +87,8 @@ def cmd_develop(args):
     from .prepare import load_dev
     cfg, paths = _cfg(args)
     out = paths.dev / args.source
-    if (out / "develop.json").exists() and not args.overwrite:
-        raise GateError(f"{out} already developed; pass --overwrite to redo (before freeze only)")
-    if paths.freeze.exists():
-        raise GateError("a freeze manifest exists; development after freeze requires protocol_v2")
-    shutil.rmtree(out, ignore_errors=True)
+    _before_freeze(paths, "develop")
+    _empty_output(out, "develop")
     develop_source(args.source, load_dev(paths, args.source, "FIT"), load_dev(paths, args.source, "VAL"), cfg,
                    effective_threads(cfg), out, provenance=provenance(paths))
 
@@ -71,6 +96,7 @@ def cmd_develop(args):
 def cmd_freeze(args):
     from .freeze import build_freeze
     cfg, paths = _cfg(args)
+    _before_freeze(paths, "freeze")
     fr = build_freeze(Path(args.config), Path(args.registry), paths, args.approved_by, cfg)
     print(f"[freeze] {paths.freeze} hash={fr['freeze_hash']} files={len(fr['body']['file_hashes'])} "
           f"bundles={len(fr['body']['plan'])} approved_by={fr['approved_by']}")
@@ -79,19 +105,34 @@ def cmd_freeze(args):
 def cmd_evaluate(args):
     from .evaluation import run_evaluation
     cfg, paths = _cfg(args)
+    _empty_output(paths.eval, "evaluate")
     doc = run_evaluation(Path(args.freeze), paths)
     print(f"[evaluate] {len(doc['metrics'])} metric rows -> {paths.eval}")
 
 
 def cmd_analyze(args):
-    from .analysis import run_analysis
-    cfg, paths = _cfg(args)
-    run_analysis(Path(args.freeze), cfg, paths, skip_shap=args.skip_shap, skip_benchmark=args.skip_benchmark)
+    if getattr(args, "exploratory_correction", False):
+        from .corrections.analysis import run_correction
+        cfg, paths = _cfg(args)
+        if getattr(args, "skip_shap", False):
+            raise GateError("The exploratory correction validates SHAP; --skip-shap is incompatible")
+        return run_correction(paths, cfg, workers=getattr(args, "jobs", 4))
+    # Frozen legacy analysis reads individual TEST labels outside evaluation.py.
+    # Do not silently execute it on scientific data; presentation/audits use saved aggregates.
+    raise GateError("real-data analyze disabled: frozen legacy TEST-label access violates the loader policy; "
+                    "use saved artefacts and notebooks/audit_publication.py. A corrected scientific analysis "
+                    "requires protocol v2/new holdout or explicitly exploratory outputs")
 
 
 def cmd_report(args):
     from .reporting import run_report
     cfg, paths = _cfg(args)
+    from .freeze import verify_freeze
+    from .nbviz import verify_saved_evaluation
+    frozen = verify_freeze(Path(args.freeze), paths.root)
+    verify_saved_evaluation(paths, frozen)
+    if read_json(paths.analysis / "results_registry.json")["freeze_hash"] != frozen["freeze_hash"]:
+        raise GateError("analysis belongs to another freeze")
     run_report(cfg, paths, ROOT / "manuscript")
 
 
@@ -108,8 +149,7 @@ def cmd_smoke(args):
     cfg["statistics"]["bootstrap_replicates"] = 200
     cfg["benchmark"].update({"warmup": 2, "repeats": 5})
     cfg["explain"].update({"background": 20, "n_source": 40, "n_target": 40})
-    root = ROOT / "artifacts" / "smoke"
-    shutil.rmtree(root, ignore_errors=True)
+    root = _new_smoke_root()
     (root / "configs").mkdir(parents=True)
     cfgp = root / "configs" / "protocol.yaml"
     import yaml
@@ -125,6 +165,7 @@ def cmd_smoke(args):
     run_analysis(paths.freeze, cfg, paths)
     write_json(root / "SYNTHETIC_NOT_A_RESULT.json", {"note": "synthetic smoke run; never cite"})
     print(f"[smoke] OK - synthetic pipeline completed in {root}")
+    return root
 
 
 def main(argv=None) -> int:
@@ -153,6 +194,8 @@ def main(argv=None) -> int:
     a = add("analyze", cmd_analyze, freeze=True)
     a.add_argument("--skip-shap", action="store_true")
     a.add_argument("--skip-benchmark", action="store_true")
+    a.add_argument("--exploratory-correction", action="store_true", help="Run the label-free SHAP correction in a new output directory")
+    a.add_argument("--jobs", type=int, default=4, help="Parallel workers for exploratory correction")
     add("report", cmd_report, freeze=True)
     s = add("smoke", cmd_smoke)
     s.add_argument("--synthetic", action="store_true", required=True)

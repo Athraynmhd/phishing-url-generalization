@@ -1,0 +1,22 @@
+{
+  "status": "passed",
+  "date": "2026-11-16",
+  "repository": "https://github.com/Athraynmhd/phishing-url-generalization",
+  "visibility": "private",
+  "pytest": {
+    "passed": 77,
+    "seconds": 583.33,
+    "log": "artifacts/github_release/pytest.log"
+  },
+  "frozen_v1_verified": true,
+  "freeze_sha256": "bca6dfe52798c10299253d4252268515dccf540ead816b88886a2d77d46a0f74",
+  "ignored_path_checks": 13,
+  "included_path_checks": 7,
+  "line_endings": "preserve exact bytes through .gitattributes",
+  "notebook_code_cells": 48,
+  "stored_notebook_errors": 0,
+  "new_clone_requires_local_experiment_artifacts": true,
+  "test_labels_read_for_release_preparation": false,
+  "local_failed_runs_preserved": true,
+  "third_party_full_texts_excluded": true
+}

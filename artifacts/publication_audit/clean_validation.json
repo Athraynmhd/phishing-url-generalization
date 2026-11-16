@@ -1,0 +1,26 @@
+{
+  "base_prefix": "C:\\Program Files\\Python310",
+  "full_fresh_refit_performed": false,
+  "isolated_prefix": "D:\\S2-AI\\SEMESTER-1\\Pemrograman Untuk Sains Data Dan Kecerdasan Artificial\\UAS\\PROJECT\\ex\\artifacts\\publication_audit\\clean_env",
+  "notebook_cells": 48,
+  "notebook_kernel_executable_verified": true,
+  "python_executable": "D:\\S2-AI\\SEMESTER-1\\Pemrograman Untuk Sains Data Dan Kecerdasan Artificial\\UAS\\PROJECT\\ex\\artifacts\\publication_audit\\clean_env\\Scripts\\python.exe",
+  "requirements_sha256": {
+    "requirements-audit.txt": "e989df3c6dad292c22c754b6ac85160d625ca4abff6db7135a8fe39eb132ff60",
+    "requirements-research.txt": "2fe5d61fb178219e76bd4927ed75bb634909d303e8b6c1afe6add71ea9777b08"
+  },
+  "research_distribution_pins_checked": 71,
+  "scope": [
+    "clean install",
+    "editable package",
+    "pip check",
+    "unit tests",
+    "frozen inference and VAL thresholds",
+    "all notebook cells"
+  ],
+  "score_audit_cycle": "cycle_20261115T235541780093Z.json",
+  "status": "passed",
+  "unit_test_seconds": 0.91,
+  "unit_tests_passed": 50,
+  "user_site_enabled": false
+}

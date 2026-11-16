@@ -1,22 +1,97 @@
+# Python, local environments, editors and credentials
 __pycache__/
-*.pyc
-.pytest_cache/
-# raw data & heavy results are not redistributed (licence unclear, see docs/sources.md)
-data/raw/**
-!data/raw/manifest.json
-data/processed/
-artifacts/runs/
-artifacts/dev/
-artifacts/eval/
-artifacts/analysis/
-artifacts/smoke/
-# private error analysis (contains raw URLs)
-artifacts/private/
-manuscript/*.aux
-manuscript/*.log
-manuscript/*.out
-manuscript/*.fls
-manuscript/*.fdb_latexmk
-manuscript/*.synctex.gz
-docs/literature/papers/*.pdf
+*.py[cod]
 *.egg-info/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+.venv/
+venv/
+env/
+.vscode/
+.idea/
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials.json
+secrets.json
+Thumbs.db
+.DS_Store
+
+# Dataset redistribution rights are unclear; retain acquisition provenance only.
+/data/**
+!/data/raw/
+!/data/raw/manifest.json
+
+# Research evidence is an explicit allowlist. Local models, per-record data,
+# SHAP input arrays, failed runs, environments and private error analysis stay local.
+/artifacts/**
+!/artifacts/audit.json
+!/artifacts/prepare.json
+!/artifacts/freeze.json
+!/artifacts/develop.log
+!/artifacts/pytest_prefreeze.log
+!/artifacts/analysis/
+!/artifacts/analysis/*.json
+!/artifacts/analysis/*.csv
+!/artifacts/eval/
+!/artifacts/eval/metrics.json
+!/artifacts/eval/thresholds.csv
+!/artifacts/corrections/
+!/artifacts/corrections/latest_shap.json
+!/artifacts/corrections/shap_*/
+!/artifacts/corrections/shap_*/*.json
+!/artifacts/corrections/shap_*/*.csv
+!/artifacts/corrections/shap_*/checks/
+!/artifacts/corrections/shap_*/checks/*.json
+!/artifacts/notebook_audit/
+!/artifacts/notebook_audit/execution*.json
+!/artifacts/notebook_audit/project_checks.json
+!/artifacts/publication_audit/
+!/artifacts/publication_audit/baseline.json
+!/artifacts/publication_audit/cycle_*.json
+!/artifacts/publication_audit/latest_cycle.json
+!/artifacts/publication_audit/submission_status*.json
+!/artifacts/publication_audit/dependency_snapshot*.json
+!/artifacts/publication_audit/clean_validation.json
+!/artifacts/publication_audit/final_file_checks.json
+!/artifacts/publication_audit/report_regeneration.json
+!/artifacts/publication_audit/shap_precision_diagnostic.json
+!/artifacts/publication_audit/source_checks.json
+!/artifacts/publication_corrections/
+!/artifacts/publication_corrections/access_check.json
+!/artifacts/publication_corrections/checks.json
+!/artifacts/publication_corrections/file_checks.json
+!/artifacts/publication_corrections/hp_encoding*.json
+!/artifacts/publication_corrections/manuscript_latest.json
+!/artifacts/publication_corrections/R2_fulltext_provenance.json
+!/artifacts/github_release/
+!/artifacts/github_release/preflight.json
+!/artifacts/github_release/validation.json
+
+# Third-party full texts and extracted copies are not part of this code release.
+/1-s2.0-S1389128624002305-main.pdf
+/docs/literature/papers/
+
+# Keep manuscript sources, generated numeric tables/figures and review PDFs.
+# Ignore compiler intermediates at every manuscript depth.
+/manuscript/build/
+*.aux
+*.log
+*.out
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.blg
+*.bbl
+# Selected test logs are research evidence.
+!/artifacts/develop.log
+!/artifacts/pytest_prefreeze.log
+!/artifacts/publication_audit/pytest.log
+!/artifacts/publication_corrections/pytest*.log
+!/artifacts/github_release/pytest.log

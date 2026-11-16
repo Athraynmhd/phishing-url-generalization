@@ -1,0 +1,500 @@
+{
+  "approved_by": "Claude agent on behalf of the author (user instruction 2026-11-15)",
+  "body": {
+    "file_hashes": {
+      "artifacts/audit.json": "9374a927edbdb6a29891a862ed1a26e90d91ad59aaa980fa82486f39950e3d37",
+      "artifacts/dev/A/bundles/A-LGBM-ALL-k37-s17.joblib": "41b27f53f1d673fca887f552c4131334f672bc1616f0b7ec59c761a3a0280e83",
+      "artifacts/dev/A/bundles/A-LGBM-ALL-k37-s17.json": "d9456d42c5a7b69f0b579716a8c4014c3425432bfebad5a75088efc2cc781538",
+      "artifacts/dev/A/bundles/A-LGBM-ALL-k37-s29.joblib": "6311a22fe6ac1bb2c6a963e622c3b34f0abb33a7275da673c37e002d5d0c820f",
+      "artifacts/dev/A/bundles/A-LGBM-ALL-k37-s29.json": "c91d23f32868d1df2634de30a0b515933f1e3eddb22d50902cad4e05aa0ceef1",
+      "artifacts/dev/A/bundles/A-LGBM-ALL-k37-s43.joblib": "d2b4323362fd2fba5827dc54ef6cca4fa1e2e6e6cfc16a2efc150e5df915f9ad",
+      "artifacts/dev/A/bundles/A-LGBM-ALL-k37-s43.json": "f7be3afa42c3472d2d7b1ffee7666a6cf08a1f78ac3aff6f62f9d20b55b7132b",
+      "artifacts/dev/A/bundles/A-LGBM-MEAN_PI-k16-s17.joblib": "95e9ecbaab8499786391f7457c66c470f4557f968cca88f3f5314a7f4326fef6",
+      "artifacts/dev/A/bundles/A-LGBM-MEAN_PI-k16-s17.json": "60bcbbd18e71242f285385215c4a72508ac1dc71823fe4091e49c2dec2fcdfd3",
+      "artifacts/dev/A/bundles/A-LGBM-MEAN_PI-k16-s29.joblib": "a31f3ecf496fb219ecc9316ccb25145d069daa2a01f6ebd3bfbc0270e0367819",
+      "artifacts/dev/A/bundles/A-LGBM-MEAN_PI-k16-s29.json": "5f7ee0308c79208c63d4128a3057edd0c5b012acf41578387a754d2bc031e995",
+      "artifacts/dev/A/bundles/A-LGBM-MEAN_PI-k16-s43.joblib": "1a59f5239b06ede2ca87f109532bfd767a840717b9d778c4fb3a0abe52dad831",
+      "artifacts/dev/A/bundles/A-LGBM-MEAN_PI-k16-s43.json": "f1db7c7216e87a9160629ca445b9aa4fe47ef27f3e5cb60323f672074b2b6a6b",
+      "artifacts/dev/A/bundles/A-LGBM-STABLE_PI-k16-s17.joblib": "95e9ecbaab8499786391f7457c66c470f4557f968cca88f3f5314a7f4326fef6",
+      "artifacts/dev/A/bundles/A-LGBM-STABLE_PI-k16-s17.json": "984dc90bfa0cdbdbafa989bc2227c868676484c7e1b6a6863b22589c3f9ee91a",
+      "artifacts/dev/A/bundles/A-LGBM-STABLE_PI-k16-s29.joblib": "cfa4db2ffa24deb0eb50de7de0ff9e6d8021b41c4884fefd64649684b8414b14",
+      "artifacts/dev/A/bundles/A-LGBM-STABLE_PI-k16-s29.json": "06534a4888d14b03f9e9bf6caece46d4b0c05527ff6aed2d1187deb0b2a0453e",
+      "artifacts/dev/A/bundles/A-LGBM-STABLE_PI-k16-s43.joblib": "35cb420a8f4d6bd28bb828dd1c9b95880e3a76bfb02a21fca3f4f1f681b2f295",
+      "artifacts/dev/A/bundles/A-LGBM-STABLE_PI-k16-s43.json": "4bc43780d6c2203ddb662b88e1b16ab075fb5cb844648f0816683d3580a3c418",
+      "artifacts/dev/A/bundles/A-RF-ALL-k37-s17.joblib": "125ea4ee701005f607bc985235f1106354bab9ee32b5b59fd655d2ffd2ce9531",
+      "artifacts/dev/A/bundles/A-RF-ALL-k37-s17.json": "8ab78d95e8a2b1697c04bf1b3b56570925c69f405e7b3feaaa8aebec8cb756cf",
+      "artifacts/dev/A/bundles/A-RF-ALL-k37-s29.joblib": "fbe83ea83bff27d41969f3a1adf4a5db287d31cfbf3f10310100710619475534",
+      "artifacts/dev/A/bundles/A-RF-ALL-k37-s29.json": "4e09d4657b5c012e43aec2270e5efafc0069db9b6ffa6f84039ca8cd95161e9e",
+      "artifacts/dev/A/bundles/A-RF-ALL-k37-s43.joblib": "07910b2b566469db74ba16039cb506cea9687d50076955657d38c5b6b4283a40",
+      "artifacts/dev/A/bundles/A-RF-ALL-k37-s43.json": "767a6237db1cc29e2e0c32c0f7d0c815375d29cb24db56059badb38bd9178233",
+      "artifacts/dev/A/bundles/A-RF-MEAN_PI-k16-s17.joblib": "a485bac276b3dabbc52099cbf72c32961781825de8970173b333fb34ba506b67",
+      "artifacts/dev/A/bundles/A-RF-MEAN_PI-k16-s17.json": "389cce985d730315aed73cc3604d3844c859db82249b558bb349dcb012aba300",
+      "artifacts/dev/A/bundles/A-RF-MEAN_PI-k16-s29.joblib": "22c6d1f75e4908bee44f2632c298b786da2bb78f12d449dea5a23cc0f2346217",
+      "artifacts/dev/A/bundles/A-RF-MEAN_PI-k16-s29.json": "501bb64fa20815fec24decf85321099f75db5881cf9fd4f08df3e1bc191c2dc0",
+      "artifacts/dev/A/bundles/A-RF-MEAN_PI-k16-s43.joblib": "99f430845a6c63f92c50234d2303bb209286b78c6e0f828127ef96f9c656b13e",
+      "artifacts/dev/A/bundles/A-RF-MEAN_PI-k16-s43.json": "33d37dde2a0ffa2f28b2282c23a1ea13143e4fe32fe7fefaaeba83a746f42fab",
+      "artifacts/dev/A/bundles/A-RF-STABLE_PI-k16-s17.joblib": "a485bac276b3dabbc52099cbf72c32961781825de8970173b333fb34ba506b67",
+      "artifacts/dev/A/bundles/A-RF-STABLE_PI-k16-s17.json": "630c90f461a7e7022af3f33ba5ee120860490e053180a183b52a941ae539d836",
+      "artifacts/dev/A/bundles/A-RF-STABLE_PI-k16-s29.joblib": "ad1dee0d802227342a35b3f7c5996ca85c7af89a3ec2a6d74334399e118dec12",
+      "artifacts/dev/A/bundles/A-RF-STABLE_PI-k16-s29.json": "354ee8c9906f88ec73168ca7b74f1735b18b2b8cb41f67e2839eb807552bcfd4",
+      "artifacts/dev/A/bundles/A-RF-STABLE_PI-k16-s43.joblib": "5e0ff63433255251752ed5740905b5f03db9b887cffa3fff287e6212a40ea052",
+      "artifacts/dev/A/bundles/A-RF-STABLE_PI-k16-s43.json": "49d9775738c85d45503a7cd607ea1147aa18a4092baf491548b28ac5ff632abf",
+      "artifacts/dev/A/develop.json": "2e756a8b3c0a179eed497819d4920a05356cdd474523dca31add61dca29f58b3",
+      "artifacts/dev/A/finals.csv": "b0f12ccbf0043b70d08c4812b800366fb359d74c0846df7d28ea009ff0f44869",
+      "artifacts/dev/A/outer_cv.csv": "e49ba1df1b03cd3519d87389de5e6c1e9ad7d5b041d3c2a611b9c010c94be736",
+      "artifacts/dev/A/selectors/pi_s17_full.json": "9030f01f4e14bf64d3d444d4e0dcb0882449d98ac9a0a2e45c55cdb2f177678a",
+      "artifacts/dev/A/selectors/pi_s17_outer0.json": "366076bc862fb7091792fe963aa262393e60dfdd708ea24830d5cab9cfa6f2e8",
+      "artifacts/dev/A/selectors/pi_s17_outer1.json": "31854ab785a7fc3264c61063ab1683c7803cc70cacc39476b24f9ca107b309ef",
+      "artifacts/dev/A/selectors/pi_s17_outer2.json": "85ab64454a74320e690846558d8a45141dee24a2c2a47ef10e1fdff781cb6872",
+      "artifacts/dev/A/selectors/pi_s29_full.json": "464edbf08d5c9cd2cb51e603732ea8158a6acc45c953fcfcae3e4fb97658217c",
+      "artifacts/dev/A/selectors/pi_s29_outer0.json": "4d33c75e889669677a3f990a1943b7fecd48b368cb011db5c2ff0817f3df30ab",
+      "artifacts/dev/A/selectors/pi_s29_outer1.json": "959027a506122a5074f6fd1ef8de4ea214a20a52e958885ab02b9d6f3b7d3a3e",
+      "artifacts/dev/A/selectors/pi_s29_outer2.json": "14aaeecdfd7095848bb550a8066b8f0276b569b0bc1cb9643bc8d0881c364798",
+      "artifacts/dev/A/selectors/pi_s43_full.json": "bf96fedd6a1c3c260da1ed6da1fd7dfe7be25b4bec466c690edb8e505ee539a4",
+      "artifacts/dev/A/selectors/pi_s43_outer0.json": "c3c467688b831a958ac6fb2e2e8e92f66cc44740c4910a5266a99e2e1ede4a2b",
+      "artifacts/dev/A/selectors/pi_s43_outer1.json": "20c6d3f7aa844e071ef56ae662e52cc54b4140f418f89b37370b3ffde7d61d29",
+      "artifacts/dev/A/selectors/pi_s43_outer2.json": "ea11794e440767101f055e087518e1ccb81af4f5d22358240d4d8548003546ae",
+      "artifacts/dev/B/bundles/B-LGBM-ALL-k37-s17.joblib": "2e2a752f391985dc8574083de44b5c715b6dda331a7de651378d245c04fd941c",
+      "artifacts/dev/B/bundles/B-LGBM-ALL-k37-s17.json": "925bfa6628489712370fcb7203a03be32baf22e2447f3781b45f23c9e99f3302",
+      "artifacts/dev/B/bundles/B-LGBM-ALL-k37-s29.joblib": "64a4fe8c69eb4fadef4c35d520f4b209dacf75d57a094a91953932d1b360560f",
+      "artifacts/dev/B/bundles/B-LGBM-ALL-k37-s29.json": "a8b09d458d0118205f1211582b939f0c9be06f67078690bea81088c6379de460",
+      "artifacts/dev/B/bundles/B-LGBM-ALL-k37-s43.joblib": "099ea2a5af7749a6b554b5afa216c299645cf27e41bb61288bde7c1719afe88c",
+      "artifacts/dev/B/bundles/B-LGBM-ALL-k37-s43.json": "0086d576d852ce692a7094b99d0b22e8b74f86c59dba9f24b12330751a5ded6c",
+      "artifacts/dev/B/bundles/B-LGBM-MEAN_PI-k8-s17.joblib": "b6201c7757c784df7ba86b1bd4af483361773b8249ff35c02784b0196fb5448d",
+      "artifacts/dev/B/bundles/B-LGBM-MEAN_PI-k8-s17.json": "59f887186d18f8dae2a6f7dac3032079cd0d7837cf3431141c6441569b885507",
+      "artifacts/dev/B/bundles/B-LGBM-MEAN_PI-k8-s29.joblib": "30065985ac5435719c35c83761dbb310b20a2726c72ed450b45fb8a99cd9528b",
+      "artifacts/dev/B/bundles/B-LGBM-MEAN_PI-k8-s29.json": "46ae909c109e537e0da0c0dfd71d503bd319fbd45066d24dd4476ab08fc0c5fe",
+      "artifacts/dev/B/bundles/B-LGBM-MEAN_PI-k8-s43.joblib": "b6d81f58517d562e211fd16216e432953f1d5fc08204cef72683eb8c4a5cda73",
+      "artifacts/dev/B/bundles/B-LGBM-MEAN_PI-k8-s43.json": "1ca6b7b81b9fbcd983497d0120c4fa2ab3b5359e4829179f2c9d7aed8bdd662e",
+      "artifacts/dev/B/bundles/B-LGBM-STABLE_PI-k8-s17.joblib": "bd9f21c28b4df1ddaf809957393a47480f0dc06fb57e94e356392d2781212079",
+      "artifacts/dev/B/bundles/B-LGBM-STABLE_PI-k8-s17.json": "685fd9d228f0dadb4b8f7ac4c9cbfe1b73c017e7c2eea5ad08c043bee623ffa5",
+      "artifacts/dev/B/bundles/B-LGBM-STABLE_PI-k8-s29.joblib": "ef91b4fd62f7be1737d62fff6fce51fc95e435eb1155a5e5357316640b5cdaeb",
+      "artifacts/dev/B/bundles/B-LGBM-STABLE_PI-k8-s29.json": "8ba589841661bb7d31d2ababeecc119c70690b177c51a6c8842ff087c08d33dc",
+      "artifacts/dev/B/bundles/B-LGBM-STABLE_PI-k8-s43.joblib": "58d3ae636602010eae218d73c653a3f293a5e186077cbddc188a91541c2392a8",
+      "artifacts/dev/B/bundles/B-LGBM-STABLE_PI-k8-s43.json": "ed58d3207a0cbeebb17de2772dbbe8e32438175dc2becda00f07d0372dc6259a",
+      "artifacts/dev/B/bundles/B-RF-ALL-k37-s17.joblib": "b13ff81a0f99b10ff600d1739d7e21348d4c1ba58382048536212c63722df77b",
+      "artifacts/dev/B/bundles/B-RF-ALL-k37-s17.json": "adeb87fb6b42745edf5d791c8b75e7566558ac16f0060333e68adad59f86f85b",
+      "artifacts/dev/B/bundles/B-RF-ALL-k37-s29.joblib": "9c01d4ae46dc583e670b4b7b81ef1e533ce04788f1e35e12f210b4440ab4cdf0",
+      "artifacts/dev/B/bundles/B-RF-ALL-k37-s29.json": "456a8e628d8f572c6d0615af400a2909afac2d5d3125da0584891d9ff79ee978",
+      "artifacts/dev/B/bundles/B-RF-ALL-k37-s43.joblib": "39aa15a555e96bf413451d5b9489c414257b55c55971c6c028e094517a1a3320",
+      "artifacts/dev/B/bundles/B-RF-ALL-k37-s43.json": "d30eb6ef44bafe80cacc8a5feb9c3356b83329ca49b330d62759e5948989e074",
+      "artifacts/dev/B/bundles/B-RF-MEAN_PI-k8-s17.joblib": "d9934d5d052337513832dbb9e12230b9b220250f74051611cfd59557e89af397",
+      "artifacts/dev/B/bundles/B-RF-MEAN_PI-k8-s17.json": "145a4c1d7be0073c51fc0d0308271a00d194b06428417c3901a4500eeef471e0",
+      "artifacts/dev/B/bundles/B-RF-MEAN_PI-k8-s29.joblib": "10d38e3bae9c2695b2e93ada66a1823b39025c983f3fef45a3fd2f5c1bf5ff77",
+      "artifacts/dev/B/bundles/B-RF-MEAN_PI-k8-s29.json": "59d2fed818c8cd4cfd7e8ca1ad221ff600c840a79b21bd420f0038e52006401d",
+      "artifacts/dev/B/bundles/B-RF-MEAN_PI-k8-s43.joblib": "785d98c9fe345dab9bfbaf2695aaa965d659be97b41cab76cb6881f9a2388686",
+      "artifacts/dev/B/bundles/B-RF-MEAN_PI-k8-s43.json": "e566e047b571ae4092541fc92d8b04fcc3e8bdbe9c01f0a6c5d6da941372fcd0",
+      "artifacts/dev/B/bundles/B-RF-STABLE_PI-k8-s17.joblib": "b50a9cf55e17c391974680f94761324edbf34a9192360414c274f4fbf7a16025",
+      "artifacts/dev/B/bundles/B-RF-STABLE_PI-k8-s17.json": "3e8f195dfc26a1db814c1c1e8447df9108207cef5a659ec0ca13090277d9b4bf",
+      "artifacts/dev/B/bundles/B-RF-STABLE_PI-k8-s29.joblib": "bae02da338b7bf2cecc85ba9b55b0d2fa4098ed77ba47a8c5c14c87b59fd9298",
+      "artifacts/dev/B/bundles/B-RF-STABLE_PI-k8-s29.json": "f61d310c0a26d72c56ef1068de180a6a31a3fa8777f56bd8f096527a9d37dbdb",
+      "artifacts/dev/B/bundles/B-RF-STABLE_PI-k8-s43.joblib": "4e15a97c60df42cf1fcd0d04d4778fb2abe909051b501a4e547a125f97e24339",
+      "artifacts/dev/B/bundles/B-RF-STABLE_PI-k8-s43.json": "93084b5258413d789be928110e6e0b4d7ea90fe273751deb4c98eb7489e1d6ac",
+      "artifacts/dev/B/develop.json": "4556945dea0c53be37fb90c134862a04ea022cd83d40938d77c79435f0955761",
+      "artifacts/dev/B/finals.csv": "6a429eb8b3fe7865c540b0c77662ab27b17083032ad8b80e53493795c1a43cb3",
+      "artifacts/dev/B/outer_cv.csv": "ac4a0189532b8533f3a6541e5f22a3a1095d276fee08e65f87fdc73c15249acf",
+      "artifacts/dev/B/selectors/pi_s17_full.json": "a2d7f68e150e2092808e58d760d37ca565364112578bbc09c08fe326ea2f57ac",
+      "artifacts/dev/B/selectors/pi_s17_outer0.json": "610e68f024aa2d676761ab10f160572cac69bfdee134a574b8480a521258c6f0",
+      "artifacts/dev/B/selectors/pi_s17_outer1.json": "7cd7f855e7f0ec54d2e50e5c2630c7cceda0b9283008b01785184f022ebaa757",
+      "artifacts/dev/B/selectors/pi_s17_outer2.json": "fcf0d4b691bceffaea03a577196fe4c34bacc6e7d488b22bffbb691e62961812",
+      "artifacts/dev/B/selectors/pi_s29_full.json": "272abeae7e70b4eb325046bfb5e79290f3993c7df15bd0e92a9d198e3d1ad177",
+      "artifacts/dev/B/selectors/pi_s29_outer0.json": "c15661d356594441afb84f7ee4bdfab0923216a6793b7fd2bf6b5feb75188152",
+      "artifacts/dev/B/selectors/pi_s29_outer1.json": "b24b4f0fd0f8743df135b209554b66bda885e3cfbb275c094a5811e30a4215f6",
+      "artifacts/dev/B/selectors/pi_s29_outer2.json": "5dd5b6ca6a03af2385b2113565fb0a0c5691a312f75f562be3c6b818f4ace383",
+      "artifacts/dev/B/selectors/pi_s43_full.json": "ebff1f4ad0727b6f4b72394045382068fb9f5e93ca3af1568346fc07a2a1fd39",
+      "artifacts/dev/B/selectors/pi_s43_outer0.json": "b59ec765aa5f0bb6b99890787fe54cbd457b2e0a82d7359b7828df8274f7d21f",
+      "artifacts/dev/B/selectors/pi_s43_outer1.json": "2bb73c28fc3f4adca8aa700b70ae45b640a1a21e1dd082afbc7d198f1ffe09cc",
+      "artifacts/dev/B/selectors/pi_s43_outer2.json": "a10c837c304d16bd8f69474dece6557cb013f69006f3a852b0fd5c49fc3d318b",
+      "artifacts/prepare.json": "3c2359c2f8ff3f2bd3eeea21a50ed72aca55fe91b347fdbf19a9b180c867293e",
+      "configs/datasets.yaml": "a5f54cd554b966679977310eda9983e10c8716b34ea96a254427671e22dd5944",
+      "configs/protocol.yaml": "fa588c056792981a97110db0ae5caef8e9f03f75eadfcddb7a4fb097c3cb0c57",
+      "data/processed/dev_features.parquet": "7534afb9a5c6235e04002e3796023d66e51f56833a7fbcb16d832f91cf51895b",
+      "data/processed/records.parquet": "685d3a1c4d7b48a4590ca464bd9b71aa9defb0571cc75ce892452e5586de8112",
+      "data/processed/splits.parquet": "ab46ba2f310b3283d11ec130863ae2b4a4068952ce6af452e8fa924f31b3305a",
+      "data/processed/test_vault/test_features.parquet": "886f3d0bbac3353ef2a832a0d36edecf6153398a5e6740748dc788c00597b06e",
+      "data/processed/test_vault/test_labels.parquet": "64f723c930dbd9dcb881edfe541c91012d0d71d5e9ab07592e3918a91c8dbed5",
+      "data/raw/manifest.json": "fbc0049e758dd44eb41a3b125ab7d9d3bc078c2adf1a36766a19055d64f6d485",
+      "pkg/__init__.py": "5b12e22cf15d874350239c9a20bfab43e7ebc6bd7d8f32c8bd331dd4b6e3641f",
+      "pkg/acquire.py": "e4070a6ace19f59cd6421010b0da88790d4eddae9ea93fe2bdf89756ecc25122",
+      "pkg/adapters.py": "f4fb1aaa97af8ea83e18962183698470f68f5a258140e6b1223fbe69b1f08ea8",
+      "pkg/analysis.py": "859b9e29c6a156fea1a4b6930855e240b653e50f3ae29da662a30366fd69858b",
+      "pkg/benchmark.py": "407341361855bb58557de13cd6755a87b4fa1b16a3522d768fe3bf33c646da64",
+      "pkg/cohort.py": "91d8b4e8fb679e1e9fcd08840c31d1e2aac4f9e300e71eef8a122ea49aec720a",
+      "pkg/common.py": "9a26dc125f6147e12f9550b235ac315389c72b9c319c996fb03d11d665ab2199",
+      "pkg/develop.py": "fef7c79a26e274b4c4c1974481bec71d169736e59a1c6b1c5805346f24e251ba",
+      "pkg/evaluation.py": "9b762a6e6586be5ac78399b05afd706eb679ee3e55f98fcba199d079881c4032",
+      "pkg/explain.py": "c8781376be33d2f940d00c9a6fc729b760174f99a985e8c05a5ac1406b9333c5",
+      "pkg/features.py": "d9df039b12f1fbbd39cd446a2a8fa3406fcafa187a04ef6b50b3793c1b77f04d",
+      "pkg/freeze.py": "78321339a0883151da5bf7ccf94ba5aa37b3e625d80b39ab6c78bcf37280d1ab",
+      "pkg/models.py": "e5753201f8e4ebbca573b32ba64b9ad7041d772aa94eb4ee99dc016a140114d0",
+      "pkg/prepare.py": "51fa37500cdc1a848d6c9d4da75fdd557cf222bcef0f23081a3a650632f99b46",
+      "pkg/resources/public_suffix_list.dat": "b69315c085d53972724b8f2df111ffc329b0c84fe0a47d62c8c91655cc774a38",
+      "pkg/selection.py": "b8fd59170a0042b756366f93e5449587b9ad716225f9a0ec7f2ae9714cd13aad",
+      "pkg/splits.py": "910bc099a399fa532ba8eca979fc366cd37c5ce3f1b9ad8f8ecb191aeba8b5b5",
+      "pkg/statistics.py": "bbce3af856196768990812921024a9b121d07bc2480a1b8e43c4070668df1983",
+      "pkg/synthetic.py": "f11153363fbc5f1d9556209c7f3d0f6379f068d8563d5f09449f3c04835adc9b",
+      "pkg/thresholds.py": "693af5d91c7e221569af1e409da3300fe3340f206b0a8c5102e5a1c2eda805c1",
+      "pkg/urls.py": "31387ceb41d9c99e9501720d0607782fe989b5357319315f84e278cfb38b6da3"
+    },
+    "k_candidates": [
+      8,
+      16,
+      24
+    ],
+    "plan": [
+      {
+        "bundle": "artifacts/dev/A/bundles/A-RF-ALL-k37-s17",
+        "bundle_id": "A-RF-ALL-k37-s17",
+        "source": "A",
+        "targets": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/A/bundles/A-RF-MEAN_PI-k16-s17",
+        "bundle_id": "A-RF-MEAN_PI-k16-s17",
+        "source": "A",
+        "targets": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/A/bundles/A-RF-STABLE_PI-k16-s17",
+        "bundle_id": "A-RF-STABLE_PI-k16-s17",
+        "source": "A",
+        "targets": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/A/bundles/A-LGBM-ALL-k37-s17",
+        "bundle_id": "A-LGBM-ALL-k37-s17",
+        "source": "A",
+        "targets": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/A/bundles/A-LGBM-MEAN_PI-k16-s17",
+        "bundle_id": "A-LGBM-MEAN_PI-k16-s17",
+        "source": "A",
+        "targets": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/A/bundles/A-LGBM-STABLE_PI-k16-s17",
+        "bundle_id": "A-LGBM-STABLE_PI-k16-s17",
+        "source": "A",
+        "targets": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/A/bundles/A-RF-ALL-k37-s29",
+        "bundle_id": "A-RF-ALL-k37-s29",
+        "source": "A",
+        "targets": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/A/bundles/A-RF-MEAN_PI-k16-s29",
+        "bundle_id": "A-RF-MEAN_PI-k16-s29",
+        "source": "A",
+        "targets": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/A/bundles/A-RF-STABLE_PI-k16-s29",
+        "bundle_id": "A-RF-STABLE_PI-k16-s29",
+        "source": "A",
+        "targets": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/A/bundles/A-LGBM-ALL-k37-s29",
+        "bundle_id": "A-LGBM-ALL-k37-s29",
+        "source": "A",
+        "targets": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/A/bundles/A-LGBM-MEAN_PI-k16-s29",
+        "bundle_id": "A-LGBM-MEAN_PI-k16-s29",
+        "source": "A",
+        "targets": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/A/bundles/A-LGBM-STABLE_PI-k16-s29",
+        "bundle_id": "A-LGBM-STABLE_PI-k16-s29",
+        "source": "A",
+        "targets": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/A/bundles/A-RF-ALL-k37-s43",
+        "bundle_id": "A-RF-ALL-k37-s43",
+        "source": "A",
+        "targets": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/A/bundles/A-RF-MEAN_PI-k16-s43",
+        "bundle_id": "A-RF-MEAN_PI-k16-s43",
+        "source": "A",
+        "targets": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/A/bundles/A-RF-STABLE_PI-k16-s43",
+        "bundle_id": "A-RF-STABLE_PI-k16-s43",
+        "source": "A",
+        "targets": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/A/bundles/A-LGBM-ALL-k37-s43",
+        "bundle_id": "A-LGBM-ALL-k37-s43",
+        "source": "A",
+        "targets": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/A/bundles/A-LGBM-MEAN_PI-k16-s43",
+        "bundle_id": "A-LGBM-MEAN_PI-k16-s43",
+        "source": "A",
+        "targets": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/A/bundles/A-LGBM-STABLE_PI-k16-s43",
+        "bundle_id": "A-LGBM-STABLE_PI-k16-s43",
+        "source": "A",
+        "targets": [
+          "A",
+          "B"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/B/bundles/B-RF-ALL-k37-s17",
+        "bundle_id": "B-RF-ALL-k37-s17",
+        "source": "B",
+        "targets": [
+          "B",
+          "A"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/B/bundles/B-RF-MEAN_PI-k8-s17",
+        "bundle_id": "B-RF-MEAN_PI-k8-s17",
+        "source": "B",
+        "targets": [
+          "B",
+          "A"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/B/bundles/B-RF-STABLE_PI-k8-s17",
+        "bundle_id": "B-RF-STABLE_PI-k8-s17",
+        "source": "B",
+        "targets": [
+          "B",
+          "A"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/B/bundles/B-LGBM-ALL-k37-s17",
+        "bundle_id": "B-LGBM-ALL-k37-s17",
+        "source": "B",
+        "targets": [
+          "B",
+          "A"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/B/bundles/B-LGBM-MEAN_PI-k8-s17",
+        "bundle_id": "B-LGBM-MEAN_PI-k8-s17",
+        "source": "B",
+        "targets": [
+          "B",
+          "A"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/B/bundles/B-LGBM-STABLE_PI-k8-s17",
+        "bundle_id": "B-LGBM-STABLE_PI-k8-s17",
+        "source": "B",
+        "targets": [
+          "B",
+          "A"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/B/bundles/B-RF-ALL-k37-s29",
+        "bundle_id": "B-RF-ALL-k37-s29",
+        "source": "B",
+        "targets": [
+          "B",
+          "A"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/B/bundles/B-RF-MEAN_PI-k8-s29",
+        "bundle_id": "B-RF-MEAN_PI-k8-s29",
+        "source": "B",
+        "targets": [
+          "B",
+          "A"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/B/bundles/B-RF-STABLE_PI-k8-s29",
+        "bundle_id": "B-RF-STABLE_PI-k8-s29",
+        "source": "B",
+        "targets": [
+          "B",
+          "A"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/B/bundles/B-LGBM-ALL-k37-s29",
+        "bundle_id": "B-LGBM-ALL-k37-s29",
+        "source": "B",
+        "targets": [
+          "B",
+          "A"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/B/bundles/B-LGBM-MEAN_PI-k8-s29",
+        "bundle_id": "B-LGBM-MEAN_PI-k8-s29",
+        "source": "B",
+        "targets": [
+          "B",
+          "A"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/B/bundles/B-LGBM-STABLE_PI-k8-s29",
+        "bundle_id": "B-LGBM-STABLE_PI-k8-s29",
+        "source": "B",
+        "targets": [
+          "B",
+          "A"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/B/bundles/B-RF-ALL-k37-s43",
+        "bundle_id": "B-RF-ALL-k37-s43",
+        "source": "B",
+        "targets": [
+          "B",
+          "A"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/B/bundles/B-RF-MEAN_PI-k8-s43",
+        "bundle_id": "B-RF-MEAN_PI-k8-s43",
+        "source": "B",
+        "targets": [
+          "B",
+          "A"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/B/bundles/B-RF-STABLE_PI-k8-s43",
+        "bundle_id": "B-RF-STABLE_PI-k8-s43",
+        "source": "B",
+        "targets": [
+          "B",
+          "A"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/B/bundles/B-LGBM-ALL-k37-s43",
+        "bundle_id": "B-LGBM-ALL-k37-s43",
+        "source": "B",
+        "targets": [
+          "B",
+          "A"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/B/bundles/B-LGBM-MEAN_PI-k8-s43",
+        "bundle_id": "B-LGBM-MEAN_PI-k8-s43",
+        "source": "B",
+        "targets": [
+          "B",
+          "A"
+        ]
+      },
+      {
+        "bundle": "artifacts/dev/B/bundles/B-LGBM-STABLE_PI-k8-s43",
+        "bundle_id": "B-LGBM-STABLE_PI-k8-s43",
+        "source": "B",
+        "targets": [
+          "B",
+          "A"
+        ]
+      }
+    ],
+    "protocol_version": 1,
+    "seeds": [
+      17,
+      29,
+      43
+    ]
+  },
+  "created_at": "2026-11-15T14:14:16+00:00",
+  "environment": {
+    "cpu_count_logical": 16,
+    "cpu_count_physical": 10,
+    "packages": {
+      "idna": "3.20",
+      "joblib": "1.5.3",
+      "lightgbm": "4.6.0",
+      "numpy": "2.2.6",
+      "pandas": "2.3.1",
+      "pyarrow": "21.0.0",
+      "shap": "0.49.1",
+      "sklearn": "1.7.2",
+      "yaml": "6.0.2"
+    },
+    "platform": "Windows-10-10.0.26300-SP0",
+    "processor": "Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",
+    "python": "3.10.0",
+    "ram_gb": 31.73
+  },
+  "freeze_hash": "069912e332d788120e4ba358b1f8cd3dc5f0903d783249a87567ce00d6efc8da",
+  "git_commit": "1111efdf19b65e1c489d0d96632b069d25af4d6f",
+  "schema_version": 1
+}

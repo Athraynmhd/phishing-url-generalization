@@ -1,0 +1,14 @@
+\begin{tabular}{lllcccp{3.2cm}}
+\toprule
+Dir. & Model & Features & $\rho_{\mathrm{src,tgt}}$ & J$_{10}$ & $\rho_{\mathrm{seeds}}$ & top-5 (source) \\
+\midrule
+A$\rightarrow$B & LGBM & ALL (37) & 0.99 & 0.82 & 1.00 & \scriptsize F23 F09 F30 F06 F03 \\
+A$\rightarrow$B & LGBM & STABLE-PI & 0.88 & 0.82 & -- & \scriptsize F23 F09 F03 F06 F30 \\
+A$\rightarrow$B & RF & ALL (37) & 0.97 & 0.82 & 1.00 & \scriptsize F23 F09 F30 F07 F03 \\
+A$\rightarrow$B & RF & STABLE-PI & 0.81 & 0.82 & -- & \scriptsize F23 F09 F03 F30 F07 \\
+B$\rightarrow$A & LGBM & ALL (37) & 0.96 & 0.82 & 1.00 & \scriptsize F02 F23 F06 F03 F22 \\
+B$\rightarrow$A & LGBM & STABLE-PI & 0.98 & 1.00 & -- & \scriptsize F02 F23 F03 F06 F21 \\
+B$\rightarrow$A & RF & ALL (37) & 0.95 & 0.82 & 1.00 & \scriptsize F02 F23 F06 F01 F03 \\
+B$\rightarrow$A & RF & STABLE-PI & 0.98 & 1.00 & -- & \scriptsize F02 F23 F06 F03 F21 \\
+\bottomrule
+\end{tabular}

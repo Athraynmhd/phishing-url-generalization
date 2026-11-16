@@ -1,0 +1,16 @@
+claim_id,claim,status,evidence,boundary
+C01,Two current primary papers meet five-year age rule,verified,docs/literature/primary_papers.json,R15 is outside preferred three-year window
+C02,No registered-domain overlap in curated partitions or sources,verified,artifacts/publication_audit/cycle_*.json,Target identities were used for cohort purge
+C03,Frozen probabilities and source thresholds reproduce,verified,artifacts/publication_audit/cycle_*.json,No model refit or new TEST-label read
+C04,Mean/stability contrast is matched in feature count,verified,artifacts/analysis/contrasts.json,Equal count does not ensure identical model capacity
+C05,Stability ranking has directional benefits over mean ranking,conditional,artifacts/analysis/contrasts.json,Fixed split and estimator seeds; no universal superiority
+C06,Feature compression retains all-feature transfer performance,not_supported,artifacts/analysis/summary.csv,ALL remains stronger in important comparisons
+C07,SHAP fully validates explanations,not_supported,artifacts/publication_corrections/checks.json,Corrected exploratory outputs pass additivity; numerical consistency does not establish complete fidelity
+C08,Algorithm or global methodological novelty established,not_established,docs/literature/gap_matrix.csv,Prior feature-stability and cross-source work acknowledged
+C09,Two primary original systems were reproduced,not_claimed,docs/literature/r15_assessment.md,RF/LightGBM study is an independent application benchmark
+C10,Contemporary deployment or temporal robustness demonstrated,not_claimed,docs/publication_readiness.md,Historical data and one fixed group split
+C11,Package ready for journal submission,not_established,artifacts/publication_audit/submission_status.json,Author and venue/release items remain open; post-hoc correction scope disclosed
+C12,All corrected SHAP cohorts pass strict additivity,verified_exploratory,artifacts/publication_corrections/checks.json,Same saved v1 cohorts; historical failures retained; no new holdout
+C13,Active correction analysis reads no individual TEST labels,verified_in_scope,artifacts/publication_corrections/access_check.json,Runtime worker check and code audit; frozen legacy path remains blocked
+C14,HP encoding matches published primary-paper class counts,verified_aggregate_crossvalidation,artifacts/publication_corrections/hp_encoding.json,Unique six-cell match; no verbatim author codebook or per-URL truth validation
+C15,Complete R2 full text reviewed,verified,docs/literature/r2_fulltext_review.md,User-supplied 14-page publisher PDF with recorded SHA256

@@ -1,0 +1,39 @@
+{
+  "extracted_characters": 121607,
+  "file": "1-s2.0-S1389128624002305-main.pdf",
+  "metadata": {
+    "author": "Fariza Rashid",
+    "creationDate": "D:20240423163011Z",
+    "creator": "Elsevier",
+    "encryption": null,
+    "format": "PDF 1.7",
+    "keywords": "Phishing detection,Unsupervised domain adaptation,URL classification",
+    "modDate": "D:20240423164723Z",
+    "producer": "Acrobat Distiller 8.1.0 (Windows)",
+    "subject": "Computer Networks, 245 (2024) 110398. doi:10.1016/j.comnet.2024.110398",
+    "title": "Phishing URL detection generalisation using Unsupervised Domain Adaptation",
+    "trapped": ""
+  },
+  "pages": 14,
+  "review": "docs/literature/r2_fulltext_review.md",
+  "review_sha256": "86a9807f5cc57b69b6359b9ca63db858d75eef459855f5334bb0f2c6d30c6999",
+  "review_status": "complete",
+  "reviewed_pages": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14
+  ],
+  "sha256": "4d4ead94d9224a644ea753dbaa2bb7c989ea222091aeec00c591258b99ce2edd",
+  "supplied_by_user": true
+}

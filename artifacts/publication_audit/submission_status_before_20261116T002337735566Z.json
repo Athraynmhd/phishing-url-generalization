@@ -1,0 +1,56 @@
+{
+  "as_of": "2026-11-16",
+  "bibliography_entries_within_five_years": 5,
+  "blockers": [
+    "Author identities/affiliations deferred by user",
+    "Target venue, release URL/DOI and owner-approved code licence not supplied"
+  ],
+  "claim_scope": "historical two-source empirical benchmark; no global novelty/causality/deployment claim",
+  "correction_checks": {
+    "active_correction_runtime_access_check_passed": true,
+    "changed_number_macro_keys": [
+      "shapAddErr"
+    ],
+    "corrected_manuscript": "manuscript\\corrected",
+    "corrected_pdf_sha256": "90bcf7dc811ba172df77cb6c6c2730fd1e2914a50d3370e296ba455997843eb5",
+    "correction_manifest_sha256": "283ec11d1ef3095c7c0aa11b40a3c3dc97cb0700133d891f1514f9778776b84c",
+    "explained_rows_verified": 12000,
+    "findings": {
+      "hp_encoding": "uniquely crossvalidated against original primary-paper Table 1",
+      "r2_review": "complete, user-supplied original publisher PDF",
+      "shap": "resolved by strict exploratory recomputation",
+      "test_access": "active correction route label-free; frozen legacy blocked and preserved"
+    },
+    "hp_mapping_evidence": "unique six-cell match to primary-paper Table 1; not an author-written codebook",
+    "max_additivity_residual": 2.9455254367538597e-08,
+    "parent_freeze_hash": "069912e332d788120e4ba358b1f8cd3dc5f0903d783249a87567ce00d6efc8da",
+    "pdf_pages": 8,
+    "protected_v1_unchanged": true,
+    "r2_full_text_review_complete": true,
+    "research_status": "exploratory correction; historical v1 deviation retained",
+    "shap_arrays_independently_verified": 24,
+    "status": "passed",
+    "test_labels_read": false
+  },
+  "engineering_status": "passed",
+  "freeze_hash": "069912e332d788120e4ba358b1f8cd3dc5f0903d783249a87567ce00d6efc8da",
+  "historical_v1_findings_retained": [
+    "SHAP real-data additivity failures: exploratory diagnostics only",
+    "Frozen legacy analysis contains direct TEST-label access; CLI execution blocked"
+  ],
+  "independent_audit_cycle": "cycle_20261115T235541780093Z.json",
+  "isolated_environment_unit_tests": 50,
+  "isolated_environment_verified": true,
+  "manuscript": "manuscript\\corrected",
+  "notebook_code_cells": 48,
+  "pdf_pages": 8,
+  "pdf_sha256": "90bcf7dc811ba172df77cb6c6c2730fd1e2914a50d3370e296ba455997843eb5",
+  "primary_refs": [
+    "R15",
+    "R2"
+  ],
+  "pytest_passed": 77,
+  "pytest_seconds": 383.43,
+  "research_status": "frozen classification results; exploratory post-freeze SHAP correction",
+  "submission_ready": false
+}

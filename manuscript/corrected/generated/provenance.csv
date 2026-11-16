@@ -1,0 +1,305 @@
+key,value,provenance
+freezeHash,069912e332d7,freeze.json
+nBoot,"2,000",protocol.yaml
+nAn,"73,575",audit.json sources.A.stages.loaded.n
+cAn,"46,769",audit.json sources.A.stages.cohort.n
+nAbenign,"36,400",audit.json sources.A.stages.loaded.benign
+cAbenign,"22,167",audit.json sources.A.stages.cohort.benign
+nAphishing,"37,175",audit.json sources.A.stages.loaded.phishing
+cAphishing,"24,602",audit.json sources.A.stages.cohort.phishing
+dupA,"18,811",audit.json
+quarA,3,audit.json
+purgeA,"7,992",audit.json
+lossBenignA,25.9,audit.json purge_loss_benign
+lossPhishA,1.0,audit.json purge_loss_phishing
+groupsA,"20,913",audit.json groups_cohort
+topGroupA,esy.es,audit.json top_groups
+topGroupShareA,2.9,audit.json largest_group_share
+nBn,"92,500",audit.json sources.B.stages.loaded.n
+cBn,"75,077",audit.json sources.B.stages.cohort.n
+nBbenign,"46,250",audit.json sources.B.stages.loaded.benign
+cBbenign,"29,758",audit.json sources.B.stages.cohort.benign
+nBphishing,"46,250",audit.json sources.B.stages.loaded.phishing
+cBphishing,"45,319",audit.json sources.B.stages.cohort.phishing
+dupB,1,audit.json
+quarB,17,audit.json
+purgeB,"17,405",audit.json
+lossBenignB,35.6,audit.json purge_loss_benign
+lossPhishB,2.0,audit.json purge_loss_phishing
+groupsB,"6,735",audit.json groups_cohort
+topGroupB,esnafbenim.com,audit.json top_groups
+topGroupShareB,11.0,audit.json largest_group_share
+sharedGroups,692,audit.json cross_source
+exactOverlap,33,audit.json cross_source
+labelJoin,"73,575",audit.json label_mapping_check
+labelAgree,100.0,audit.json label_mapping_check
+splitAFIT,"28,061",prepare.json partitions.A/FIT.n
+splitGroupsAFIT,"8,018",prepare.json partitions.A/FIT.groups
+splitAVAL,"9,355",prepare.json partitions.A/VAL.n
+splitGroupsAVAL,"6,448",prepare.json partitions.A/VAL.groups
+splitATEST,"9,353",prepare.json partitions.A/TEST.n
+splitGroupsATEST,"6,447",prepare.json partitions.A/TEST.groups
+splitBFIT,"45,050",prepare.json partitions.B/FIT.n
+splitGroupsBFIT,"2,614",prepare.json partitions.B/FIT.groups
+splitBVAL,"15,014",prepare.json partitions.B/VAL.n
+splitGroupsBVAL,"2,060",prepare.json partitions.B/VAL.groups
+splitBTEST,"15,013",prepare.json partitions.B/TEST.n
+splitGroupsBTEST,"2,061",prepare.json partitions.B/TEST.groups
+F1AARFALL,0.895,summary.csv f1_max A->A RF ALL
+F1loAARFALL,0.887,config_ci.csv
+F1hiAARFALL,0.902,config_ci.csv
+APAARFALL,0.962,summary.csv
+RecAARFALL,0.475,summary.csv fpr_le
+FPRAARFALL,0.7,summary.csv fpr_le achieved FPR
+F1dbAARFALL,0.862,summary.csv domain-balanced
+F1AARFMEANPIbudget,0.897,summary.csv f1_max A->A RF MEAN_PI@budget
+F1loAARFMEANPIbudget,0.889,config_ci.csv
+F1hiAARFMEANPIbudget,0.904,config_ci.csv
+APAARFMEANPIbudget,0.962,summary.csv
+RecAARFMEANPIbudget,0.478,summary.csv fpr_le
+FPRAARFMEANPIbudget,0.8,summary.csv fpr_le achieved FPR
+F1dbAARFMEANPIbudget,0.865,summary.csv domain-balanced
+F1AARFSTABLEPIbudget,0.896,summary.csv f1_max A->A RF STABLE_PI@budget
+F1loAARFSTABLEPIbudget,0.889,config_ci.csv
+F1hiAARFSTABLEPIbudget,0.903,config_ci.csv
+APAARFSTABLEPIbudget,0.962,summary.csv
+RecAARFSTABLEPIbudget,0.468,summary.csv fpr_le
+FPRAARFSTABLEPIbudget,0.7,summary.csv fpr_le achieved FPR
+F1dbAARFSTABLEPIbudget,0.864,summary.csv domain-balanced
+F1AALGBMALL,0.902,summary.csv f1_max A->A LGBM ALL
+F1loAALGBMALL,0.894,config_ci.csv
+F1hiAALGBMALL,0.909,config_ci.csv
+APAALGBMALL,0.966,summary.csv
+RecAALGBMALL,0.559,summary.csv fpr_le
+FPRAALGBMALL,0.9,summary.csv fpr_le achieved FPR
+F1dbAALGBMALL,0.872,summary.csv domain-balanced
+F1AALGBMMEANPIbudget,0.900,summary.csv f1_max A->A LGBM MEAN_PI@budget
+F1loAALGBMMEANPIbudget,0.893,config_ci.csv
+F1hiAALGBMMEANPIbudget,0.908,config_ci.csv
+APAALGBMMEANPIbudget,0.965,summary.csv
+RecAALGBMMEANPIbudget,0.553,summary.csv fpr_le
+FPRAALGBMMEANPIbudget,1.0,summary.csv fpr_le achieved FPR
+F1dbAALGBMMEANPIbudget,0.873,summary.csv domain-balanced
+F1AALGBMSTABLEPIbudget,0.900,summary.csv f1_max A->A LGBM STABLE_PI@budget
+F1loAALGBMSTABLEPIbudget,0.892,config_ci.csv
+F1hiAALGBMSTABLEPIbudget,0.907,config_ci.csv
+APAALGBMSTABLEPIbudget,0.965,summary.csv
+RecAALGBMSTABLEPIbudget,0.549,summary.csv fpr_le
+FPRAALGBMSTABLEPIbudget,1.0,summary.csv fpr_le achieved FPR
+F1dbAALGBMSTABLEPIbudget,0.873,summary.csv domain-balanced
+F1ABRFALL,0.917,summary.csv f1_max A->B RF ALL
+F1loABRFALL,0.905,config_ci.csv
+F1hiABRFALL,0.929,config_ci.csv
+APABRFALL,0.947,summary.csv
+RecABRFALL,0.017,summary.csv fpr_le
+FPRABRFALL,0.3,summary.csv fpr_le achieved FPR
+F1dbABRFALL,0.782,summary.csv domain-balanced
+F1ABRFMEANPIbudget,0.914,summary.csv f1_max A->B RF MEAN_PI@budget
+F1loABRFMEANPIbudget,0.901,config_ci.csv
+F1hiABRFMEANPIbudget,0.925,config_ci.csv
+APABRFMEANPIbudget,0.947,summary.csv
+RecABRFMEANPIbudget,0.017,summary.csv fpr_le
+FPRABRFMEANPIbudget,0.3,summary.csv fpr_le achieved FPR
+F1dbABRFMEANPIbudget,0.767,summary.csv domain-balanced
+F1ABRFSTABLEPIbudget,0.913,summary.csv f1_max A->B RF STABLE_PI@budget
+F1loABRFSTABLEPIbudget,0.901,config_ci.csv
+F1hiABRFSTABLEPIbudget,0.924,config_ci.csv
+APABRFSTABLEPIbudget,0.950,summary.csv
+RecABRFSTABLEPIbudget,0.016,summary.csv fpr_le
+FPRABRFSTABLEPIbudget,0.2,summary.csv fpr_le achieved FPR
+F1dbABRFSTABLEPIbudget,0.763,summary.csv domain-balanced
+F1ABLGBMALL,0.922,summary.csv f1_max A->B LGBM ALL
+F1loABLGBMALL,0.910,config_ci.csv
+F1hiABLGBMALL,0.933,config_ci.csv
+APABLGBMALL,0.958,summary.csv
+RecABLGBMALL,0.345,summary.csv fpr_le
+FPRABLGBMALL,1.6,summary.csv fpr_le achieved FPR
+F1dbABLGBMALL,0.796,summary.csv domain-balanced
+F1ABLGBMMEANPIbudget,0.916,summary.csv f1_max A->B LGBM MEAN_PI@budget
+F1loABLGBMMEANPIbudget,0.903,config_ci.csv
+F1hiABLGBMMEANPIbudget,0.927,config_ci.csv
+APABLGBMMEANPIbudget,0.956,summary.csv
+RecABLGBMMEANPIbudget,0.510,summary.csv fpr_le
+FPRABLGBMMEANPIbudget,1.8,summary.csv fpr_le achieved FPR
+F1dbABLGBMMEANPIbudget,0.778,summary.csv domain-balanced
+F1ABLGBMSTABLEPIbudget,0.915,summary.csv f1_max A->B LGBM STABLE_PI@budget
+F1loABLGBMSTABLEPIbudget,0.902,config_ci.csv
+F1hiABLGBMSTABLEPIbudget,0.927,config_ci.csv
+APABLGBMSTABLEPIbudget,0.956,summary.csv
+RecABLGBMSTABLEPIbudget,0.482,summary.csv fpr_le
+FPRABLGBMSTABLEPIbudget,1.7,summary.csv fpr_le achieved FPR
+F1dbABLGBMSTABLEPIbudget,0.776,summary.csv domain-balanced
+F1BBRFALL,0.956,summary.csv f1_max B->B RF ALL
+F1loBBRFALL,0.947,config_ci.csv
+F1hiBBRFALL,0.964,config_ci.csv
+APBBRFALL,0.993,summary.csv
+RecBBRFALL,0.831,summary.csv fpr_le
+FPRBBRFALL,0.4,summary.csv fpr_le achieved FPR
+F1dbBBRFALL,0.916,summary.csv domain-balanced
+F1BBRFMEANPIbudget,0.941,summary.csv f1_max B->B RF MEAN_PI@budget
+F1loBBRFMEANPIbudget,0.930,config_ci.csv
+F1hiBBRFMEANPIbudget,0.950,config_ci.csv
+APBBRFMEANPIbudget,0.989,summary.csv
+RecBBRFMEANPIbudget,0.823,summary.csv fpr_le
+FPRBBRFMEANPIbudget,0.6,summary.csv fpr_le achieved FPR
+F1dbBBRFMEANPIbudget,0.888,summary.csv domain-balanced
+F1BBRFSTABLEPIbudget,0.944,summary.csv f1_max B->B RF STABLE_PI@budget
+F1loBBRFSTABLEPIbudget,0.933,config_ci.csv
+F1hiBBRFSTABLEPIbudget,0.953,config_ci.csv
+APBBRFSTABLEPIbudget,0.989,summary.csv
+RecBBRFSTABLEPIbudget,0.820,summary.csv fpr_le
+FPRBBRFSTABLEPIbudget,0.8,summary.csv fpr_le achieved FPR
+F1dbBBRFSTABLEPIbudget,0.904,summary.csv domain-balanced
+F1BBLGBMALL,0.958,summary.csv f1_max B->B LGBM ALL
+F1loBBLGBMALL,0.949,config_ci.csv
+F1hiBBLGBMALL,0.966,config_ci.csv
+APBBLGBMALL,0.993,summary.csv
+RecBBLGBMALL,0.876,summary.csv fpr_le
+FPRBBLGBMALL,0.5,summary.csv fpr_le achieved FPR
+F1dbBBLGBMALL,0.936,summary.csv domain-balanced
+F1BBLGBMMEANPIbudget,0.942,summary.csv f1_max B->B LGBM MEAN_PI@budget
+F1loBBLGBMMEANPIbudget,0.932,config_ci.csv
+F1hiBBLGBMMEANPIbudget,0.951,config_ci.csv
+APBBLGBMMEANPIbudget,0.990,summary.csv
+RecBBLGBMMEANPIbudget,0.820,summary.csv fpr_le
+FPRBBLGBMMEANPIbudget,0.2,summary.csv fpr_le achieved FPR
+F1dbBBLGBMMEANPIbudget,0.871,summary.csv domain-balanced
+F1BBLGBMSTABLEPIbudget,0.946,summary.csv f1_max B->B LGBM STABLE_PI@budget
+F1loBBLGBMSTABLEPIbudget,0.937,config_ci.csv
+F1hiBBLGBMSTABLEPIbudget,0.955,config_ci.csv
+APBBLGBMSTABLEPIbudget,0.990,summary.csv
+RecBBLGBMSTABLEPIbudget,0.821,summary.csv fpr_le
+FPRBBLGBMSTABLEPIbudget,0.3,summary.csv fpr_le achieved FPR
+F1dbBBLGBMSTABLEPIbudget,0.895,summary.csv domain-balanced
+F1BARFALL,0.739,summary.csv f1_max B->A RF ALL
+F1loBARFALL,0.727,config_ci.csv
+F1hiBARFALL,0.751,config_ci.csv
+APBARFALL,0.829,summary.csv
+RecBARFALL,0.115,summary.csv fpr_le
+FPRBARFALL,1.4,summary.csv fpr_le achieved FPR
+F1dbBARFALL,0.703,summary.csv domain-balanced
+F1BARFMEANPIbudget,0.639,summary.csv f1_max B->A RF MEAN_PI@budget
+F1loBARFMEANPIbudget,0.625,config_ci.csv
+F1hiBARFMEANPIbudget,0.652,config_ci.csv
+APBARFMEANPIbudget,0.739,summary.csv
+RecBARFMEANPIbudget,0.101,summary.csv fpr_le
+FPRBARFMEANPIbudget,2.2,summary.csv fpr_le achieved FPR
+F1dbBARFMEANPIbudget,0.604,summary.csv domain-balanced
+F1BARFSTABLEPIbudget,0.697,summary.csv f1_max B->A RF STABLE_PI@budget
+F1loBARFSTABLEPIbudget,0.685,config_ci.csv
+F1hiBARFSTABLEPIbudget,0.710,config_ci.csv
+APBARFSTABLEPIbudget,0.746,summary.csv
+RecBARFSTABLEPIbudget,0.135,summary.csv fpr_le
+FPRBARFSTABLEPIbudget,3.1,summary.csv fpr_le achieved FPR
+F1dbBARFSTABLEPIbudget,0.649,summary.csv domain-balanced
+F1BALGBMALL,0.790,summary.csv f1_max B->A LGBM ALL
+F1loBALGBMALL,0.779,config_ci.csv
+F1hiBALGBMALL,0.800,config_ci.csv
+APBALGBMALL,0.883,summary.csv
+RecBALGBMALL,0.440,summary.csv fpr_le
+FPRBALGBMALL,3.2,summary.csv fpr_le achieved FPR
+F1dbBALGBMALL,0.747,summary.csv domain-balanced
+F1BALGBMMEANPIbudget,0.619,summary.csv f1_max B->A LGBM MEAN_PI@budget
+F1loBALGBMMEANPIbudget,0.605,config_ci.csv
+F1hiBALGBMMEANPIbudget,0.634,config_ci.csv
+APBALGBMMEANPIbudget,0.772,summary.csv
+RecBALGBMMEANPIbudget,0.143,summary.csv fpr_le
+FPRBALGBMMEANPIbudget,0.9,summary.csv fpr_le achieved FPR
+F1dbBALGBMMEANPIbudget,0.588,summary.csv domain-balanced
+F1BALGBMSTABLEPIbudget,0.697,summary.csv f1_max B->A LGBM STABLE_PI@budget
+F1loBALGBMSTABLEPIbudget,0.685,config_ci.csv
+F1hiBALGBMSTABLEPIbudget,0.709,config_ci.csv
+APBALGBMSTABLEPIbudget,0.790,summary.csv
+RecBALGBMSTABLEPIbudget,0.220,summary.csv fpr_le
+FPRBALGBMSTABLEPIbudget,2.2,summary.csv fpr_le achieved FPR
+F1dbBALGBMSTABLEPIbudget,0.653,summary.csv domain-balanced
+DropALGBMALL,-2.0,transfer_drop.csv drop_pp mean over seeds
+DropALGBMMEANPIbudget,-1.5,transfer_drop.csv drop_pp mean over seeds
+DropALGBMMEANPImatched,-1.5,transfer_drop.csv drop_pp mean over seeds
+DropALGBMSTABLEPIbudget,-1.6,transfer_drop.csv drop_pp mean over seeds
+DropALGBMSTABLEPImatched,-1.6,transfer_drop.csv drop_pp mean over seeds
+DropARFALL,-2.3,transfer_drop.csv drop_pp mean over seeds
+DropARFMEANPIbudget,-1.7,transfer_drop.csv drop_pp mean over seeds
+DropARFMEANPImatched,-1.7,transfer_drop.csv drop_pp mean over seeds
+DropARFSTABLEPIbudget,-1.7,transfer_drop.csv drop_pp mean over seeds
+DropARFSTABLEPImatched,-1.7,transfer_drop.csv drop_pp mean over seeds
+DropBLGBMALL,16.9,transfer_drop.csv drop_pp mean over seeds
+DropBLGBMMEANPIbudget,32.3,transfer_drop.csv drop_pp mean over seeds
+DropBLGBMMEANPImatched,32.3,transfer_drop.csv drop_pp mean over seeds
+DropBLGBMSTABLEPIbudget,25.0,transfer_drop.csv drop_pp mean over seeds
+DropBLGBMSTABLEPImatched,25.0,transfer_drop.csv drop_pp mean over seeds
+DropBRFALL,21.7,transfer_drop.csv drop_pp mean over seeds
+DropBRFMEANPIbudget,30.2,transfer_drop.csv drop_pp mean over seeds
+DropBRFMEANPImatched,30.2,transfer_drop.csv drop_pp mean over seeds
+DropBRFSTABLEPIbudget,24.7,transfer_drop.csv drop_pp mean over seeds
+DropBRFSTABLEPImatched,24.7,transfer_drop.csv drop_pp mean over seeds
+DropMin,-2.3,transfer_drop.csv ALL
+DropMax,21.7,transfer_drop.csv ALL
+DeltaABRF,-0.000,contrasts.json primary
+DeltaLoABRF,-0.001,contrasts.json primary
+DeltaHiABRF,+0.000,contrasts.json primary
+DeltaABLGBM,-0.000,contrasts.json primary
+DeltaLoABLGBM,-0.001,contrasts.json primary
+DeltaHiABLGBM,+0.000,contrasts.json primary
+DeltaBARF,+0.059,contrasts.json primary
+DeltaLoBARF,+0.051,contrasts.json primary
+DeltaHiBARF,+0.066,contrasts.json primary
+DeltaBALGBM,+0.077,contrasts.json primary
+DeltaLoBALGBM,+0.069,contrasts.json primary
+DeltaHiBALGBM,+0.086,contrasts.json primary
+nPrimaryExcl,2,contrasts.json: CI excludes 0
+nPrimaryPos,2,contrasts.json: CI > 0
+nPrimaryEff,2,contrasts.json: |delta| >= effect threshold
+SecABRFSTABLEALL,-0.004,contrasts.json secondary
+SecABRFMEANALL,-0.004,contrasts.json secondary
+SecABRFSTABLE,-0.000,contrasts.json secondary
+SecABLGBMSTABLEALL,-0.007,contrasts.json secondary
+SecABLGBMMEANALL,-0.006,contrasts.json secondary
+SecABLGBMSTABLE,-0.000,contrasts.json secondary
+SecBARFSTABLEALL,-0.042,contrasts.json secondary
+SecBARFMEANALL,-0.100,contrasts.json secondary
+SecBARFSTABLE,+0.059,contrasts.json secondary
+SecBALGBMSTABLEALL,-0.093,contrasts.json secondary
+SecBALGBMMEANALL,-0.170,contrasts.json secondary
+SecBALGBMSTABLE,+0.077,contrasts.json secondary
+highCorrA,14,selection.json high_corr_pairs_fit
+piSecA,26.1,develop.json timing.pi_seconds (min)
+highCorrB,17,selection.json high_corr_pairs_fit
+piSecB,10.6,develop.json timing.pi_seconds (min)
+relLatB1Min,0.75,benchmark.csv t1 batch1 e2e rel_to_all
+relLatB1Max,1.10,benchmark.csv t1 batch1 e2e rel_to_all
+relLatBkMin,0.47,benchmark.csv t4 batch1024 e2e
+relLatBkMax,1.01,benchmark.csv t4 batch1024 e2e
+extractShareMedian,10.4,benchmark.csv extract/e2e batch1 t1
+cpu,"Intel64 Family 6 Model 154 Stepping 3, GenuineIntel",benchmark.json environment
+ram,32,benchmark.json environment
+pyver,3.10.0,benchmark.json environment
+RhoALGBMALL,0.99,shap_compare.csv
+RhoALGBMSTABLEPIbudget,0.88,shap_compare.csv
+RhoARFALL,0.97,shap_compare.csv
+RhoARFSTABLEPIbudget,0.81,shap_compare.csv
+RhoBLGBMALL,0.96,shap_compare.csv
+RhoBLGBMSTABLEPIbudget,0.98,shap_compare.csv
+RhoBRFALL,0.95,shap_compare.csv
+RhoBRFSTABLEPIbudget,0.98,shap_compare.csv
+shapAddErr,2.9e-08,shap_summary.csv additivity_max_abs_err max
+rhoMin,0.81,shap_compare.csv
+rhoMax,0.99,shap_compare.csv
+rhoSeedMin,1.00,shap_compare.csv seeds
+medLenABenign,55,dev_features FIT median F01
+medDotsABenign,2,dev_features FIT median F06
+medSubABenign,1,dev_features FIT median F23
+httpsABenign,34.9,dev_features FIT mean F30 (%)
+medLenAPhish,63,dev_features FIT median F01
+medDotsAPhish,2,dev_features FIT median F06
+medSubAPhish,0,dev_features FIT median F23
+httpsAPhish,1.5,dev_features FIT mean F30 (%)
+medLenBBenign,41,dev_features FIT median F01
+medDotsBBenign,2,dev_features FIT median F06
+medSubBBenign,1,dev_features FIT median F23
+httpsBBenign,83.5,dev_features FIT mean F30 (%)
+medLenBPhish,74,dev_features FIT median F01
+medDotsBPhish,5,dev_features FIT median F06
+medSubBPhish,3,dev_features FIT median F23
+httpsBPhish,30.6,dev_features FIT mean F30 (%)
+status,"benchmark: completed, evaluation: completed, shap: completed",results_registry.json
